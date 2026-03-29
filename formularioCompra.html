@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <html lang="es">
+
+<!--DEO GLORIA-->
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
@@ -45,9 +47,12 @@
         </ul>
     </nav>
 
-    <form method="post" name="formularioCompra">
+    <main>
+      <h2>Formulario de compra</h2>
+    </main>
+    <form method="post" name="formularioCompra"> <!--falta URL a la que se envía el post-->
       <fieldset>
-        <legend>Datos de Envío</legend>
+        <legend>Información de Envío</legend>
         <label for="inputNombre">
           Nombre:
           <input type="text" name="inputNombre" maxlength="15" minlength="2"/> 
@@ -57,13 +62,20 @@
           Apellido:
           <input type="text" name="inputApellido" maxlength="25" minlength="2"/> 
         </label>
-	<br>
+	      <br>
         <label for="inputEmail">
           Email:
           <input type="email" name="inputEmail"/> 
         </label>
         <br>
-        <!--Falta país con opciones-->
+        <label>
+          <select name="pais">
+            <option value="Alemania"></option>
+            <option value="Angola"></option>
+            <option value="Australia"></option>
+            <option value="Argentina" selected>Argentina</option>
+          </select>
+        </label> 
         <br>
         <label for="inputProvincia">
           Provincia/Estado:
@@ -87,7 +99,7 @@
       </fieldset>
       <br>
       <fieldset>
-        <legend>Datos de Facturación</legend>
+        <legend>Información de Facturación</legend>
         <label for="inputNombre">
           Nombre:
           <input type="text" name="inputNombre" maxlength="15" minlength="2"/> 
@@ -97,13 +109,20 @@
           Apellido:
           <input type="text" name="inputApellido" maxlength="25" minlength="2"/> 
         </label>
-	<br>
+	      <br>
         <label for="inputEmail">
           Email:
           <input type="email" name="inputEmail"/> 
         </label>
         <br>
-        <!--Falta país con opciones-->
+        <label>
+          <select name="pais">
+            <option value="Alemania"></option>
+            <option value="Angola"></option>
+            <option value="Australia"></option>
+            <option value="Argentina" selected>Argentina</option>
+          </select>
+        </label>
         <br>
         <label for="inputProvincia">
           Provincia/Estado:
@@ -140,7 +159,7 @@
       <label for="inputSubmit">
         <input type="submit" name="inputSubmit" value="comprar">    
       </label>
-    </form>
+    </form>    
     <footer>
         <nav>
             <ul>
