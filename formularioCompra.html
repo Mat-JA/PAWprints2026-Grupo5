@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<!--DEO GLORIA-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>PawPrints - Formulario de compra</title>
+</head>
+
+<body>
+  <header>
+    <a href="/index.html">
+      <img src="/imagenes/logo.png" alt="logo principal de paw prints">
+    </a>
+
+    <form name="barra de busqueda" method="get">
+      <input type="search" placeholder="Buscar libros...">
+      <button type="submit">Buscar</button>
+    </form>
+
+    <a href="/carrito.html">
+      <img src="/imagenes/carrito_logo.png" alt="carrito">
+    </a>
+
+    <a href="/mi_cuenta.html">
+      <img src="/imagenes/mi_cuenta_logo.png" alt="mi cuenta">
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="/catalogo.html">Libros</a></li>
+        <li><a href="/novedades.html">Novedades</a></li>
+        <li><a href="/top_50.html">Top 50</a></li>
+        <li><a href="/locales.html">Locales</a></li>
+        <li><a href="/contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Formulario de compra</h1>
+    <form method="post" name="formularioCompra"> <!--falta URL a la que se envía el post-->
+      <fieldset>
+        <legend>Información de Envío</legend>
+        <label for="inputNombre">
+          Nombre:
+          <input type="text" name="inputNombre" maxlength="15" minlength="2" />
+        </label>
+        <br>
+        <label for="inputApellido">
+          Apellido:
+          <input type="text" name="inputApellido" maxlength="25" minlength="2" />
+        </label>
+        <br>
+        <label for="inputEmail">
+          Email:
+          <input type="email" name="inputEmail" />
+        </label>
+        <br>
+        <label>
+          <select name="pais">
+            <option value="Alemania">Alemania</option>
+            <option value="Angola">Angola</option>
+            <option value="Australia">Australia</option>
+            <option value="Argentina" selected>Argentina</option>
+          </select>
+        </label>
+        <br>
+        <label for="inputProvincia">
+          Provincia/Estado:
+          <input type="text" name="inputProvincia" />
+        </label>
+        <br>
+        <label for="inputCiudad">
+          Ciudad:
+          <input type="text" name="inputCiudad" />
+        </label>
+        <br>
+        <label for="inputCalle">
+          Calle:
+          <input type="text" name="inputCalle" />
+        </label>
+        <br>
+        <label for="inputNroCalle">
+          Numero de calle:
+          <input type="number" name="inputNroCalle" value="0" min="0" step="1" />
+        </label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Información de Facturación</legend>
+        <label for="inputNombre">
+          Nombre:
+          <input type="text" name="inputNombre" maxlength="15" minlength="2" />
+        </label>
+        <br>
+        <label for="inputApellido">
+          Apellido:
+          <input type="text" name="inputApellido" maxlength="25" minlength="2" />
+        </label>
+        <br>
+        <label for="inputEmail">
+          Email:
+          <input type="email" name="inputEmail" />
+        </label>
+        <br>
+        <label>
+          <select name="pais">
+            <option value="Alemania">Alemania</option>
+            <option value="Angola">Angola</option>
+            <option value="Australia">Australia</option>
+            <option value="Argentina" selected>Argentina</option>
+          </select>
+        </label>
+        <br>
+        <label for="inputProvincia">
+          Provincia/Estado:
+          <input type="text" name="inputProvincia" />
+        </label>
+        <br>
+        <label for="inputCiudad">
+          Ciudad:
+          <input type="text" name="inputCiudad" />
+        </label>
+        <br>
+        <label for="inputCalle">
+          Calle:
+          <input type="text" name="inputCalle" />
+        </label>
+        <br>
+        <label for="inputNroCalle">
+          Numero de calle:
+          <input type="number" name="inputNroCalle" value="0" min="0" step="1" />
+        </label>
+        <br>
+        <label for="inputNroTarjeta">
+          Numero de tarjeta:
+          <input type="number" name="inputNroTarjeta" value="0" min="0" maxlength="12" minlength="12" />
+        </label>
+        <br>
+        <label for="inputMes">
+          Vencimiento de tarjeta:
+          <input type="month" name="inputMes" />
+        </label>
+      </fieldset>
+      <br>
+      <label for="inputSubmit">
+        <input type="submit" name="inputSubmit" value="Realizar compra">
+      </label>
+    </form>
+  </main>
+  <footer>
+    <nav><a href="/nosotros.html">Acerca de nosotros</a></nav>
+    <address>
+      <strong>Info de contacto</strong> <br />
+      <a href="mailto:libreria@pawprints.com">libreria@pawprints.com</a> <br />
+      <span>+54 2323 123456</span> <br />
+      Tambien podes visitarnos en: <br />
+      <em>
+        Calle falsa 123 <br />
+        Lujan, Buenos Aires <br />
+        CP: 6700
+      </em>
+    </address>
+    <nav>
+      <strong>Nuestras Redes:</strong>
+      <a href="https://instagram.com/PAWPrints_libreria"><em>Instagram</em></a>
+      <a href="https://facebook.com/PAWPrints.libreria"><em>Facebook</em></a>
+    </nav>
+  </footer>
+</body>
+<html>
