@@ -25,7 +25,7 @@ Sitio web de una libreria que cuenta con las funcionalidades:
 ## Referencias
 ### Para la realización del trabajo se tomaron cómo referencias las siguientes librerías:
 
-[Casa del libro](https://www.casadellibro.com)
-[Todos tus libros](https://www.todostuslibros.com/)
-[Yenny el ateneo](https://www.yenny-elateneo.com)
-[Cuspide](https://cuspide.com)
+- [Casa del libro](https://www.casadellibro.com)
+- [Todos tus libros](https://www.todostuslibros.com/)
+- [Yenny el ateneo](https://www.yenny-elateneo.com)
+- [Cuspide](https://cuspide.com)
