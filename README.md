@@ -3,7 +3,7 @@
 
 ### Integrantes y autores del proyecto
 - **Ausqui Mateo**
-- **Caccitore Bautista**
+- **Cacciatore Bautista**
 - **Huici Nicolás**
 - **Jaime Leandro**
 
