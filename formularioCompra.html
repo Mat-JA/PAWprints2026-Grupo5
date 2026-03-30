@@ -47,17 +47,17 @@
         <legend>Información de Envío</legend>
         <label for="inputNombre">
           Nombre:
-          <input type="text" name="inputNombre" maxlength="15" minlength="2" />
+          <input required type="text" name="inputNombre" maxlength="15" minlength="2" />
         </label>
         <br>
         <label for="inputApellido">
           Apellido:
-          <input type="text" name="inputApellido" maxlength="25" minlength="2" />
+          <input required type="text" name="inputApellido" maxlength="25" minlength="2" />
         </label>
         <br>
         <label for="inputEmail">
           Email:
-          <input type="email" name="inputEmail" />
+          <input required type="email" name="inputEmail" />
         </label>
         <br>
         <label>
@@ -71,22 +71,22 @@
         <br>
         <label for="inputProvincia">
           Provincia/Estado:
-          <input type="text" name="inputProvincia" />
+          <input required type="text" name="inputProvincia" />
         </label>
         <br>
         <label for="inputCiudad">
           Ciudad:
-          <input type="text" name="inputCiudad" />
+          <input required type="text" name="inputCiudad" />
         </label>
         <br>
         <label for="inputCalle">
           Calle:
-          <input type="text" name="inputCalle" />
+          <input required type="text" name="inputCalle" />
         </label>
         <br>
         <label for="inputNroCalle">
           Numero de calle:
-          <input type="number" name="inputNroCalle" value="0" min="0" step="1" />
+          <input required type="number" name="inputNroCalle" value="" min="0" step="1" />
         </label>
       </fieldset>
       <br>
@@ -94,17 +94,17 @@
         <legend>Información de Facturación</legend>
         <label for="inputNombre">
           Nombre:
-          <input type="text" name="inputNombre" maxlength="15" minlength="2" />
+          <input required type="text" name="inputNombre" maxlength="15" minlength="2" />
         </label>
         <br>
         <label for="inputApellido">
           Apellido:
-          <input type="text" name="inputApellido" maxlength="25" minlength="2" />
+          <input required type="text" name="inputApellido" maxlength="25" minlength="2" />
         </label>
         <br>
         <label for="inputEmail">
           Email:
-          <input type="email" name="inputEmail" />
+          <input required type="email" name="inputEmail" />
         </label>
         <br>
         <label>
@@ -118,37 +118,37 @@
         <br>
         <label for="inputProvincia">
           Provincia/Estado:
-          <input type="text" name="inputProvincia" />
+          <input required type="text" name="inputProvincia" />
         </label>
         <br>
         <label for="inputCiudad">
           Ciudad:
-          <input type="text" name="inputCiudad" />
+          <input required type="text" name="inputCiudad" />
         </label>
         <br>
         <label for="inputCalle">
           Calle:
-          <input type="text" name="inputCalle" />
+          <input required type="text" name="inputCalle" />
         </label>
         <br>
         <label for="inputNroCalle">
           Numero de calle:
-          <input type="number" name="inputNroCalle" value="0" min="0" step="1" />
+          <input required type="number" name="inputNroCalle" value="" min="0" step="1" />
         </label>
         <br>
         <label for="inputNroTarjeta">
           Numero de tarjeta:
-          <input type="number" name="inputNroTarjeta" value="0" min="0" maxlength="12" minlength="12" />
+          <input required type="number" name="inputNroTarjeta" value="" min="0" maxlength="12" minlength="12" />
         </label>
         <br>
         <label for="inputMes">
           Vencimiento de tarjeta:
-          <input type="month" name="inputMes" />
+          <input required type="month" name="inputMes" />
         </label>
       </fieldset>
       <br>
       <label for="inputSubmit">
-        <input type="submit" name="inputSubmit" value="Realizar compra">
+        <input required type="submit" name="inputSubmit" value="Realizar compra">
       </label>
     </form>
   </main>
