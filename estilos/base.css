@@ -160,13 +160,13 @@ article {
     /*apila elementos verticalmente en cada tarjeta*/
     align-items: center;
     /*centra todo el contenido de la tarjeta horizontalmente*/
-    background-color: #ffffff;
+    background-color: var(--color-primario);
     /* fondo blanco para cada tarjeta */
     border-radius: 8px;
     /*eEsquinas redondeadas */
     padding: 30px;
     /* espacio interno entre el borde y el contenido */
-    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.15);
+    box-shadow: 0 2px 8px var(--color-border);
     /* sombra sutil debajo de la tarjeta */
     transition: transform 0.2s, box-shadow 0.2s;
     /* anima los cambios de transform y sombra en 0.2 segundos */
@@ -175,26 +175,27 @@ article {
 article:hover {
     transform: translateY(-5px);
     /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
-    box-shadow: 0 6px 16px rgba(87, 6, 140, 0.3);
+    box-shadow: 0 6px 16px var(--color-border);
     /* sombra mas grande e intensa al hacer hover */
 }
 
 article h3 {
-    font-size: 14px;
-    /* tamaño del titulo del libro */
-    color: rgb(87, 6, 140);
+    color: var(--color-secundario);
     /* color violeta */
     margin: 0 0 8px 0;
     /* elimina margen por defecto, deja 8px abajo */
+    font-weight: 600;
 }
 
 article p {
     font-size: 13px;
     /* texto mas chico para autor y precio */
-    color: #555;
+    color: var(--color-monocromatico);
     /* gris oscuro*/
     margin: 4px 0;
     /* poco espacio arriba y abajo de cada parrafo */
+
+    font-weight: 400;
 }
 
 /* La imagen ocupa todo el ancho de la tarjeta */
@@ -209,9 +210,9 @@ article button {
     /* el boton ocupa todo el ancho de la tarjeta */
     padding: 8px;
     /* espacio interno */
-    background-color: rgb(87, 6, 140);
+    background-color: var(--color-secundario);
     /* fondo violeta */
-    color: #ffffff;
+    color: var(--color-primario);
     /* texto blanco */
     border: none;
     /* elimina el borde por defecto */
@@ -226,7 +227,7 @@ article button {
 }
 
 article button:hover {
-    background-color: rgb(60, 4, 100);
+    background-color: var(--color-secundario);
     /* violeta mas oscuro al pasar el mouse */
 }
 
