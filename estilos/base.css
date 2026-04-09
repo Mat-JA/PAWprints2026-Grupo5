@@ -129,6 +129,7 @@ input[type="search"],
 input[type="number"] {
     padding: var(--espaciado-medio);
     border: 1px solid var(--color-border);
+    color: var(--color-texto); /* para que el texto que escriba el usuario sea violeta */
 }
 
 input[type="search"] {
@@ -280,8 +281,8 @@ footer nav a {
     display: inline-flex;
     border-radius: 8px;
     transition: all 0.2s ease;
-    align-self: center; /* 🔥 clave */
-    margin-left: 20px;
+    align-self: center;
+    margin-left: var(--espaciado-chico);
 }
 footer nav img {
     width: 24px;
