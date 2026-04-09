@@ -6,11 +6,6 @@ main {
     text-align: center;
 }
 
-/* TITULO */
-main h1 {
-    color: #5c068c;
-}
-
 /* TEXTO */
 main p {
     max-width: 600px;
