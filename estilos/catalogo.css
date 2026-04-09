@@ -1,60 +1,24 @@
+/* BODY */
 body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: rgb(255, 255, 255);
-    color: rgb(87, 6, 140);
+    margin: 0; /* elimina el margen por defecto del navegador alrededor de la pagina */
+    font-family: 'Montserrat', sans-serif; /* tipo letra */
+    background-color: rgb(255, 255, 255); /* color fondo */
+    color: rgb(87, 6, 140); /* color texto */
 }
 
-/*
-PARTE DE ARRIBA DEL HEADER 
-*/
-.header-top {
-    display: flex; /* los hijos (logo, formulario, iconos) se acomodan en fila*/
-    align-items: center; /* los elementos se centran verticalmente dentro del header*/
-    justify-content: space-between; /*distribuye los elementos horizontalmente */
-    padding: 20px 20px; /*espacio interno que ocupa el header*/
-    background-color: rgb(87, 6, 140);
-}
-
-/*
-PARTE DE ABAJO DEL HEADER 
-*/
-.header-nav {
-    padding: 8px 20px; /*espacio interno que ocupa*/
-    border-bottom: 2px solid rgba(87, 6, 140, 0.2);
-}
-
-.header-nav ul {
-    list-style: none; /* elimina los puntitos que los navegadores ponen por defecto en las listas. */
-    display: flex; /* pone los <li> en fila */
-    gap: 20px; /* espacio entre cada item de la lista */
-    margin: 0; /* elimina espacio por defecto que agregan los navegadores a las listas */
-    padding: 0; /* elimina espacio por defecto que agregan los navegadores a las listas */
-}
-
-.header-nav a {
-    color: rgb(87, 6, 140);
-    text-decoration: none; /* sin subrayado que tiene por defecto */
-    font-weight: bold; /* texto en negrita */
-    font-size: 14px;
-}
-
-
-.header-nav a:hover {
-    text-decoration: underline;
-}
-
-
+/* H2 DENTRO DEL MAIN (NUESTROS LIBROS) */
 h2 {
     margin: 0 0 10px 20px;
 }
 
+/* CONTENIDO */
 .contenido {
     display: flex; /*hijos en fila (grilla-libros y aside)*/
     align-items: flex-start; /*alinea los hijos arriba*/ 
     gap: 20px; /*espacio entre la grilla y el aside*/
 }
 
+/* GRILLA LIBROS */
 /* Los libros en grilla, máximo 5 por fila */
 .grilla-libros {
     display: grid; /*activa el sistema de grilla, que organiza los hijos en filas y columnas*/
@@ -63,13 +27,13 @@ h2 {
     flex-grow: 1; /* le dice a la grilla que ocupe todo el espacio horizontal disponible */
 }
 
-
+/* ARTICULO (LIBROS) */
 article {
-    display: flex;
+    display: flex; /* hijos en fila */ 
     flex-direction: column; /*apila elementos verticalmente en cada tarjeta*/
     align-items: center; /*centra todo el contenido de la tarjeta horizontalmente*/
     background-color: #ffffff; /* fondo blanco para cada tarjeta */
-    border-radius: 8px; /*eEsquinas redondeadas */
+    border-radius: 8px; /*esquinas redondeadas */
     padding: 30px; /* espacio interno entre el borde y el contenido */
     box-shadow: 0 2px 8px rgba(87, 6, 140, 0.15); /* sombra sutil debajo de la tarjeta */
     transition: transform 0.2s, box-shadow 0.2s; /* anima los cambios de transform y sombra en 0.2 segundos */
@@ -80,16 +44,11 @@ article:hover {
     box-shadow: 0 6px 16px rgba(87, 6, 140, 0.3); /* sombra mas grande e intensa al hacer hover */
 }
 
+/* H3 = TITULO DE LOS LIBROS */
 article h3 {
     font-size: 14px; /* tamaño del titulo del libro */
     color: rgb(87, 6, 140); /* color violeta */
     margin: 0 0 8px 0; /* elimina margen por defecto, deja 8px abajo */
-}
-
-article p {
-    font-size: 13px; /* texto mas chico para autor y precio */
-    color: #555; /* gris oscuro*/
-    margin: 4px 0; /* poco espacio arriba y abajo de cada parrafo */
 }
 
 /* La imagen ocupa todo el ancho de la tarjeta */
@@ -97,6 +56,14 @@ article img {
     width: 100%;
 }
 
+/* AUTOR Y LIBRO */
+article p {
+    font-size: 13px; /* texto mas chico para autor y precio */
+    color: #555; /* gris oscuro*/
+    margin: 4px 0; /* poco espacio arriba y abajo de cada parrafo */
+}
+
+/* BOTON DE AGREGAR AL CARRRTO */
 article button {
     margin-top: auto; /*empuja el botón hacia abajo, al final de la tarjeta, sin importar cuánto texto tenga cada libro arriba*/
     width: 100%; /* el boton ocupa todo el ancho de la tarjeta */
@@ -114,24 +81,8 @@ article button:hover {
     background-color: rgb(60, 4, 100); /* violeta mas oscuro al pasar el mouse */
 }
 
-/* BOTÓN */
-button {
-    padding: 8px 15px;
-    border: 1px solid #5c068c;
-    background-color: #5c068c;
-    color: white;
-    border-radius: 0 20px 20px 0; /* solo lado derecho */
-    cursor: pointer;
-}
 
-/* HOVER */
-button:hover {
-    background-color: #4a0570;
-}
-
-/*
-ASIDE
-*/
+/* ASIDE */
 aside {
     border: 2px solid rgb(87, 6, 140); /* borde violeta alrededor del aside */
     border-radius: 8px; /* esquinas del borde redondeada */
@@ -140,12 +91,14 @@ aside {
     max-width: 150px; /* tamaño que ocupa */
 }
 
+/* FILTROS */
 aside summary {
     font-weight: bold; /* titulo filtros en engrita */
     color: rgb(87, 6, 140);
     cursor: pointer; /* el cursor cambia  amanito por encima de la palabra filtro*/
 }
 
+/* CADA FILTRO PARTICULAR */
 aside fieldset {
     border: 1px solid rgb(87, 6, 140); /* borde violeta para cada filtro particular */
     border-radius: 4px; 
@@ -157,6 +110,7 @@ aside legend {
     color: rgb(87, 6, 140);
 }
 
+/* BOTON DE APLICAR FILTROS */
 aside button {
     width: 100%; /* el boton ocupa todo el ancho del aside */
     padding: 8px; /* espacio interno */
@@ -176,44 +130,7 @@ aside label {
     display: block; /* cada opcion ocupa toda la fila */
 }
 
-
-/* FOOTER */
-footer {
-    background-color: rgb(87, 6, 140);
-    padding: 20px;
-    margin-top: 60px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-/* FOOTER LINKS */
-footer nav a {
-    text-decoration: none;
-    color: #ffffff;
-    margin-right: 10px;
-}
-
-footer nav a:hover {
-    color: #dddddd;
-}
-
-/* ADDRESS */
-address {
-    font-style: normal;
-    font-size: 14px;
-    color: #ffffff;
-}
-
-/* REDES */
-footer nav:last-child {
-    display: flex; 
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
-}
-
-
+/* PAGINACION */
 .paginacion ul {
     list-style: none; /* elimina los puntitos de la lista */
     display: flex; /* pone los números en fila */
