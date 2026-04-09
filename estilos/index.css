@@ -1,7 +1,7 @@
 :root {
     --color-primario: #ffffff;
     --color-secundario: #5c068c;
-    --color-analogo: #8c0678;
+    --color-monocromatico: #7c08bd;
     --color-texto: #5c068c;
     --color-border: #5c068c;
 
@@ -57,7 +57,7 @@ a:hover {
     text-decoration: underline;
 }
 
-header {
+.header-top {
     background-color: var(--color-secundario);
     color: var(--color-primario);
     display: flex;
@@ -65,9 +65,9 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: var(--espaciado-medio);
-    padding: var(--espaciado-medio);
-    border-bottom: 1px solid var(--color-border);
+    padding: var(--espaciado-medio) var(--espaciado-largo);
 }
+
 
 header a {
     color: var(--color-primario);
@@ -81,22 +81,32 @@ header button {
 header img {
     min-height: 21px;
     height: 50px;
+    flex: 0;
+}
+
+.links-header {
+    display: flex;
+    flex: 0.2;
+    justify-content: space-evenly;
 }
 
 nav ul {
     display: flex;
     gap: var(--espaciado-medio);
     list-style: none;
+    font-weight: 600;
 }
 
 header nav {
-    background-color: var(--color-analogo);
+    background-color: var(--color-monocromatico);
     display: flex;
     width: 100%;
-    margin-top: auto;
+    align-items: center;
+    padding: 0 var(--espaciado-largo);
 }
 
 form[role="search"] {
+    flex: 0.5;
     display: flex;
     gap: var(--espaciado-medio);
 }
@@ -108,6 +118,7 @@ input[type="number"] {
 }
 
 input[type="search"] {
+    flex: 1;
     border-radius: var(--radio-grande);
 }
 
