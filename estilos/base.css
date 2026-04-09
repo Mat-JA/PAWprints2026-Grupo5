@@ -152,7 +152,7 @@ button {
 
 button:hover {
     opacity: 0.9;
-    transform: scale(1.075);
+    transform: scale(1.05);
 }
 
 main {
