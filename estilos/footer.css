@@ -1,0 +1,31 @@
+/* FOOTER */
+footer {
+    background-color: rgb(87, 6, 140);;
+    padding: 20px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* FOOTER LINKS */
+footer nav a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);;
+    margin-right: 10px;
+}
+
+/* ADDRESS */
+address {
+    font-style: normal;
+    font-size: 14px;
+    color: rgb(255, 255, 255);;
+}
+
+/* REDES */
+footer nav:last-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 25px;
+}
