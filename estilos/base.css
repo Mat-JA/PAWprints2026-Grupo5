@@ -22,11 +22,19 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     font-family: var(--fuente-primaria);
     color: var(--color-texto);
     background-color: var(--color-primario);
     line-height: 1.5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -136,7 +144,7 @@ button:hover {
 }
 
 main {
-    padding: var(--espaciado-largo);
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: var(--espaciado-largo)
@@ -188,10 +196,8 @@ article h3 {
 }
 
 article p {
-    font-size: 13px;
-    /* texto mas chico para autor y precio */
+    font-size: 1rem;
     color: var(--color-monocromatico);
-    /* gris oscuro*/
     margin: 4px 0;
     /* poco espacio arriba y abajo de cada parrafo */
 
@@ -238,10 +244,20 @@ footer {
     display: flex;
     justify-content: space-between;
     gap: var(--espaciado-medio);
+    margin-top: auto;
 }
 
 footer a {
+    font-size: .75rem;
     color: var(--color-primario);
+}
+
+footer h2 {
+    font-size: 1rem;
+}
+
+footer p {
+    font-size: .75rem;
 }
 
 a:focus,
