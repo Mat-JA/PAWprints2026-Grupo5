@@ -1,6 +1,7 @@
 :root {
     --color-primario: #ffffff;
     --color-secundario: #5c068c;
+    --color-analogo: #8c0678;
     --color-texto: #5c068c;
     --color-border: #5c068c;
 
@@ -11,6 +12,7 @@
     --espaciado-largo: 32px;
 
     --radio-chico: 4px;
+    --radio-grande: 32px;
 }
 
 /* Reset */
@@ -87,6 +89,13 @@ nav ul {
     list-style: none;
 }
 
+header nav {
+    background-color: var(--color-analogo);
+    display: flex;
+    width: 100%;
+    margin-top: auto;
+}
+
 form[role="search"] {
     display: flex;
     gap: var(--espaciado-medio);
@@ -98,12 +107,16 @@ input[type="number"] {
     border: 1px solid var(--color-border);
 }
 
+input[type="search"] {
+    border-radius: var(--radio-grande);
+}
+
 button {
     background-color: var(--color-secundario);
     color: var(--color-primario);
     border: none;
     padding: var(--espaciado-medio) var(--espaciado-medio);
-    border-radius: var(--radio-chico);
+    border-radius: var(--radio-grande);
     cursor: pointer;
 }
 
