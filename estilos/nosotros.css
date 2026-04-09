@@ -1,7 +1,6 @@
 
 /* MAIN */
 main {
-    flex: 1;
     padding: 60px;
     text-align: center;
 }
@@ -10,5 +9,4 @@ main {
 main p {
     max-width: 600px;
     margin: 0 auto 20px auto;
-    color: #5c068c;
 }
