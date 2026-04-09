@@ -136,6 +136,10 @@ input[type="search"] {
     border-radius: var(--radio-grande);
 }
 
+input[type="search"]::placeholder {
+    color: #5c068c;
+}
+
 button {
     background-color: var(--color-secundario);
     color: var(--color-primario);
