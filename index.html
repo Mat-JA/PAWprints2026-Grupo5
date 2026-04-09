@@ -4,29 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/estilos/index.css">
     <title>PawPrints</title>
 </head>
 
 <body>
     <header>
         <a href="/index.html">
-            <img src="/imagenes/logo.png" alt="logo principal de paw prints">
+            <img src="/imagenes/logo.svg" alt="PawPrints">
         </a>
 
-        <form name="barra de busqueda">
-            <input type="search" placeholder="Buscar libros...">
+        <form role="search">
+            <label for="busqueda">Buscar libros</label>
+            <input id="busqueda" type="search" placeholder="Buscar libros...">
             <button type="submit">Buscar</button>
         </form>
 
         <a href="/carrito.html">
-            <img src="/imagenes/carrito_logo.png" alt="carrito">
+            <img src="/imagenes/carrito_logo.png" alt="carrito de compras">
         </a>
 
         <a href="/mi_cuenta.html">
-            <img src="/imagenes/mi_cuenta_logo.png" alt="mi cuenta">
+            <img src="/imagenes/mi_cuenta_logo.png" alt="acceso a mi cuenta">
         </a>
 
-        <nav>
+        <nav aria-label="Navegación principal">
             <ul>
                 <li><a href="/catalogo.html">Libros</a></li>
                 <li><a href="/novedades.html">Novedades</a></li>
@@ -43,48 +45,139 @@
             <p>Libreria y espacio de lectura ubicada en Lujan, Buenos Aires. Destinada a toda persona que disfrute de un
                 buen libro acompañado de un buen cafe. Veni a visitarnos!</p>
             <figure>
-                <img src="imagenes/frente_libreria.png"
-                    alt="Imagen principal mostrando el frente de la libreria fisica.">
+                <img src="imagenes/frente_libreria.png" alt="Frente de la libreria física.">
                 <figcaption><small>Imagen tomada en nuestra libreria fisica.</small></figcaption>
             </figure>
         </section>
-        <section>
-            <a href="/eventos.html"><img src="/imagenes/evento_principal.png" alt="Eventos destacados."></a>
-        </section>
-    </main>
 
-    <section>
+        <section>
+            <h2>Eventos</h2>
+            <a href="/eventos.html">
+                <img src="/imagenes/evento_principal.png" alt="Evento principal">
+            </a>
+        </section>
+
         <section>
             <h2>Novedades</h2>
-            <article>
-                <a href="detalle_libro.html"><img src="" alt="Portada del libro"></a>
-            </article>
+            <div>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
+            </div>
         </section>
 
         <section>
             <h2>Destacado</h2>
-            <article>
-                <a href="detalle_libro.html"><img src="" alt="Portada del libro"></a>
-            </article>
+            <div>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
+            </div>
         </section>
-    </section>
+    </main>
 
     <footer>
-        <nav><a href="/nosotros.html">Acerca de nosotros</a></nav>
-        <address>
-            <strong>Info de contacto</strong> <br />
-            <a href="mailto:libreria@pawprints.com">libreria@pawprints.com</a> <br />
-            <span>+54 2323 123456</span> <br />
-            Tambien podes visitarnos en: <br />
-            <em>
-                Calle falsa 123 <br />
-                Lujan, Buenos Aires <br />
-                CP: 6700
-            </em>
-        </address>
-        <nav>
-            <strong>Nuestras Redes:</strong>
-            <a href="https://instagram.com/PAWPrints_libreria"><em>Instagram</em></a>
+        <a href="/nosotros.html">Acerca de nosotros</a>
+        <section>
+            <h2>Info de contacto</h2>
+            <address>
+                <a href="mailto:libreria@pawprints.com">libreria@pawprints.com</a> <br />
+                <span>+54 2323 123456</span> <br />
+                Tambien podes visitarnos en: <br />
+                <em>
+                    Calle falsa 123 <br />
+                    Lujan, Buenos Aires <br />
+                    CP: 6700
+                </em>
+            </address>
+        </section>
+        <nav aria-label="Redes sociales">
+            <strong>Nuestras Redes:</strong> <br>
+            <a href="https://instagram.com/PAWPrints_libreria"><em>Instagram</em></a> <br>
             <a href="https://facebook.com/PAWPrints.libreria"><em>Facebook</em></a>
         </nav>
     </footer>

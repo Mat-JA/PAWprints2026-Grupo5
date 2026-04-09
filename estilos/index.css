@@ -1,0 +1,227 @@
+:root {
+    --color-primario: #ffffff;
+    --color-secundario: #5c068c;
+    --color-texto: #5c068c;
+    --color-border: #5c068c;
+
+    --fuente-primaria: 'Montserrat', 'Argentum Sans', sans-serif;
+
+    --espaciado-chico: 8px;
+    --espaciado-medio: 16px;
+    --espaciado-largo: 32px;
+
+    --radio-chico: 4px;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-primaria);
+    color: var(--color-texto);
+    background-color: var(--color-primario);
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+p {
+    font-weight: 300;
+}
+
+a {
+    color: var(--color-texto);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espaciado-medio);
+    padding: var(--espaciado-medio);
+    border-bottom: 1px solid var(--color-border);
+}
+
+header a {
+    color: var(--color-primario);
+}
+
+header button {
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+}
+
+header img {
+    min-height: 21px;
+    height: 50px;
+}
+
+nav ul {
+    display: flex;
+    gap: var(--espaciado-medio);
+    list-style: none;
+}
+
+form[role="search"] {
+    display: flex;
+    gap: var(--espaciado-medio);
+}
+
+input[type="search"],
+input[type="number"] {
+    padding: var(--espaciado-medio);
+    border: 1px solid var(--color-border);
+}
+
+button {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    border: none;
+    padding: var(--espaciado-medio) var(--espaciado-medio);
+    border-radius: var(--radio-chico);
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+main {
+    padding: var(--espaciado-largo);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-largo)
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+}
+
+section>div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--espaciado-largo)
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    /*apila elementos verticalmente en cada tarjeta*/
+    align-items: center;
+    /*centra todo el contenido de la tarjeta horizontalmente*/
+    background-color: #ffffff;
+    /* fondo blanco para cada tarjeta */
+    border-radius: 8px;
+    /*eEsquinas redondeadas */
+    padding: 30px;
+    /* espacio interno entre el borde y el contenido */
+    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.15);
+    /* sombra sutil debajo de la tarjeta */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* anima los cambios de transform y sombra en 0.2 segundos */
+}
+
+article:hover {
+    transform: translateY(-5px);
+    /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
+    box-shadow: 0 6px 16px rgba(87, 6, 140, 0.3);
+    /* sombra mas grande e intensa al hacer hover */
+}
+
+article h3 {
+    font-size: 14px;
+    /* tamaño del titulo del libro */
+    color: rgb(87, 6, 140);
+    /* color violeta */
+    margin: 0 0 8px 0;
+    /* elimina margen por defecto, deja 8px abajo */
+}
+
+article p {
+    font-size: 13px;
+    /* texto mas chico para autor y precio */
+    color: #555;
+    /* gris oscuro*/
+    margin: 4px 0;
+    /* poco espacio arriba y abajo de cada parrafo */
+}
+
+/* La imagen ocupa todo el ancho de la tarjeta */
+article img {
+    width: 100%;
+}
+
+article button {
+    margin-top: auto;
+    /*empuja el botón hacia abajo, al final de la tarjeta, sin importar cuánto texto tenga cada libro arriba*/
+    width: 100%;
+    /* el boton ocupa todo el ancho de la tarjeta */
+    padding: 8px;
+    /* espacio interno */
+    background-color: rgb(87, 6, 140);
+    /* fondo violeta */
+    color: #ffffff;
+    /* texto blanco */
+    border: none;
+    /* elimina el borde por defecto */
+    border-radius: 4px;
+    /* esquinas levemente redondeadas */
+    cursor: pointer;
+    /* el cursor cambia a manito al pasar por encima */
+    font-weight: bold;
+    /* rexto en negrita */
+    margin-top: 8px;
+    /* espacio entre el precio y el boton */
+}
+
+article button:hover {
+    background-color: rgb(60, 4, 100);
+    /* violeta mas oscuro al pasar el mouse */
+}
+
+footer {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    padding: var(--espaciado-largo);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--espaciado-medio);
+}
+
+footer a {
+    color: var(--color-primario);
+}
+
+a:focus,
+button:focus,
+input:focus {
+    outline: 2px solid var(--color-primario);
+    outline-offset: 2px;
+}
