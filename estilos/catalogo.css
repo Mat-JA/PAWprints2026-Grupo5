@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(255, 255, 255);
+    color: rgb(87, 6, 140);
+}
+
+/*
+PARTE DE ARRIBA DEL HEADER 
+*/
+.header-top {
+    display: flex; /* los hijos (logo, formulario, iconos) se acomodan en fila*/
+    align-items: center; /* los elementos se centran verticalmente dentro del header*/
+    justify-content: space-between; /*distribuye los elementos horizontalmente */
+    padding: 20px 20px; /*espacio interno que ocupa el header*/
+    background-color: rgb(87, 6, 140);
+}
+
+/*
+PARTE DE ABAJO DEL HEADER 
+*/
+.header-nav {
+    padding: 8px 20px; /*espacio interno que ocupa*/
+    border-bottom: 2px solid rgba(87, 6, 140, 0.2);
+}
+
+.header-nav ul {
+    list-style: none; /* elimina los puntitos que los navegadores ponen por defecto en las listas. */
+    display: flex; /* pone los <li> en fila */
+    gap: 20px; /* espacio entre cada item de la lista */
+    margin: 0; /* elimina espacio por defecto que agregan los navegadores a las listas */
+    padding: 0; /* elimina espacio por defecto que agregan los navegadores a las listas */
+}
+
+.header-nav a {
+    color: rgb(87, 6, 140);
+    text-decoration: none; /* sin subrayado que tiene por defecto */
+    font-weight: bold; /* texto en negrita */
+    font-size: 14px;
+}
+
+
+.header-nav a:hover {
+    text-decoration: underline;
+}
+
+
+h2 {
+    margin: 0 0 10px 20px;
+}
+
+.contenido {
+    display: flex; /*hijos en fila (grilla-libros y aside)*/
+    align-items: flex-start; /*alinea los hijos arriba*/ 
+    gap: 20px; /*espacio entre la grilla y el aside*/
+}
+
+/* Los libros en grilla, máximo 5 por fila */
+.grilla-libros {
+    display: grid; /*activa el sistema de grilla, que organiza los hijos en filas y columnas*/
+    grid-template-columns: repeat(5, 1fr); /*crea exactamente 5 columnas iguales. Cuando se llenan, los siguientes elementos pasan a la fila de abajo automaticamente*/
+    gap: 20px; /*espacio entre cada libro*/
+    flex-grow: 1; /* le dice a la grilla que ocupe todo el espacio horizontal disponible */
+}
+
+
+article {
+    display: flex;
+    flex-direction: column; /*apila elementos verticalmente en cada tarjeta*/
+    align-items: center; /*centra todo el contenido de la tarjeta horizontalmente*/
+    background-color: #ffffff; /* fondo blanco para cada tarjeta */
+    border-radius: 8px; /*eEsquinas redondeadas */
+    padding: 30px; /* espacio interno entre el borde y el contenido */
+    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.15); /* sombra sutil debajo de la tarjeta */
+    transition: transform 0.2s, box-shadow 0.2s; /* anima los cambios de transform y sombra en 0.2 segundos */
+}
+
+article:hover {
+    transform: translateY(-5px); /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
+    box-shadow: 0 6px 16px rgba(87, 6, 140, 0.3); /* sombra mas grande e intensa al hacer hover */
+}
+
+article h3 {
+    font-size: 14px; /* tamaño del titulo del libro */
+    color: rgb(87, 6, 140); /* color violeta */
+    margin: 0 0 8px 0; /* elimina margen por defecto, deja 8px abajo */
+}
+
+article p {
+    font-size: 13px; /* texto mas chico para autor y precio */
+    color: #555; /* gris oscuro*/
+    margin: 4px 0; /* poco espacio arriba y abajo de cada parrafo */
+}
+
+/* La imagen ocupa todo el ancho de la tarjeta */
+article img {
+    width: 100%;
+}
+
+article button {
+    margin-top: auto; /*empuja el botón hacia abajo, al final de la tarjeta, sin importar cuánto texto tenga cada libro arriba*/
+    width: 100%; /* el boton ocupa todo el ancho de la tarjeta */
+    padding: 8px; /* espacio interno */
+    background-color: rgb(87, 6, 140); /* fondo violeta */
+    color: #ffffff; /* texto blanco */
+    border: none; /* elimina el borde por defecto */
+    border-radius: 4px; /* esquinas levemente redondeadas */
+    cursor: pointer; /* el cursor cambia a manito al pasar por encima */
+    font-weight: bold; /* rexto en negrita */
+    margin-top: 8px; /* espacio entre el precio y el boton */
+}
+
+article button:hover {
+    background-color: rgb(60, 4, 100); /* violeta mas oscuro al pasar el mouse */
+}
+
+/* BOTÓN */
+button {
+    padding: 8px 15px;
+    border: 1px solid #5c068c;
+    background-color: #5c068c;
+    color: white;
+    border-radius: 0 20px 20px 0; /* solo lado derecho */
+    cursor: pointer;
+}
+
+/* HOVER */
+button:hover {
+    background-color: #4a0570;
+}
+
+/*
+ASIDE
+*/
+aside {
+    border: 2px solid rgb(87, 6, 140); /* borde violeta alrededor del aside */
+    border-radius: 8px; /* esquinas del borde redondeada */
+    padding: 10px; /*espacio entre el borde y el contenido*/
+    min-width: 150px; /* tamaño que ocupa */
+    max-width: 150px; /* tamaño que ocupa */
+}
+
+aside summary {
+    font-weight: bold; /* titulo filtros en engrita */
+    color: rgb(87, 6, 140);
+    cursor: pointer; /* el cursor cambia  amanito por encima de la palabra filtro*/
+}
+
+aside fieldset {
+    border: 1px solid rgb(87, 6, 140); /* borde violeta para cada filtro particular */
+    border-radius: 4px; 
+    margin-bottom: 10px; /* espacio entre cada fieldset para que no queden pegados */
+}
+
+aside legend {
+    font-weight: bold; /* el titulo de cada bloque en negrita y violeta */
+    color: rgb(87, 6, 140);
+}
+
+aside button {
+    width: 100%; /* el boton ocupa todo el ancho del aside */
+    padding: 8px; /* espacio interno */
+    background-color: rgb(87, 6, 140); /* fondo violeta */
+    color: #ffffff; /* texto blanco */
+    border: none; /* sin borde */
+    border-radius: 4px; /* esquinas redondeadas */
+    cursor: pointer; /* el cursor cambia a manito cuando pasa por encima de el */
+    font-weight: bold; /* letra negrita */
+}
+
+aside button:hover {
+    background-color: rgb(60, 4, 100) /* cuando el mouse pasa por encima, el fondo cambia a un violeta mas oscuro */
+}
+
+aside label {
+    display: block; /* cada opcion ocupa toda la fila */
+}
+
+
+/* FOOTER */
+footer {
+    background-color: rgb(87, 6, 140);
+    padding: 20px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* FOOTER LINKS */
+footer nav a {
+    text-decoration: none;
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+footer nav a:hover {
+    color: #dddddd;
+}
+
+/* ADDRESS */
+address {
+    font-style: normal;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* REDES */
+footer nav:last-child {
+    display: flex; 
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.paginacion ul {
+    list-style: none; /* elimina los puntitos de la lista */
+    display: flex; /* pone los números en fila */
+    justify-content: center; /* los centra horizontalmente en la página */
+    gap: 8px; /* espacio entre cada numero */
+    padding: 0; /* elimina el padding por defecto de la lista */
+    margin: 20px 0; /* espacio arriba y abajo de la paginación */
+}
+
+.paginacion a {
+    display: flex; /* activa flexbox dentro de cada circulo */
+    align-items: center; /* centra el numero verticalmente dentro del circulo */
+    justify-content: center; /* centra el numero horizontalmente dentro del circulo */
+    width: 36px; /* ancho fijo del circulo */
+    height: 36px; /* alto fijo del circulo */
+    border-radius: 50%; /* convierte el cuadrado en circulo */
+    border: 2px solid rgb(87, 6, 140); /* borde violeta alrededor del circulo */
+    color: rgb(87, 6, 140); /* color violeta para el numero */
+    text-decoration: none; /* elimina el subrayado por defecto de los links */
+    font-weight: bold; /* numero en negrita */
+}
+
+.paginacion a:hover {
+    background-color: rgba(87, 6, 140, 0.1); /* fondo violeta muy suave al pasar el mouse */
+}
