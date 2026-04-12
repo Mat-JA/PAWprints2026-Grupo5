@@ -8,5 +8,6 @@ main {
 /* TEXTO */
 main p {
     max-width: 600px;
+    padding-top: 20px;
     margin: 0 auto 20px auto;
 }
