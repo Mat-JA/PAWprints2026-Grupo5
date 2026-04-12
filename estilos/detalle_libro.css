@@ -1,0 +1,77 @@
+main {
+    padding: var(--espaciado-largo) var(--espaciado-largo);
+}
+
+.datos-libro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: var(--espaciado-chico) var(--espaciado-largo);
+}
+
+.portada-libro {
+    margin: 0 var(--espaciado-largo)
+}
+
+.portada-libro img {
+    max-height: 400px;
+}
+
+.tarjeta-libro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0 var(--espaciado-largo);
+}
+
+.tarjeta-libro * {
+    margin: auto;
+}
+
+.tarjeta-libro p {
+    font-weight: 600;
+}
+
+.tarjeta-libro button {
+    height: 4rem;
+    width: 16rem;
+    background-color: var(--color-secundario);
+    /* fondo violeta */
+    color: var(--color-primario);
+    /* texto blanco */
+    border: none;
+    /* elimina el borde por defecto */
+    cursor: pointer;
+    /* el cursor cambia a manito al pasar por encima */
+    font-weight: bold;
+    /* rexto en negrita */
+    border-radius: var(--radio-medio);
+
+}
+
+.tarjeta-libro button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.descripcion-libro h2,
+.comentarios h2 {
+    border-bottom: solid 1px var(--color-secundario);
+}
+
+.opinion {
+    margin: var(--espaciado-medio) 0
+}
+
+.opinion-datos {
+    background-color: var(--color-sombreado-primario);
+    display: flex;
+    flex-direction: row;
+
+}
+
+.opinion-datos p {
+    font-weight: 600;
+    margin: 0 var(--espaciado-largo);
+}

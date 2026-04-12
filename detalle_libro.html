@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/estilos/base.css">
+    <link rel="stylesheet" href="/estilos/header.css">
+    <link rel="stylesheet" href="/estilos/footer.css">
+    <link rel="stylesheet" href="/estilos/detalle_libro.css">
     <title>PawPrints - Libro</title>
 </head>
 
@@ -43,63 +46,81 @@
     </header>
 
     <main>
-        <article>
-            <section>
-                <img src="imagenes/libro1_portada" alt="Portada del libro">
-            </section>
+        <section>
+            <article class="detalle-libro">
+                <section class="datos-libro">
+                    <div class="portada-libro">
+                        <img src="imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </div>
 
-            <header>
-                <h1>El camino de los reyes</h1>
-                <h3>Brandon Sanderson</h3>
-            </header>
+                    <div class="tarjeta-libro">
+                        <h1>El camino de los reyes</h1>
+                        <h2>Brandon Sanderson</h2>
 
-            <section>
-                <p>Precio: $111</p>
-            </section>
+                        <p>Precio: $111</p>
 
-            <section>
-                <button>Agregar al carrito</button>
-            </section>
+                        <button>Agregar al carrito</button>
 
-            <section>
-                <p>Puntuacion: 5/5</p>
-            </section>
+                        <p>Puntuacion: 5/5</p>
+                    </div>
+                </section>
 
-            <section>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipiscing, elit blandit ultrices consequat ac sociosqu
-                    dignissim, phasellus cum libero nullam massa. Venenatis facilisi ultrices phasellus est non eget et
-                    lectus, mi curabitur felis nascetur suspendisse hendrerit duis aliquam quis, cubilia interdum purus
-                    a urna curae fermentum. Porta dignissim nulla phasellus proin senectus imperdiet fames, facilisi
-                    malesuada mauris porttitor interdum turpis, aliquet vulputate vel integer conubia habitasse.
+                <section class="descripcion-libro">
+                    <h2>Descripción</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipiscing, elit blandit ultrices consequat ac sociosqu
+                        dignissim, phasellus cum libero nullam massa. Venenatis facilisi ultrices phasellus est non eget
+                        et
+                        lectus, mi curabitur felis nascetur suspendisse hendrerit duis aliquam quis, cubilia interdum
+                        purus
+                        a urna curae fermentum. Porta dignissim nulla phasellus proin senectus imperdiet fames, facilisi
+                        malesuada mauris porttitor interdum turpis, aliquet vulputate vel integer conubia habitasse.
 
-                    Sem enim pharetra facilisis id a nascetur massa risus sollicitudin, suscipit vitae convallis neque
-                    ac cras consequat. Orci semper nec vehicula rutrum potenti imperdiet fusce varius netus, condimentum
-                    porttitor magna dictumst mollis lacinia habitasse ridiculus faucibus, mi aptent turpis vel proin
-                    mattis leo fringilla. Torquent conubia purus vel dapibus tempor vivamus integer pharetra ultrices
-                    iaculis, dictum posuere eleifend nec primis dis auctor semper sollicitudin duis, ridiculus massa
-                    molestie nulla platea vitae morbi nunc quisque.
-                </p>
-            </section>
+                        Sem enim pharetra facilisis id a nascetur massa risus sollicitudin, suscipit vitae convallis
+                        neque
+                        ac cras consequat. Orci semper nec vehicula rutrum potenti imperdiet fusce varius netus,
+                        condimentum
+                        porttitor magna dictumst mollis lacinia habitasse ridiculus faucibus, mi aptent turpis vel proin
+                        mattis leo fringilla. Torquent conubia purus vel dapibus tempor vivamus integer pharetra
+                        ultrices
+                        iaculis, dictum posuere eleifend nec primis dis auctor semper sollicitudin duis, ridiculus massa
+                        molestie nulla platea vitae morbi nunc quisque.
+                    </p>
+                </section>
+            </article>
+        </section>
 
-            <section>
-                <h2>Comentarios</h2>
+        <section class="comentarios">
+            <h2>Comentarios</h2>
 
-                <article>
-                    <p>Nombre</p>
-                    <p>Fecha</p>
-                    <p>Puntuacion</p>
-                    <p>Opinion</p>
-                </article>
+            <article class="opinion">
+                <div class="opinion-datos">
+                    <p>Juan Apellido</p>
+                    <p>dd/mm/aaaa</p>
+                    <p>Puntuacion: 5/5</p>
+                </div>
+                <div class="opinion-texto">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dui non dui congue pharetra.
+                        Duis
+                        lobortis convallis nisi eu dapibus. Morbi condimentum pharetra dolor, id consectetur nisl
+                        viverra
+                        vel.</p>
+                </div>
+            </article>
 
-                <article>
-                    <p>Nombre</p>
-                    <p>Fecha</p>
-                    <p>Puntuacion</p>
-                    <p>Opinion</p>
-                </article>
-            </section>
-        </article>
+            <article class="opinion">
+                <div class="opinion-datos">
+                    <p>María Apellido</p>
+                    <p>dd/mm/aaaa</p>
+                    <p>Puntuacion: 5/5</p>
+                </div>
+                <div class="opinion-texto">
+                    <p>Cras sed eleifend est. Morbi ut ullamcorper ante. Pellentesque congue porta dolor a imperdiet.
+                        Morbi
+                        porta quis dui quis tincidunt.</p>
+                </div>
+            </article>
+        </section>
     </main>
     <footer>
         <a href="/nosotros.html">Acerca de nosotros</a>
@@ -116,8 +137,10 @@
         </section>
         <nav aria-label="Redes sociales">
             <strong>Nuestras Redes:</strong> <br>
-            <a href="https://instagram.com/PAWPrints_libreria"><img src="/imagenes/instagram_darkmode.svg" alt="Instagram"></a> <br>
-            <a href="https://facebook.com/PAWPrints.libreria"><img src="/imagenes/facebook_darkmode.svg" alt="Facebook"></a>
+            <a href="https://instagram.com/PAWPrints_libreria"><img src="/imagenes/instagram_darkmode.svg"
+                    alt="Instagram"></a> <br>
+            <a href="https://facebook.com/PAWPrints.libreria"><img src="/imagenes/facebook_darkmode.svg"
+                    alt="Facebook"></a>
         </nav>
     </footer>
 </body>

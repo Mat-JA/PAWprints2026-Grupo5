@@ -1,7 +1,3 @@
-figure img {
-    width: 100%;
-}
-
 h1,
 h2,
 h3,
@@ -11,6 +7,19 @@ p {
 
 h1 {
     font-size: 4rem;
+}
+
+.principal {
+    padding: 0;
+}
+
+.principal p {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.principal img {
+    width: 100%;
 }
 
 section {
@@ -26,4 +35,102 @@ section h2 {
 
 .carrusel {
     padding: var(--espaciado-largo);
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-largo)
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+}
+
+section>div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--espaciado-largo)
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    /*apila elementos verticalmente en cada tarjeta*/
+    align-items: center;
+    /*centra todo el contenido de la tarjeta horizontalmente*/
+    background-color: var(--color-primario);
+    /* fondo blanco para cada tarjeta */
+    border-radius: 8px;
+    /*eEsquinas redondeadas */
+    padding: 30px;
+    /* espacio interno entre el borde y el contenido */
+    box-shadow: 0 2px 8px var(--color-border);
+    /* sombra sutil debajo de la tarjeta */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* anima los cambios de transform y sombra en 0.2 segundos */
+}
+
+article:hover {
+    transform: translateY(-5px);
+    /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
+    box-shadow: 0 6px 16px var(--color-border);
+    /* sombra mas grande e intensa al hacer hover */
+}
+
+article h3 {
+    color: var(--color-secundario);
+    /* color violeta */
+    margin: 0 0 8px 0;
+    /* elimina margen por defecto, deja 8px abajo */
+    font-weight: 600;
+}
+
+article p {
+    font-size: 1rem;
+    color: var(--color-monocromatico);
+    margin: 4px 0;
+    /* poco espacio arriba y abajo de cada parrafo */
+
+    font-weight: 400;
+}
+
+/* La imagen ocupa todo el ancho de la tarjeta */
+article img {
+    width: 100%;
+}
+
+article button {
+    margin-top: auto;
+    /*empuja el botón hacia abajo, al final de la tarjeta, sin importar cuánto texto tenga cada libro arriba*/
+    width: 100%;
+    /* el boton ocupa todo el ancho de la tarjeta */
+    padding: 8px;
+    /* espacio interno */
+    background-color: var(--color-secundario);
+    /* fondo violeta */
+    color: var(--color-primario);
+    /* texto blanco */
+    border: none;
+    /* elimina el borde por defecto */
+    border-radius: 4px;
+    /* esquinas levemente redondeadas */
+    cursor: pointer;
+    /* el cursor cambia a manito al pasar por encima */
+    font-weight: bold;
+    /* rexto en negrita */
+    margin-top: 8px;
+    /* espacio entre el precio y el boton */
+}
+
+article button:hover {
+    background-color: var(--color-secundario);
 }

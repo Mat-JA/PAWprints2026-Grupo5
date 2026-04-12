@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/estilos/base.css">
+    <link rel="stylesheet" href="/estilos/header.css">
+    <link rel="stylesheet" href="/estilos/footer.css">
     <link rel="stylesheet" href="/estilos/index.css">
     <title>PawPrints</title>
 </head>
@@ -44,7 +46,7 @@
     </header>
 
     <main>
-        <section>
+        <section class="principal">
             <figure>
                 <img src="imagenes/frente_libreria_lightmode.png" alt="Frente de la libreria física.">
             </figure>
@@ -63,6 +65,51 @@
         <section class="carrusel">
             <h2>Novedades</h2>
             <div>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
+                <article>
+                    <a href="detalle_libro.html">
+                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    </a>
+                    <div>
+                        <h3>Título de libro</h3>
+                        <p>$ Precio</p>
+                        <form action="/carrito/agregar" method="post">
+                            <input type="hidden" name="id_libro" value="123">
+                            <input type="hidden" name="título" value="Título del libro">
+                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
+                                carrito</button>
+                        </form>
+                    </div>
+                </article>
                 <article>
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
@@ -178,8 +225,10 @@
         </section>
         <nav aria-label="Redes sociales">
             <strong>Nuestras Redes:</strong> <br>
-            <a href="https://instagram.com/PAWPrints_libreria"><img src="/imagenes/instagram_darkmode.svg" alt="Instagram"></a> <br>
-            <a href="https://facebook.com/PAWPrints.libreria"><img src="/imagenes/facebook_darkmode.svg" alt="Facebook"></a>
+            <a href="https://instagram.com/PAWPrints_libreria"><img src="/imagenes/instagram_darkmode.svg"
+                    alt="Instagram"></a> <br>
+            <a href="https://facebook.com/PAWPrints.libreria"><img src="/imagenes/facebook_darkmode.svg"
+                    alt="Facebook"></a>
         </nav>
     </footer>
 </body>
