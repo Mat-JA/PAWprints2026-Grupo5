@@ -1,0 +1,8 @@
+@media print {
+    :root {
+        --color-secundario: rgb(0, 0, 0);
+        --color-monocromatico: rgb(0, 0, 0);
+        --color-texto: rgb(0, 0, 0);
+        --color-border: rgb(0, 0, 0);
+    }
+}
