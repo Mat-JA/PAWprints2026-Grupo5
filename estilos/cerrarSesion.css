@@ -1,0 +1,49 @@
+/* MAIN centrado en pantalla */
+main {
+    flex: 1; /* ocupa todo el espacio entre header y footer */
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    align-items: center;     /* centra vertical */
+    padding: var(--espaciado-medio);
+}
+
+/* TARJETA */
+.logout {
+    width: 100%;
+    max-width: 350px;
+    padding: var(--espaciado-largo) var(--espaciado-medio);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radio-medio);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-medio);
+    text-align: center;
+}
+
+/* TITULO */
+.logout h1 {
+    font-size: 1.5rem;
+}
+
+/* TEXTO */
+.logout p {
+    font-size: 1rem;
+}
+
+/* LINK BOTON */
+.logout a {
+    display: inline-block;
+    padding: var(--espaciado-chico) var(--espaciado-medio);
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    border-radius: var(--radio-grande);
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.logout a:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}

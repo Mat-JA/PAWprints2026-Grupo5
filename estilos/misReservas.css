@@ -1,0 +1,168 @@
+/* MAIN */
+main {
+    flex: 1; /* hace que el main ocupe todo el espacio disponible entre header y footer */
+    padding: var(--espaciado-medio); /* espacio interno alrededor del contenido */
+    display: flex; /* usa flexbox para organizar el contenido */
+    flex-direction: column; /* apila los elementos (h1 y lista) en columna */
+    align-items: center; /* centra horizontalmente todo lo que está dentro */
+    gap: var(--espaciado-medio); /* espacio entre los elementos hijos (h1 y ul) */
+}
+
+/* TÍTULO */
+main h1 {
+    text-align: center; /* centra el texto del título */
+}
+
+/* LISTA */
+main ul {
+    list-style: none; /* elimina los puntitos de la lista */
+    width: 100%; /* ocupa todo el ancho disponible */
+    max-width: 900px; /* limita el ancho máximo para que no se estire demasiado */
+    display: flex; /* usa flexbox */
+    flex-direction: column; /* los items (li) se apilan verticalmente */
+    gap: var(--espaciado-medio); /* espacio entre cada card */
+}
+
+/* CARD */
+main li {
+    display: grid; /* usa grid para organizar el contenido interno */
+    grid-template-columns: 120px 1fr 120px; 
+    /* 3 columnas: imagen (120px), info (flexible), precio/botón (120px) */
+
+    grid-template-rows: auto auto auto auto auto; 
+    /* define 5 filas (una por cada bloque de contenido) */
+
+    gap: 6px var(--espaciado-medio); 
+    /* espacio entre filas (6px) y columnas (espaciado medio) */
+
+    align-items: start; /* alinea los elementos arriba dentro de cada celda */
+
+    border: 1px solid var(--color-border); /* borde de la card */
+    border-radius: var(--radio-medio); /* esquinas redondeadas */
+    overflow: hidden; /* oculta contenido que se salga del borde */
+    padding: var(--espaciado-medio); /* espacio interno */
+}
+
+/* IMAGEN */
+main li img {
+    grid-row: 1 / -1; /* la imagen ocupa desde la primera hasta la última fila (todo el alto) */
+    width: 100%; /* ocupa todo el ancho de su columna */
+    height: 100%; /* ocupa todo el alto disponible */
+    object-fit: cover; /* recorta la imagen para llenar el espacio sin deformarse */
+}
+
+/* RESET MÁRGENES */
+main li h2,
+main li p {
+    margin: 0; /* elimina márgenes por defecto de títulos y párrafos */
+}
+
+/* TÍTULO */
+main li h2 {
+    grid-column: 2; /* se ubica en la columna del medio */
+    grid-row: 1; /* primera fila */
+    font-size: 1.1rem; /* tamaño de fuente */
+}
+
+/* AUTOR */
+main li p:nth-of-type(1) {
+    grid-column: 2; /* columna del medio */
+    grid-row: 2; /* segunda fila */
+}
+
+/* ISBN */
+main li p:nth-of-type(2) {
+    grid-column: 2; /* columna del medio */
+    grid-row: 3; /* tercera fila */
+}
+
+/* DESCRIPCIÓN */
+main li p:nth-of-type(3) {
+    grid-column: 2; /* columna del medio */
+    grid-row: 4; /* cuarta fila */
+}
+
+/* PRECIO (alineado con autor) */
+main li p:nth-of-type(4) {
+    grid-column: 3; /* columna derecha */
+    grid-row: 2; /* misma fila que el autor */
+    text-align: right; /* alinea el texto a la derecha */
+    font-weight: 600; /* lo hace más grueso (destacado) */
+}
+
+/* ESTADO (alineado con ISBN) */
+main li p:nth-of-type(5) {
+    grid-column: 3; /* columna derecha */
+    grid-row: 3; /* misma fila que el ISBN */
+    text-align: right; /* alineado a la derecha */
+}
+
+/* BOTÓN ELIMINAR */
+main li button {
+    grid-column: 3; /* columna derecha */
+    grid-row: 5; /* última fila */
+    justify-self: end; /* lo pega a la derecha dentro de la celda */
+    align-self: end; /* lo baja al fondo de la celda */
+
+    background: none; /* sin fondo */
+    border: none; /* sin borde */
+    cursor: pointer; /* cursor tipo mano */
+    font-size: 1.2rem; /* tamaño del ícono/texto */
+}
+
+/* HOVER BOTÓN */
+main li button:hover {
+    transform: scale(1.2); /* agranda el botón al pasar el mouse */
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+
+    main li {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        /* centra TODOS los elementos horizontalmente */
+
+        text-align: center;
+        gap: var(--espaciado-chico);
+    }
+
+    main li img {
+        width: 100%;
+        max-width: 150px;
+        height: auto;
+        margin: 0 auto;
+        /* imagen centrada y más chica */
+    }
+
+    main li h2 {
+        font-size: 1rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    main li p {
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    /*FIX PRECIO Y ESTADO */
+    main li p:nth-of-type(4),
+    main li p:nth-of-type(5) {
+        text-align: center;
+    }
+
+    main li button {
+        align-self: center;
+        margin-top: var(--espaciado-chico);
+        /* botón centrado abajo */
+    }
+
+    main li button img {
+        width: 24px;
+        height: 24px;
+        /* tamaño del icono eliminar */
+    }
+}

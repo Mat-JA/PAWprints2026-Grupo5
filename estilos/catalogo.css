@@ -1,29 +1,33 @@
-/* BODY */
-body {
-    margin: 0; /* elimina el margen por defecto del navegador alrededor de la pagina */
-    font-family: 'Montserrat', sans-serif; /* tipo letra */
-    background-color: rgb(255, 255, 255); /* color fondo */
-    color: rgb(87, 6, 140); /* color texto */
+/* MAIN */
+main {
+    flex: 1;
+    padding: var(--espaciado-medio);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
 }
 
-/* H2 DENTRO DEL MAIN (NUESTROS LIBROS) */
-h2 {
-    margin: 15px 0 10px 20px;
+/* TÍTULO */
+main h2 {
+    margin-left: var(--espaciado-medio);
 }
 
 /* CONTENIDO */
 .contenido {
     display: flex; /*hijos en fila (grilla-libros y aside)*/
     align-items: flex-start; /*alinea los hijos arriba*/ 
-    gap: 20px; /*espacio entre la grilla y el aside*/
+    gap: var(--espaciado-medio);
 }
 
 /* GRILLA LIBROS */
-/* Los libros en grilla, máximo 5 por fila */
 .grilla-libros {
     display: grid; /*activa el sistema de grilla, que organiza los hijos en filas y columnas*/
-    grid-template-columns: repeat(5, 1fr); /*crea exactamente 5 columnas iguales. Cuando se llenan, los siguientes elementos pasan a la fila de abajo automaticamente*/
-    gap: 20px; /*espacio entre cada libro*/
+    
+    /* responsive (antes eran 5 columnas fijas) */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+    /* crea columnas automáticas: mínimo 180px, máximo se expanden */
+
+    gap: var(--espaciado-medio);
     flex-grow: 1; /* le dice a la grilla que ocupe todo el espacio horizontal disponible */
 }
 
@@ -32,9 +36,9 @@ article {
     display: flex; /* hijos en fila */ 
     flex-direction: column; /*apila elementos verticalmente en cada tarjeta*/
     align-items: center; /*centra todo el contenido de la tarjeta horizontalmente*/
-    background-color: #ffffff; /* fondo blanco para cada tarjeta */
-    border-radius: 8px; /*esquinas redondeadas */
-    padding: 30px; /* espacio interno entre el borde y el contenido */
+    background-color: var(--color-primario);
+    border-radius: var(--radio-medio);
+    padding: var(--espaciado-medio);
     box-shadow: 0 2px 8px rgba(87, 6, 140, 0.15); /* sombra sutil debajo de la tarjeta */
     transition: transform 0.2s, box-shadow 0.2s; /* anima los cambios de transform y sombra en 0.2 segundos */
 }
@@ -46,9 +50,9 @@ article:hover {
 
 /* H3 = TITULO DE LOS LIBROS */
 article h3 {
-    font-size: 14px; /* tamaño del titulo del libro */
-    color: rgb(87, 6, 140); /* color violeta */
-    margin: 0 0 8px 0; /* elimina margen por defecto, deja 8px abajo */
+    font-size: 0.9rem; /* tamaño del titulo del libro */
+    margin-bottom: var(--espaciado-chico);
+    text-align: center;
 }
 
 /* La imagen ocupa todo el ancho de la tarjeta */
@@ -58,64 +62,70 @@ article img {
 
 /* AUTOR Y LIBRO */
 article p {
-    font-size: 13px; /* texto mas chico para autor y precio */
-    color: #555; /* gris oscuro*/
-    margin: 4px 0; /* poco espacio arriba y abajo de cada parrafo */
+    font-size: 0.8rem;
+    margin: 2px 0;
+    color: #555;
 }
 
 /* BOTON DE AGREGAR AL CARRRTO */
 article button {
     margin-top: auto; /*empuja el botón hacia abajo, al final de la tarjeta, sin importar cuánto texto tenga cada libro arriba*/
     width: 100%; /* el boton ocupa todo el ancho de la tarjeta */
-    padding: 8px; /* espacio interno */
-    background-color: rgb(87, 6, 140); /* fondo violeta */
-    color: #ffffff; /* texto blanco */
+    padding: var(--espaciado-chico);
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
     border: none; /* elimina el borde por defecto */
-    border-radius: 4px; /* esquinas levemente redondeadas */
+    border-radius: var(--radio-chico);
     cursor: pointer; /* el cursor cambia a manito al pasar por encima */
     font-weight: bold; /* rexto en negrita */
-    margin-top: 8px; /* espacio entre el precio y el boton */
 }
 
 article button:hover {
-    background-color: rgb(60, 4, 100); /* violeta mas oscuro al pasar el mouse */
+    background-color: var(--color-monocromatico);
 }
 
 
 /* ASIDE */
 aside {
-    border: 2px solid rgb(87, 6, 140); /* borde violeta alrededor del aside */
-    border-radius: 8px; /* esquinas del borde redondeada */
-    padding: 10px; /*espacio entre el borde y el contenido*/
-    min-width: 150px; /* tamaño que ocupa */
-    max-width: 150px; /* tamaño que ocupa */
+    border: 2px solid var(--color-border);
+    border-radius: var(--radio-medio);
+    padding: var(--espaciado-chico);
+
+
+    /* antes era fijo (150px), ahora es flexible */
+    width: 100%;
+    max-width: 250px;
 }
 
 /* FILTROS */
 aside summary {
     font-weight: bold; /* titulo filtros en engrita */
-    color: rgb(87, 6, 140);
     cursor: pointer; /* el cursor cambia  amanito por encima de la palabra filtro*/
 }
 
 /* CADA FILTRO PARTICULAR */
 aside fieldset {
-    border: 1px solid rgb(87, 6, 140); /* borde violeta para cada filtro particular */
-    border-radius: 4px; 
-    margin-bottom: 10px; /* espacio entre cada fieldset para que no queden pegados */
+    border: 1px solid var(--color-border);
+    border-radius: var(--radio-chico);
+    margin-bottom: var(--espaciado-chico);
+    padding: var(--espaciado-chico);
 }
 
 aside legend {
-    font-weight: bold; /* el titulo de cada bloque en negrita y violeta */
-    color: rgb(87, 6, 140);
+    font-weight: 600;
+}
+
+aside label {
+    display: block; /* cada opcion ocupa toda la fila */
+    font-size: 0.85rem;
 }
 
 /* BOTON DE APLICAR FILTROS */
 aside button {
     width: 100%; /* el boton ocupa todo el ancho del aside */
-    padding: 8px; /* espacio interno */
-    background-color: rgb(87, 6, 140); /* fondo violeta */
-    color: #ffffff; /* texto blanco */
+    padding: var(--espaciado-chico);
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
     border: none; /* sin borde */
     border-radius: 4px; /* esquinas redondeadas */
     cursor: pointer; /* el cursor cambia a manito cuando pasa por encima de el */
@@ -123,21 +133,17 @@ aside button {
 }
 
 aside button:hover {
-    background-color: rgb(60, 4, 100) /* cuando el mouse pasa por encima, el fondo cambia a un violeta mas oscuro */
+    background-color: var(--color-monocromatico) /* cuando el mouse pasa por encima, el fondo cambia a un violeta mas oscuro */
 }
 
-aside label {
-    display: block; /* cada opcion ocupa toda la fila */
-}
 
 /* PAGINACION */
 .paginacion ul {
     list-style: none; /* elimina los puntitos de la lista */
     display: flex; /* pone los números en fila */
     justify-content: center; /* los centra horizontalmente en la página */
-    gap: 8px; /* espacio entre cada numero */
-    padding: 0; /* elimina el padding por defecto de la lista */
-    margin: 20px 0; /* espacio arriba y abajo de la paginación */
+    gap: var(--espaciado-chico);
+    margin: var(--espaciado-medio) 0;
 }
 
 .paginacion a {
@@ -147,12 +153,57 @@ aside label {
     width: 36px; /* ancho fijo del circulo */
     height: 36px; /* alto fijo del circulo */
     border-radius: 50%; /* convierte el cuadrado en circulo */
-    border: 2px solid rgb(87, 6, 140); /* borde violeta alrededor del circulo */
-    color: rgb(87, 6, 140); /* color violeta para el numero */
-    text-decoration: none; /* elimina el subrayado por defecto de los links */
+    border: 2px solid var(--color-border);
+    color: var(--color-texto);
     font-weight: bold; /* numero en negrita */
 }
 
 .paginacion a:hover {
     background-color: rgba(87, 6, 140, 0.1); /* fondo violeta muy suave al pasar el mouse */
+}
+
+/* RESPONSIVE */
+/* TABLET */
+@media (max-width: 900px) {
+
+    .contenido {
+        flex-direction: column; 
+        /* el aside baja abajo de la grilla */
+    }
+
+    aside {
+        max-width: 100%;
+        /* ocupa todo el ancho en tablet/mobile */
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+    h2 {
+        margin: 10px;
+        text-align: center;
+        /* centra el título en pantallas chicas */
+    }
+
+    .grilla-libros {
+        grid-template-columns: repeat(2, 1fr); 
+        /* dos columnas (mejor lectura en celular) */
+    }
+
+    article {
+        padding: 15px; 
+        /* menos padding para que no ocupe tanto espacio */
+    }
+
+    article img {
+        max-width: 150px;
+        margin: 0 auto;
+        /* imagen más chica y centrada */
+    }
+
+    aside {
+        order: -1;
+        /* hace que los filtros aparezcan arriba de los libros */
+    }
 }
