@@ -95,17 +95,6 @@ main {
     margin: var(--espaciado-medio) 0
 }
 
-@media screen and (max-width: 750px) {
-    .opinion-datos {
-        gap: 5px;
-        justify-content: flex-start;
-    }
-    
-    .opinion-datos p {
-        margin: 0 var(--espaciado-chico)
-    }
-}
-
 .opinion-datos {
     background-color: var(--color-sombreado-primario);
     display: flex;
@@ -115,4 +104,15 @@ main {
 .opinion-datos p {
     font-weight: 600;
     margin: 0 var(--espaciado-largo);
+}
+
+@media screen and (max-width: 750px) {
+    .opinion-datos {
+        gap: 5px;
+        justify-content: flex-start;
+    }
+
+    .opinion-datos p {
+        margin: 0;
+    }
 }
