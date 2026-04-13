@@ -33,6 +33,27 @@ section {
     border-bottom: 1px solid var(--color-secundario);
 }
 
+.eventos {
+    display: flex;
+    justify-content: center;
+}
+
+.eventos a {
+    text-decoration: none;
+}
+
+.eventos img{
+    margin-top: var(--espaciado-largo);
+    padding: var(--espaciado-medio);
+    border-radius: 30px;
+    width: 100%;
+    max-width: 45%;
+    transition: all 0.2s ease;
+}
+.eventos img:hover {
+    transform: scale(1.025);
+}
+
 .carrusel {
     display: flex;
     padding: var(--espaciado-largo) var(--espaciado-chico);
@@ -162,4 +183,13 @@ article button:hover {
     section {
         padding: 0;
     }
+
+}
+
+@media (max-width: 1100px) {
+
+    .eventos img {
+        max-width: 90%
+    }
+
 }
