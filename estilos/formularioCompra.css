@@ -25,6 +25,12 @@ form {
     font-weight: bold;
 }
 
+@media screen and (max-width: 500px) {
+    .leyenda {
+        font-size: 24px;
+    }
+}
+
 fieldset {
     display: flex;
     flex-direction: column;
@@ -33,6 +39,12 @@ fieldset {
     gap: 5px;
     padding-bottom: 10px;
     border-style: none;
+}
+
+@media screen and (max-width: 500px) {
+    fieldset {
+        min-width: 300px;
+    }
 }
 
 
