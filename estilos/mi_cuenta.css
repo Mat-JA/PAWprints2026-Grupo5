@@ -51,8 +51,8 @@ main > p {
     }
     
     .portada {
-        max-width: 100%; /* Image shrinks to fit its parent container */
-        height: auto;    /* Maintains the original aspect ratio */
+        max-width: 100%;
+        height: auto;
     }
 }
 

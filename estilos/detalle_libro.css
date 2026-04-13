@@ -26,6 +26,11 @@ main {
     .portada-libro {
         margin: auto;
     }
+
+    .imgPortada {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 .portada-libro img {
@@ -44,6 +49,13 @@ main {
 
 .texto-datos-libro * {
     margin: auto;
+}
+
+@media (max-width: 750px) {
+    .texto-datos-libro * {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
 }
 
 .texto-datos-libro p {
@@ -83,11 +95,21 @@ main {
     margin: var(--espaciado-medio) 0
 }
 
+@media screen and (max-width: 750px) {
+    .opinion-datos {
+        gap: 5px;
+        justify-content: flex-start;
+    }
+    
+    .opinion-datos p {
+        margin: 0 var(--espaciado-chico)
+    }
+}
+
 .opinion-datos {
     background-color: var(--color-sombreado-primario);
     display: flex;
     flex-direction: row;
-
 }
 
 .opinion-datos p {
