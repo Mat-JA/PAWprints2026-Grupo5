@@ -32,7 +32,9 @@ fieldset {
     min-width: 400px;
     gap: 5px;
     padding-bottom: 10px;
+    border-style: none;
 }
+
 
 label > * {
     display: block;
