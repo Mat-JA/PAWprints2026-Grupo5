@@ -52,6 +52,10 @@ button:hover {
     transform: scale(1.05);
 }
 
+header {
+    border-bottom: solid 2px var(--color-secundario);
+}
+
 main {
     display: flex;
     flex-direction: column;
