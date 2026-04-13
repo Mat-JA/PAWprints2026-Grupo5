@@ -47,17 +47,6 @@ main {
     margin: 0 var(--espaciado-largo);
 }
 
-.texto-datos-libro * {
-    margin: auto;
-}
-
-@media (max-width: 750px) {
-    .texto-datos-libro * {
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-}
-
 .texto-datos-libro p {
     font-weight: 600;
 }
