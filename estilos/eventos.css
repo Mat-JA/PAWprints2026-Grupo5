@@ -1,0 +1,37 @@
+main {
+    flex: 1;                            /* ocupa el espacio entre header y footer */
+    display: flex;
+    flex-direction: column;             /* apila el h1 y las sections en columna */
+    align-items: center;               /* centra todo horizontalmente */
+    padding: var(--espaciado-largo) var(--espaciado-medio);
+    gap: var(--espaciado-medio);       /* espacio entre el título y cada evento */
+}
+
+main h1 {
+    text-align: center;
+}
+
+/* ── Cada tarjeta de evento ── */
+section {
+    display: flex;
+    flex-direction: column;            /* titulo, fecha e imagen en columna */
+    align-items: center;               /* centra el contenido dentro de la tarjeta */
+    gap: var(--espaciado-chico);       /* espacio entre titulo, fecha e imagen */
+    width: 100%;
+    max-width: 600px;                  /* limita el ancho de cada evento */
+    padding: var(--espaciado-medio);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radio-medio);
+}
+
+section a {
+    display: block;   /* convierte el <a> en un elemento de bloque (ocupa toda la línea y permite ancho/alto) */
+    width: 100%;      /* hace que el <a> ocupe todo el ancho disponible de la sección */
+}
+
+section img {
+    width: 100%;                       /* la imagen ocupa todo el ancho de la tarjeta */
+    border-radius: var(--radio-chico); /* esquinas levemente redondeadas */
+    display: block;                    /* evita el espacio extra debajo de la imagen */
+}
+

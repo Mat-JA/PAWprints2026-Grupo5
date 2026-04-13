@@ -1,0 +1,83 @@
+/* Centra el formulario en el espacio entre header y footer  */
+main {
+    flex: 1;                        /* ocupa todo el espacio vertical disponible */
+    display: flex;                  /* activa flexbox para centrar la section */
+    align-items: center;            /* centra verticalmente */
+    justify-content: center;        /* centra horizontalmente */
+    padding: var(--espaciado-medio); /* espacio en pantallas chicas para no tocar los bordes */
+}
+
+/* Tarjeta contenedora del formulario */
+section {
+    width: 100%;                             /* ocupa el ancho disponible... */
+    max-width: 360px;                        /* pero nunca más de 360px */
+    border: 1px solid var(--color-border);   /* borde violeta*/
+    border-radius: var(--radio-medio);       /* esquinas redondeadas */
+    padding: var(--espaciado-largo) var(--espaciado-medio); /* más espacio arriba/abajo que a los lados */
+    display: flex;                           /* apila los hijos en columna */
+    flex-direction: column;                  /* header, form y p uno debajo del otro */
+    gap: var(--espaciado-medio);             /* espacio entre cada bloque */
+}
+
+/* Centra el título "Iniciar Sesión" */
+header {
+    text-align: center;
+}
+
+/* Apila los campos del formulario */
+.form-registrate {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* espacio entre cada label+input */
+}
+
+/* Labels encima de cada input */
+label {
+    display: block;          /* ocupa su propia línea */
+    font-size: 1.0rem;       /* un poco más chico que el texto base */
+    font-weight: 500;        /* más marcado que el p (300) de base.css */
+    margin-bottom: 2px;      /* pequeña separación entre label e input */
+}
+
+/* Estilo de los campos de texto */
+input[type="email"],
+input[type="password"],
+input[type="confirmar"] {
+    width: 100%;                              /* ocupa todo el ancho del form */
+    padding: var(--espaciado-chico) var(--espaciado-medio); /* espacio interior cómodo */
+    border: 1px solid var(--color-border);    /* borde morado */
+    border-radius: var(--radio-chico);        /* esquinas levemente redondeadas */
+    color: var(--color-texto);                /* texto morado igual que el resto del sitio */
+    background-color: var(--color-primario);  /* fondo blanco */
+    font-family: var(--fuente-primaria);      /* misma fuente que el resto del sitio */
+    font-size: 1.0rem;                       /* tamaño reducido para que no quede gigante */
+    transition: border-color 0.2s ease;       /* animación suave al hacer focus */
+}
+
+/* Botón de envío */
+/* Usamos clase para no pisar los botones del header */
+.btn-registrate {
+    width: 100%;                               /* se estira al ancho completo */
+    padding: var(--espaciado-chico) var(--espaciado-medio); /* mismo padding que los inputs */
+    background-color: var(--color-secundario); /* fondo morado */
+    color: var(--color-primario);              /* texto blanco */
+    border: none;                              /* sin borde */
+    border-radius: var(--radio-grande);        /* muy redondeado, igual a los botones del header */
+    font-family: var(--fuente-primaria);       /* misma fuente */
+    font-size: 0.85rem;                        /* mismo tamaño que los inputs */
+    font-weight: 600;                          /* texto en negrita */
+    cursor: pointer;                           /* cursor de mano al pasar por encima */
+    margin-top: var(--espaciado-chico);        /* separación extra sobre el botón */
+    transition: opacity 0.2s ease, transform 0.2s ease; /* animación suave en hover */
+}
+
+.btn-registrate:hover {
+    opacity: 0.9;           /* se oscurece levemente */
+    transform: scale(1.02); /* crece un poco, más sutil que el header (1.05) */
+}
+
+/* ── Párrafo "¿No tenés cuenta?" ── */
+p {
+    text-align: center;  /* centra el texto y el link */
+    font-size: 0.8rem;   /* mismo tamaño que los labels */
+}
