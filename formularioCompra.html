@@ -8,6 +8,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="/estilos/base.css">
+  <link rel="stylesheet" href="/estilos/header.css">
+  <link rel="stylesheet" href="/estilos/footer.css">
+  <link rel="stylesheet" href="/estilos/formularioCompra.css">
   <title>PawPrints - Formulario de compra</title>
 </head>
 
@@ -47,9 +50,9 @@
 
   <main>
     <h1>Formulario de compra</h1>
-    <form method="post" name="formularioCompra"> <!--falta URL a la que se envía el post-->
+    <form method="post" name="formularioCompra" class="formularioCompra"> <!--falta URL a la que se envía el post-->
       <fieldset>
-        <legend>Información de Envío</legend>
+        <legend class="leyenda">Información de Envío</legend>
         <label for="inputNombre">
           Nombre:
           <input required type="text" name="inputNombre" maxlength="15" minlength="2" />
@@ -65,7 +68,8 @@
           <input required type="email" name="inputEmail" />
         </label>
         <br>
-        <label>
+        <label for="pais" class="selectLabel">
+          Pais
           <select name="pais">
             <option value="Alemania">Alemania</option>
             <option value="Angola">Angola</option>
@@ -96,7 +100,7 @@
       </fieldset>
       <br>
       <fieldset>
-        <legend>Información de Facturación</legend>
+        <legend class="leyenda">Información de Facturación</legend>
         <label for="inputNombre">
           Nombre:
           <input required type="text" name="inputNombre" maxlength="15" minlength="2" />
@@ -112,7 +116,8 @@
           <input required type="email" name="inputEmail" />
         </label>
         <br>
-        <label>
+        <label for="pais" class="selectLabel">
+          Pais
           <select name="pais">
             <option value="Alemania">Alemania</option>
             <option value="Angola">Angola</option>

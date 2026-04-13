@@ -1,0 +1,36 @@
+/*DEO GLORIA*/
+
+main {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.leyenda {
+    font-size: 24px;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 50%;
+    gap: 5px;
+    padding-bottom: 10px;
+}
+
+label > * {
+    display: block;
+}
+
+label {
+    text-align: start;
+}
+
