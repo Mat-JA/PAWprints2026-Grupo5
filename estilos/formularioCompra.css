@@ -1,0 +1,85 @@
+/*DEO GLORIA*/
+
+main {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.leyenda {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 500px) {
+    .leyenda {
+        font-size: 24px;
+    }
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 400px;
+    gap: 5px;
+    padding-bottom: 10px;
+    border-style: none;
+}
+
+@media screen and (max-width: 500px) {
+    fieldset {
+        min-width: 300px;
+    }
+}
+
+
+label > * {
+    display: block;
+}
+
+label {
+    text-align: start;
+    font-size: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="month"] {
+    font-size: 20px;
+    padding: 4px;
+}
+
+input[type="number"] {
+    font-size: 20px;
+    padding: 4px;
+}
+
+.bSelect {
+    font-size: 20px;
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+    padding: 4px;
+}
+
+.bSubmit {
+    font-size: 28px;
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    padding: 7px;
+}
+
