@@ -1,7 +1,4 @@
-h1,
-h2,
-h3,
-p {
+body {
     text-align: center;
 }
 
@@ -28,25 +25,41 @@ section {
     padding: 0 var(--espaciado-largo);
 }
 
-section h2 {
+.carrusel h2,
+.eventos h2 {
     font-size: 2rem;
     border-bottom: 1px solid var(--color-secundario);
 }
 
 .carrusel {
-    padding: var(--espaciado-largo);
+    display: flex;
+    padding: var(--espaciado-largo) var(--espaciado-chico);
 }
+
+.carrusel>div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    justify-content: space-around;
+
+    padding: var(--espaciado-largo) var(--espaciado-chico);
+}
+
 
 button:hover {
     opacity: 0.9;
     transform: scale(1.05);
 }
 
+header {
+    border-bottom: solid 2px var(--color-secundario);
+}
+
 main {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--espaciado-largo)
+    gap: var(--espaciado-largo);
 }
 
 section {
@@ -61,7 +74,7 @@ section>div {
     gap: var(--espaciado-largo)
 }
 
-article {
+.tarjeta-libro {
     display: flex;
     flex-direction: column;
     /*apila elementos verticalmente en cada tarjeta*/
@@ -69,51 +82,57 @@ article {
     /*centra todo el contenido de la tarjeta horizontalmente*/
     background-color: var(--color-primario);
     /* fondo blanco para cada tarjeta */
-    border-radius: 8px;
+    border-radius: var(--radio-chico);
     /*eEsquinas redondeadas */
-    padding: 30px;
+    padding: var(--espaciado-medio);
     /* espacio interno entre el borde y el contenido */
     box-shadow: 0 2px 8px var(--color-border);
     /* sombra sutil debajo de la tarjeta */
     transition: transform 0.2s, box-shadow 0.2s;
     /* anima los cambios de transform y sombra en 0.2 segundos */
+
+    flex-shrink: 0;
+    width: min(350px, 40%);
+
 }
 
-article:hover {
+.tarjeta-libro:hover {
     transform: translateY(-5px);
     /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
     box-shadow: 0 6px 16px var(--color-border);
     /* sombra mas grande e intensa al hacer hover */
 }
 
-article h3 {
+.tarjeta-libro h3 {
     color: var(--color-secundario);
     /* color violeta */
-    margin: 0 0 8px 0;
+    margin: 0;
+    margin-bottom: var(--espaciado-medio);
     /* elimina margen por defecto, deja 8px abajo */
     font-weight: 600;
 }
 
-article p {
+.tarjeta-libro p {
     font-size: 1rem;
     color: var(--color-monocromatico);
-    margin: 4px 0;
+    margin: var(--espaciado-chico) 0;
     /* poco espacio arriba y abajo de cada parrafo */
 
     font-weight: 400;
 }
 
 /* La imagen ocupa todo el ancho de la tarjeta */
-article img {
+.tarjeta-libro img {
     width: 100%;
 }
 
-article button {
+.tarjeta-libro button {
+    margin: 0;
     margin-top: auto;
     /*empuja el botón hacia abajo, al final de la tarjeta, sin importar cuánto texto tenga cada libro arriba*/
     width: 100%;
     /* el boton ocupa todo el ancho de la tarjeta */
-    padding: 8px;
+    padding: var(--espaciado-chico);
     /* espacio interno */
     background-color: var(--color-secundario);
     /* fondo violeta */
@@ -121,14 +140,13 @@ article button {
     /* texto blanco */
     border: none;
     /* elimina el borde por defecto */
-    border-radius: 4px;
+    border-radius: var(--radio-chico);
     /* esquinas levemente redondeadas */
     cursor: pointer;
     /* el cursor cambia a manito al pasar por encima */
     font-weight: bold;
     /* rexto en negrita */
-    margin-top: 8px;
-    /* espacio entre el precio y el boton */
+    height: 60px;
 }
 
 article button:hover {

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/estilos/base.css">
+    <link rel="stylesheet" href="/estilos/print.css">
     <link rel="stylesheet" href="/estilos/header.css">
     <link rel="stylesheet" href="/estilos/footer.css">
     <link rel="stylesheet" href="/estilos/index.css">
@@ -55,7 +56,7 @@
                 disfrute de un buen libro acompañado de un buen cafe. Veni a visitarnos!</p>
         </section>
 
-        <section>
+        <section class="eventos">
             <h2>Eventos</h2>
             <a href="/eventos.html">
                 <img src="/imagenes/evento_principal.png" alt="Evento principal">
@@ -65,7 +66,7 @@
         <section class="carrusel">
             <h2>Novedades</h2>
             <div>
-                <article>
+                <article class="tarjeta-libro">
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
                     </a>
@@ -80,7 +81,7 @@
                         </form>
                     </div>
                 </article>
-                <article>
+                <article class="tarjeta-libro">
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
                     </a>
@@ -95,7 +96,7 @@
                         </form>
                     </div>
                 </article>
-                <article>
+                <article class="tarjeta-libro">
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
                     </a>
@@ -110,7 +111,7 @@
                         </form>
                     </div>
                 </article>
-                <article>
+                <article class="tarjeta-libro">
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
                     </a>
@@ -125,22 +126,7 @@
                         </form>
                     </div>
                 </article>
-                <article>
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
-                        <h3>Título de libro</h3>
-                        <p>$ Precio</p>
-                        <form action="/carrito/agregar" method="post">
-                            <input type="hidden" name="id_libro" value="123">
-                            <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
-                        </form>
-                    </div>
-                </article>
-                <article>
+                <article class="tarjeta-libro">
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
                     </a>
@@ -161,7 +147,7 @@
         <section class="carrusel">
             <h2>Destacado</h2>
             <div>
-                <article>
+                <article class="tarjeta-libro">
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
                     </a>
@@ -176,7 +162,7 @@
                         </form>
                     </div>
                 </article>
-                <article>
+                <article class="tarjeta-libro">
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
                     </a>
@@ -191,7 +177,7 @@
                         </form>
                     </div>
                 </article>
-                <article>
+                <article class="tarjeta-libro">
                     <a href="detalle_libro.html">
                         <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
                     </a>
@@ -212,7 +198,7 @@
 
     <footer>
         <a href="/nosotros.html">Acerca de nosotros</a>
-        <section>
+        <section class="contactos">
             <h2>Info de contacto</h2>
             <address>
                 <a href="mailto:libreria@pawprints.com">libreria@pawprints.com</a> <br />

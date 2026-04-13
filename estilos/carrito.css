@@ -3,7 +3,7 @@ main {
     padding: 30px;
 }
 
-main > section {
+main>section {
     max-width: 2000px;
     margin: 0 auto;
 }
@@ -28,21 +28,39 @@ main li {
 /* ===== ITEM DEL CARRITO ===== */
 main article {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ffffff;
-    padding: 15px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: var(--color-primario);
+    padding: var(--espaciado-chico) var(--espaciado-medio);
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.25); /* sombra sutil debajo de la tarjeta */
-    transition: transform 0.2s, box-shadow 0.2s; /* anima los cambios de transform y sombra en 0.2 segundos */
+    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.25);
+    /* sombra sutil debajo de la tarjeta */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* anima los cambios de transform y sombra en 0.2 segundos */
 }
+
+/* ===== TITULO ===== */
 main article p:first-of-type {
     font-weight: bold;
+    margin-left: 0;
+    width: 60%;
+}
+
+@media (max-width: 750px) {
+    main article p:first-of-type {
+        font-size: 0.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 85%;
+    }
 }
 
 main article:hover {
-    transform: translateY(-2px); /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
-    box-shadow: 0 6px 16px rgba(87, 6, 140, 0.4); /* sombra mas grande e intensa al hacer hover */
+    transform: translateY(-2px);
+    /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
+    box-shadow: 0 6px 16px rgba(87, 6, 140, 0.4);
+    /* sombra mas grande e intensa al hacer hover */
 }
 
 /* ===== IMAGEN ===== */
@@ -52,16 +70,12 @@ main article img {
     display: block;
 }
 
-/* ===== TITULO ===== */
-main article p:nth-of-type(1) {
-    flex: 1;
-    margin-left: 20px;
-}
-
 /* ===== PRECIO ===== */
 main article p:nth-of-type(2) {
     width: 100px;
     text-align: left;
+    margin: auto var(--espaciado-medio);
+    font-weight: 400;
 }
 
 /* ===== BOTON ELIMINAR ===== */
@@ -71,8 +85,8 @@ main article button {
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
-    transition: background-color 0.2s ease,transform 0.1s ease;
-    color:var(--color-primario)
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    color: var(--color-primario)
 }
 
 main article button:hover {
