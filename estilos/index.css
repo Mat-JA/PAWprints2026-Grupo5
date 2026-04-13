@@ -2,6 +2,7 @@ body {
     text-align: center;
 }
 
+
 h1 {
     font-size: 4rem;
 }
@@ -25,6 +26,7 @@ section {
     padding: 0 var(--espaciado-largo);
 }
 
+
 .carrusel h2,
 .eventos h2 {
     font-size: 2rem;
@@ -45,7 +47,6 @@ section {
 
     padding: var(--espaciado-largo) var(--espaciado-chico);
 }
-
 
 button:hover {
     opacity: 0.9;
@@ -151,4 +152,14 @@ section>div {
 
 article button:hover {
     background-color: var(--color-secundario);
+}
+
+@media (max-width: 750px) {
+    p {
+        font-size: 0.8rem;
+    }
+
+    section {
+        padding: 0;
+    }
 }
