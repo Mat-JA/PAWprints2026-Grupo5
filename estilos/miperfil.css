@@ -4,6 +4,10 @@ main {
     text-align: center;
 }
 
+main > h1 {
+    margin: 10px;
+}
+
 main > p {
     display: inline;
     margin: 0 auto;
@@ -31,6 +35,29 @@ main > p {
 }
 
 .pedido:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 16px rgba(87, 6, 140, 0.3);
+}
+
+.managementLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.bLink {
+    padding: 2px;
+    margin: 7px;
+    background-color: #ffffff; 
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.45); 
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bLink:hover {
     transform: translateY(-5px); 
     box-shadow: 0 6px 16px rgba(87, 6, 140, 0.3);
 }
