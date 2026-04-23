@@ -1,0 +1,28 @@
+{
+    "name": "paw/pawprints-grupo5",
+    "description": "Proyecto del grupo 5 para el tp de PAW 2026",
+    "authors": [
+        {
+            "name": "Ausqui Mateo"
+        },
+        {
+            "name": "Cacciatore Bautista"
+        },
+        {
+            "name": "Huici Nicolás"
+        },
+        {
+            "name": "Jaime Leandro"
+        }
+    ],
+
+    "require": {
+        "php": ">=8.0.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Paw\\": "src/"
+        }
+    }
+}
