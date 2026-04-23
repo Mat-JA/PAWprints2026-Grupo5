@@ -1,0 +1,32 @@
+<header>
+    <div class="header-top">
+        <a href="/index.html">
+            <img src="/imagenes/logo.svg" alt="PawPrints">
+        </a>
+
+        <form role="search">
+            <input id="busqueda" type="search" placeholder="Buscar libros...">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <div class="links-header">
+            <a href="/carrito.html">
+                <img src="/imagenes/carrito_logo_darkmode.svg" alt="carrito de compras">
+            </a>
+
+            <a href="/mi_cuenta.html">
+                <img src="/imagenes/mi_cuenta_logo_darkmode.svg" alt="acceso a mi cuenta">
+            </a>
+        </div>
+    </div>
+
+    <nav aria-label="Navegación principal">
+        <ul>
+            <li><a href="/catalogo">Libros</a></li>
+            <li><a href="/novedades">Novedades</a></li>
+            <li><a href="/top_50.html">Top 50</a></li>
+            <li><a href="/eventos">Locales</a></li>
+            <li><a href="/contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+</header>

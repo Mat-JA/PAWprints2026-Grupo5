@@ -17,12 +17,13 @@
     ],
 
     "require": {
-        "php": "~8.5"
+        "php": "~8.5",
+        "monolog/monolog": "^3.10"
     },
 
     "autoload": {
         "psr-4": {
-            "Src\\": "src/"
+            "App\\": "src/"
         }
     }
 }
