@@ -1,1 +1,5 @@
 vendor/
+.env
+.git
+docker/
+*.md
