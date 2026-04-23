@@ -4,4 +4,9 @@
 /* print_r($_SERVER); */
 /* die; */
 
-require __DIR__ . '/../src/router.php';
+use Src\Router;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$miRouter = new Router();
+$miRouter->rutear();
