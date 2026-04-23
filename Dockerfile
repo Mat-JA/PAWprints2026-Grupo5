@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.5-apache
 
 # Habilita mod_rewrite, necesario para que apache no devuelva error 404 en cualquier ruta
 # que no sea un archivo físico (front controller).
