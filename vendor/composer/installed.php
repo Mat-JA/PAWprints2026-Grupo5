@@ -3,7 +3,7 @@
         'name' => 'paw/pawprints-grupo5',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '606ca0dbf4f48506f633a5ac8708c375f6ff0d19',
+        'reference' => '3d302c190c1cadedff1568db6bc90889f25f7698',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'paw/pawprints-grupo5' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '606ca0dbf4f48506f633a5ac8708c375f6ff0d19',
+            'reference' => '3d302c190c1cadedff1568db6bc90889f25f7698',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

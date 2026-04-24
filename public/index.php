@@ -18,11 +18,11 @@ $router->loadRoutes('not_found', 'ErrorController@notFound');
 $router->loadRoutes('internal_error', 'ErrorController@internalError');
 
 try {
-    $log_app->info("Petición a: {$path}");
+    /* $log_app->info("Petición a: {$path}"); */
     $router->dispatch($path);
 } catch (RouteNotFoundException $e) {
     $router->dispatch("not_found");
 } catch (Exception $e) {
     $router->dispatch("internal_error");
-    $log_app->error("Status Code: 500 - Internal Server Error", ["Error" => $e]);
+    /* $log_app->error("Status Code: 500 - Internal Server Error", ["Error" => $e]); */
 }

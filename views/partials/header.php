@@ -24,9 +24,9 @@
         <ul>
             <li><a href="/catalogo">Libros</a></li>
             <li><a href="/novedades">Novedades</a></li>
-            <li><a href="/top_50.html">Top 50</a></li>
+            <li><a href="/top_50">Top 50</a></li>
             <li><a href="/eventos">Locales</a></li>
-            <li><a href="/contacto.html">Contacto</a></li>
+            <li><a href="/contacto">Contacto</a></li>
         </ul>
     </nav>
 </header>

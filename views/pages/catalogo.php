@@ -6,45 +6,14 @@
     <meta name="viewport" content="width=device-width">
     <title>PawPrints - Catalogo</title>
 
-    <link rel="stylesheet" href="/estilos/base.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/estilos/header.css">
     <link rel="stylesheet" href="/estilos/footer.css">
     <link rel="stylesheet" href="/estilos/catalogo.css">
 </head>
 
 <body>
-    <header>
-        <div class="header-top">
-            <a href="/index.html">
-                <img src="/imagenes/logo.svg" alt="PawPrints">
-            </a>
-
-            <form role="search">
-                <input id="busqueda" type="search" placeholder="Buscar libros...">
-                <button type="submit">Buscar</button>
-            </form>
-
-            <div class="links-header">
-                <a href="/carrito.html">
-                    <img src="/imagenes/carrito_logo_darkmode.svg" alt="carrito de compras">
-                </a>
-
-                <a href="/mi_cuenta.html">
-                    <img src="/imagenes/mi_cuenta_logo_darkmode.svg" alt="acceso a mi cuenta">
-                </a>
-            </div>
-        </div>
-
-        <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="/catalogo.html">Libros</a></li>
-                <li><a href="/novedades.html">Novedades</a></li>
-                <li><a href="/top_50.html">Top 50</a></li>
-                <li><a href="/locales.html">Locales</a></li>
-                <li><a href="/contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php require __DIR__ . '/../partials/header.php' ?>
 
     <main>
         <h2>Nuestros libros</h2>
@@ -53,7 +22,7 @@
                 <article>
                     <h3>Titulo</h3>
                     <a href="/libros/libro3/libro.html">
-                        <img src="/imagenes/portadaGenerica.png">
+                        <img src="/assets/img/portadaGenerica.png">
                     </a>
                     <p>Autor del libro</p>
                     <p>$precio</p>
