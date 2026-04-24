@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="/estilos/base.css">
-    <link rel="stylesheet" href="/estilos/print.css">
-    <link rel="stylesheet" href="/estilos/header.css">
-    <link rel="stylesheet" href="/estilos/footer.css">
-    <link rel="stylesheet" href="/estilos/index.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/print.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
     <title>PawPrints</title>
 </head>
 
@@ -28,8 +28,8 @@
         <section class="eventos">
             <h2>Eventos</h2>
             <a href="/eventos.html">
-                <img src="/imagenes/evento_portada_generica_index.svg" alt="Evento principal">
-                <img src="/imagenes/evento_portada_generica_index.svg" alt="Evento principal 2">
+                <img src="/assets/img/evento_portada_generica_index.svg" alt="Evento principal">
+                <img src="/assets/img/evento_portada_generica_index.svg" alt="Evento principal 2">
             </a>
         </section>
 
@@ -37,8 +37,8 @@
             <h2>Novedades</h2>
             <div>
                 <article class="tarjeta-libro">
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    <a href="detalle_libro">
+                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
                     </a>
                     <div>
                         <h3>Título de libro</h3>
@@ -52,8 +52,8 @@
                     </div>
                 </article>
                 <article class="tarjeta-libro">
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    <a href="detalle_libro">
+                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
                     </a>
                     <div>
                         <h3>Título de libro</h3>
@@ -67,8 +67,8 @@
                     </div>
                 </article>
                 <article class="tarjeta-libro">
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    <a href="detalle_libro">
+                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
                     </a>
                     <div>
                         <h3>Título de libro</h3>
@@ -82,8 +82,8 @@
                     </div>
                 </article>
                 <article class="tarjeta-libro">
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    <a href="detalle_libro">
+                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
                     </a>
                     <div>
                         <h3>Título de libro</h3>
@@ -97,8 +97,8 @@
                     </div>
                 </article>
                 <article class="tarjeta-libro">
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    <a href="detalle_libro">
+                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
                     </a>
                     <div>
                         <h3>Título de libro</h3>
@@ -118,8 +118,8 @@
             <h2>Destacado</h2>
             <div>
                 <article class="tarjeta-libro">
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    <a href="detalle_libro">
+                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
                     </a>
                     <div>
                         <h3>Título de libro</h3>
@@ -133,8 +133,8 @@
                     </div>
                 </article>
                 <article class="tarjeta-libro">
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    <a href="detalle_libro">
+                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
                     </a>
                     <div>
                         <h3>Título de libro</h3>
@@ -148,8 +148,8 @@
                     </div>
                 </article>
                 <article class="tarjeta-libro">
-                    <a href="detalle_libro.html">
-                        <img src="/imagenes/portadaGenerica.png" alt="Portada del libro">
+                    <a href="detalle_libro">
+                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
                     </a>
                     <div>
                         <h3>Título de libro</h3>
