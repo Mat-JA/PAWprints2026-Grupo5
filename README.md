@@ -44,10 +44,12 @@ project-root/
 ├── src/                     # Lógica de aplicación (fuera del document root)
 │   ├── Controller/
 │   ├── Model/
+│   ├── Core/
+│   │    └── Router.php
 │   ├── Service/
 │   ├── Repository/
 │   ├── Middleware/
-│   └── Router.php
+│
 │
 ├── views/                   # Templates PHP
 │   ├── layouts/

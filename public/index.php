@@ -9,7 +9,6 @@ use App\Core\Exceptions\RouteNotFoundException;
 require __DIR__ . '/../src/bootstrap.php';
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
 $router->loadRoutes('/', 'PageController@home');
 $router->loadRoutes('/catalogo', 'PageController@catalogo');
 $router->loadRoutes('/eventos', 'PageController@eventos');
