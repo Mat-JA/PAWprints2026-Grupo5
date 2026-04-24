@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      # Se monta el código en tiempo real, elimina necesidad de rebuild por cambio en el código
+      - .:/var/www/html
+    environment:
+      - APP_ENV=development
