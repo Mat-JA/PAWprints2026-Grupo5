@@ -13,9 +13,9 @@
     </section>
     <nav aria-label="Redes sociales">
         <strong>Nuestras Redes:</strong> <br>
-        <a href="https://instagram.com/PAWPrints_libreria"><img src="/imagenes/instagram_darkmode.svg"
+        <a href="https://instagram.com/PAWPrints_libreria"><img src="/assets/img/instagram_darkmode.svg"
                 alt="Instagram"></a> <br>
-        <a href="https://facebook.com/PAWPrints.libreria"><img src="/imagenes/facebook_darkmode.svg"
+        <a href="https://facebook.com/PAWPrints.libreria"><img src="/assets/img/facebook_darkmode.svg"
                 alt="Facebook"></a>
     </nav>
 </footer>

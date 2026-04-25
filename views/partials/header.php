@@ -1,7 +1,7 @@
 <header>
     <div class="header-top">
         <a href="/index.html">
-            <img src="/imagenes/logo.svg" alt="PawPrints">
+            <img src="/assets/img/logo.svg" alt="PawPrints">
         </a>
 
         <form role="search">
@@ -11,11 +11,11 @@
 
         <div class="links-header">
             <a href="/carrito.html">
-                <img src="/imagenes/carrito_logo_darkmode.svg" alt="carrito de compras">
+                <img src="/assets/img/carrito_logo_darkmode.svg" alt="carrito de compras">
             </a>
 
             <a href="/mi_cuenta.html">
-                <img src="/imagenes/mi_cuenta_logo_darkmode.svg" alt="acceso a mi cuenta">
+                <img src="/assets/img/mi_cuenta_logo_darkmode.svg" alt="acceso a mi cuenta">
             </a>
         </div>
     </div>

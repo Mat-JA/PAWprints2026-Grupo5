@@ -18,7 +18,7 @@
     <main>
         <section class="principal">
             <figure>
-                <img src="imagenes/frente_libreria_lightmode.png" alt="Frente de la libreria física.">
+                <img src="/assets/img/frente_libreria_lightmode.png" alt="Frente de la libreria física.">
             </figure>
             <h1>PAWPrints</h1>
             <p>Libreria y espacio de lectura ubicada en Lujan, Buenos Aires. Destinada a toda persona que
