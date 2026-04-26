@@ -15,8 +15,8 @@ class Router
     use Loggable;
 
     public array $routes = [
-        "GET" => [],
-        "POST" => [],
+        'GET' => [],
+        'POST' => [],
     ];
 
     public string $notFound = 'not_found';
@@ -37,25 +37,25 @@ class Router
             list($controllerName, $method) = $this->getController($path, $http_method);
             $this->logger
                 ->info(
-                    "Status Code: 200 OK",
+                    'Status Code: 200 OK',
                     [
-                        "Path" => $path,
-                        "Method" => $http_method,
+                        'Path' => $path,
+                        'Method' => $http_method,
                     ]
                 );
         } catch (RouteNotFoundException $e) {
 
-            list($controllerName, $method) = $this->getController($this->notFound, "GET");
+            list($controllerName, $method) = $this->getController($this->notFound, 'GET');
             $this->logger->debug(
-                "Status Code: 404 - Route Not Found",
-                ["ERROR" => $e],
+                'Status Code: 404 - Route Not Found',
+                ['ERROR' => $e],
             );
         } catch (Exception $e) {
 
-            list($controllerName, $method) = $this->getController($this->internalError, "GET");
+            list($controllerName, $method) = $this->getController($this->internalError, 'GET');
             $this->logger->debug(
-                "Status Code: 500 - Internal Server Error",
-                ["ERROR" => $e],
+                'Status Code: 500 - Internal Server Error',
+                ['ERROR' => $e],
             );
         } finally {
             $this->call($controllerName, $method);
@@ -65,7 +65,7 @@ class Router
     public function getController($path, $http_method)
     {
         if (!$this->routeExists($path, $http_method)) {
-            throw new RouteNotFoundException("No existe ruta para este Path");
+            throw new RouteNotFoundException('No existe ruta para este Path');
         }
         return explode('@', $this->routes[$http_method][$path]);
     }
@@ -76,19 +76,19 @@ class Router
         $controller->$method();
     }
 
-    public function loadRoutes($path, $action, $http_method = "GET"): void
+    public function loadRoutes($path, $action, $http_method = 'GET'): void
     {
         $this->routes[$http_method][$path] = $action;
     }
 
     public function get($path, $action)
     {
-        $this->loadRoutes($path, $action, "GET");
+        $this->loadRoutes($path, $action, 'GET');
     }
 
     public function post($path, $action)
     {
-        $this->loadRoutes($path, $action, "POST");
+        $this->loadRoutes($path, $action, 'POST');
     }
 
     public function routeExists($path, $http_method): bool

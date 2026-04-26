@@ -7,12 +7,12 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "${DB_PORT}:5432"
+      - "5433:${DB_PORT}"
     volumes:
       # - ./db-init:/docker-entrypoint-initdb.d:ro,Z
       - pawprints_postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U paw -d pawprintsdb"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DBNAME}"]
       interval: 5s
       timeout: 5s
       retries: 5
