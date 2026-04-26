@@ -1,13 +1,13 @@
 services:
   db:
     image: postgres:16-alpine
-    container_name: paw-prints-db
+    container_name: ${DB_HOSTNAME}
     environment:
-      POSTGRES_DB: pawprintsdb
-      POSTGRES_USER: paw
-      POSTGRES_PASSWORD: paw
+      POSTGRES_DB: ${DB_DBNAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "5433:5432"
+      - "${DB_PORT}:5432"
     volumes:
       # - ./db-init:/docker-entrypoint-initdb.d:ro,Z
       - pawprints_postgres_data:/var/lib/postgresql/data
