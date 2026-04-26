@@ -4,13 +4,23 @@ namespace App;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Core\Router;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LogLevel;
+use Dotenv\Dotenv;
+
+use App\Core\Router;
+use App\Core\Config;
+
+$dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+$config = new Config();
 
 $log_app = new Logger('log-app');
-$log_app->pushHandler(new StreamHandler(__DIR__ . '/../storage/logs/app.log', LogLevel::DEBUG));
+$handler = new StreamHandler($config->get("LOG_PATH"));
+$handler->setLevel($config->get("LOG_LEVEL"));
+$log_app->pushHandler($handler);
 
 $router = new Router($log_app);
 
