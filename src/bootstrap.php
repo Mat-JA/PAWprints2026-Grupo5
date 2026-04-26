@@ -37,3 +37,8 @@ $router->get('/', 'PageController@home');
 $router->get('/catalogo', 'PageController@catalogo');
 $router->get('/eventos', 'PageController@eventos');
 $router->get('/nosotros', 'PageController@acercaDeNosotros');
+
+$router->get('/autores', 'AuthorsController@listAuthors');
+$router->get('/autor', 'AuthorController@getAuthor');
+$router->get('/autor/edit', 'AuthorController@getEdit');
+$router->post('/autor/edit', 'AuthorController@setAuthor');
