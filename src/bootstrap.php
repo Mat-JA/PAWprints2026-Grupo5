@@ -11,6 +11,7 @@ use Dotenv\Dotenv;
 
 use App\Core\Router;
 use App\Core\Config;
+use App\Core\Request;
 
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv->load();
@@ -22,12 +23,11 @@ $handler = new StreamHandler($config->get("LOG_PATH"));
 $handler->setLevel($config->get("LOG_LEVEL"));
 $log_app->pushHandler($handler);
 
+$request = new Request;
+
 $router = new Router($log_app);
 
 $router->get('/', 'PageController@home');
 $router->get('/catalogo', 'PageController@catalogo');
 $router->get('/eventos', 'PageController@eventos');
 $router->get('/nosotros', 'PageController@acercaDeNosotros');
-
-$router->get('not_found', 'ErrorController@notFound');
-$router->get('internal_error', 'ErrorController@internalError');

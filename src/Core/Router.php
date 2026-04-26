@@ -5,6 +5,8 @@ namespace App\Core;
 require __DIR__ . '/../../vendor/autoload.php';
 
 use App\Core\Exceptions\RouteNotFoundException;
+use App\Core\Request;
+use Exception;
 
 class Router
 {
@@ -13,21 +15,46 @@ class Router
         "POST" => [],
     ];
 
-    public function dispatch($path, $http_method = "GET"): void
+    public string $notFound = 'not_found';
+    public string $internalError = 'internal_error';
+
+    public function __construct()
+    {
+        $this->get($this->notFound, 'ErrorController@notFound');
+        $this->get($this->internalError, 'ErrorController@internalError');
+    }
+
+    public function dispatch(Request $request): void
     {
 
-        if (!$this->routeExists($path, $http_method)) {
-            throw new RouteNotFoundException("No existe ruta para este Path");
-        }
+        try {
+            list($path, $http_method) = $request->route();
 
-        list($controllerName, $method) = $this->getController($path, $http_method);
-        $controller = new ("App\\Controllers\\{$controllerName}");
-        $controller->$method();
+            list($controllerName, $method) = $this->getController($path, $http_method);
+            $this->call($controllerName, $method);
+        } catch (RouteNotFoundException $e) {
+
+            list($controllerName, $method) = $this->getController($this->notFound, "GET");
+            $this->call($controllerName, $method);
+        } catch (Exception $e) {
+
+            list($controllerName, $method) = $this->getController($this->internalError, "GET");
+            $this->call($controllerName, $method);
+        }
     }
 
     public function getController($path, $http_method)
     {
+        if (!$this->routeExists($path, $http_method)) {
+            throw new RouteNotFoundException("No existe ruta para este Path");
+        }
         return explode('@', $this->routes[$http_method][$path]);
+    }
+
+    public function call($controllerName, $method)
+    {
+        $controller = new ("App\\Controllers\\{$controllerName}");
+        $controller->$method();
     }
 
     public function loadRoutes($path, $action, $http_method = "GET"): void

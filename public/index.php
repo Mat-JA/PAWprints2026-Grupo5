@@ -8,16 +8,4 @@ use App\Core\Exceptions\RouteNotFoundException;
 
 require __DIR__ . '/../src/bootstrap.php';
 
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$method = $_SERVER['REQUEST_METHOD'];
-
-try {
-    $log_app->info("Petición a: {$path}");
-    $router->dispatch($path, $method);
-} catch (RouteNotFoundException $e) {
-    $router->dispatch("not_found");
-    $log_app->error("Status Code: 404 - Page Not Found", ["Error" => $e]);
-} catch (Exception $e) {
-    $router->dispatch("internal_error");
-    $log_app->error("Status Code: 500 - Internal Server Error", ["Error" => $e]);
-}
+$router->dispatch($request);
