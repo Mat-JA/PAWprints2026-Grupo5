@@ -4,12 +4,16 @@ namespace App\Core;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
+use Exception;
+
 use App\Core\Exceptions\RouteNotFoundException;
 use App\Core\Request;
-use Exception;
+use App\Core\Traits\Loggable;
 
 class Router
 {
+    use Loggable;
+
     public array $routes = [
         "GET" => [],
         "POST" => [],
@@ -31,14 +35,29 @@ class Router
             list($path, $http_method) = $request->route();
 
             list($controllerName, $method) = $this->getController($path, $http_method);
-            $this->call($controllerName, $method);
+            $this->logger
+                ->info(
+                    "Status Code: 200 OK",
+                    [
+                        "Path" => $path,
+                        "Method" => $http_method,
+                    ]
+                );
         } catch (RouteNotFoundException $e) {
 
             list($controllerName, $method) = $this->getController($this->notFound, "GET");
-            $this->call($controllerName, $method);
+            $this->logger->debug(
+                "Status Code: 404 - Route Not Found",
+                ["ERROR" => $e],
+            );
         } catch (Exception $e) {
 
             list($controllerName, $method) = $this->getController($this->internalError, "GET");
+            $this->logger->debug(
+                "Status Code: 500 - Internal Server Error",
+                ["ERROR" => $e],
+            );
+        } finally {
             $this->call($controllerName, $method);
         }
     }

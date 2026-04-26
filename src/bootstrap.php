@@ -26,6 +26,7 @@ $log_app->pushHandler($handler);
 $request = new Request;
 
 $router = new Router($log_app);
+$router->setLogger($log_app);
 
 $router->get('/', 'PageController@home');
 $router->get('/catalogo', 'PageController@catalogo');
