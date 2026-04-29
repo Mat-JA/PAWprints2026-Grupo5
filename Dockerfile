@@ -8,8 +8,12 @@ RUN a2enmod rewrite
 # de /var/www/html/ a /var/www/html/public, necesario para no exponer toda la raíz del proyecto
 COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
-RUN apt-get update && apt-get install -y libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql \
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    libzip-dev \
+    unzip \
+    git \
+    && docker-php-ext-install pdo pdo_pgsql zip \
     && rm -rf /var/lib/apt/lists/*
 
 # Instalar Composer desde su imagen oficial
