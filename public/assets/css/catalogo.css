@@ -21,27 +21,26 @@ main h2 {
 
 /* GRILLA LIBROS */
 .grilla-libros {
-    display: grid; /*activa el sistema de grilla, que organiza los hijos en filas y columnas*/
-    
-    /* responsive (antes eran 5 columnas fijas) */
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-    /* crea columnas automáticas: mínimo 180px, máximo se expanden */
-
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--espaciado-medio);
-    flex-grow: 1; /* le dice a la grilla que ocupe todo el espacio horizontal disponible */
+    flex-grow: 1;
+    align-items: start;
 }
 
 /* ARTICULO (LIBROS) */
 article {
-    display: flex; /* hijos en fila */ 
-    flex-direction: column; /*apila elementos verticalmente en cada tarjeta*/
-    align-items: center; /*centra todo el contenido de la tarjeta horizontalmente*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 420px;
     background-color: var(--color-primario);
     border-radius: var(--radio-medio);
     padding: var(--espaciado-medio);
-    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.15); /* sombra sutil debajo de la tarjeta */
-    transition: transform 0.2s, box-shadow 0.2s; /* anima los cambios de transform y sombra en 0.2 segundos */
-}
+    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+} 
 
 article:hover {
     transform: translateY(-5px); /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
@@ -58,8 +57,9 @@ article h3 {
 /* La imagen ocupa todo el ancho de la tarjeta */
 article img {
     width: 100%;
+    height: 240px;
+    object-fit: contain;
 }
-
 /* AUTOR Y LIBRO */
 article p {
     font-size: 0.8rem;
@@ -161,6 +161,21 @@ aside button:hover {
 .paginacion a:hover {
     background-color: rgba(87, 6, 140, 0.1); /* fondo violeta muy suave al pasar el mouse */
 }
+
+
+/* =========================
+   CABECERA CATALOGO
+========================= */
+
+.cabecera-catalogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: var(--espaciado-medio);
+    margin-right: var(--espaciado-medio);
+}
+
 
 /* RESPONSIVE */
 /* TABLET */

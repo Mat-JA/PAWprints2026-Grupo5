@@ -16,78 +16,33 @@
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
     <main>
-        <h2>Nuestros libros</h2>
+        <div class="cabecera-catalogo">
+            <h2>Nuestros libros</h2>
+
+            <a href="/catalogo/exportar" class="btn-filtro btn-csv">
+                Descargar CSV
+            </a>
+        </div>
         <div class="contenido">
             <section class="grilla-libros">
-                <article>
-                    <h3>Titulo</h3>
-                    <a href="/libros/libro3">
-                        <img src="/assets/img/portadaGenerica.png">
-                    </a>
-                    <p>Autor del libro</p>
-                    <p>$precio</p>
-                    <button>Agregar al carrito</button>
-                </article>
 
+            <?php foreach ($libros as $libro): ?>
                 <article>
-                    <h3>Titulo</h3>
-                    <a href="/libros/libro3">
-                        <img src="/assets/img/portadaGenerica.png">
-                    </a>
-                    <p>Autor del libro</p>
-                    <p>$precio</p>
-                    <button>Agregar al carrito</button>
-                </article>
+                    <h3><?= htmlspecialchars($libro->fields['descripcion_corta']) ?></h3>
 
-                <article>
-                    <h3>Titulo</h3>
-                    <a href="/libros/libro3">
-                        <img src="/assets/img/portadaGenerica.png">
+                    <a href="/libro?id=<?= $libro->fields['id'] ?>">
+                        <img src="<?= htmlspecialchars($libro->fields['imagen_url']) ?>" 
+                            alt="<?= htmlspecialchars($libro->fields['descripcion_corta']) ?>">
                     </a>
-                    <p>Autor del libro</p>
-                    <p>$precio</p>
-                    <button>Agregar al carrito</button>
-                </article>
 
-                <article>
-                    <h3>Titulo</h3>
-                    <a href="/libros/libro3">
-                        <img src="/assets/img/portadaGenerica.png">
-                    </a>
-                    <p>Autor del libro</p>
-                    <p>$precio</p>
-                    <button>Agregar al carrito</button>
-                </article>
+                    <p>ISBN: <?= htmlspecialchars($libro->fields['isbn']) ?></p>
 
-                <article>
-                    <h3>Titulo</h3>
-                    <a href="/libros/libro3">
-                        <img src="/assets/img/portadaGenerica.png">
-                    </a>
-                    <p>Autor del libro</p>
-                    <p>$precio</p>
-                    <button>Agregar al carrito</button>
-                </article>
+                    <p>$<?= number_format($libro->fields['precio'], 2, ',', '.') ?></p>
 
-                <article>
-                    <h3>Titulo</h3>
-                    <a href="/libros/libro3">
-                        <img src="/assets/img/portadaGenerica.png">
-                    </a>
-                    <p>Autor del libro</p>
-                    <p>$precio</p>
                     <button>Agregar al carrito</button>
                 </article>
+            <?php endforeach; ?>
 
-                <article>
-                    <h3>Titulo</h3>
-                    <a href="/libros/libro3">
-                        <img src="/assets/img/portadaGenerica.png">
-                    </a>
-                    <p>Autor del libro</p>
-                    <p>$precio</p>
-                    <button>Agregar al carrito</button>
-                </article>
             </section>
 
             <aside>
@@ -167,13 +122,26 @@
 
         <nav class="paginacion">
             <ul>
-                <li><a href="pagina/1">ant</a></li>
-                <li><a href="pagina/1">1</a></li>
-                <li><a href="pagina/2">2</a></li>
-                <li><a href="pagina/3">3</a></li>
-                <li><a href="pagina/2">sig</a></li>
+
+                <?php if ($pagina > 1): ?>
+                    <li><a href="/catalogo?pagina=<?= $pagina - 1 ?>">ant</a></li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                    <li>
+                        <a href="/catalogo?pagina=<?= $i ?>">
+                            <?= $i ?>
+                        </a>
+                    </li>
+                <?php endfor; ?>
+
+                <?php if ($pagina < $totalPaginas): ?>
+                    <li><a href="/catalogo?pagina=<?= $pagina + 1 ?>">sig</a></li>
+                <?php endif; ?>
+
             </ul>
         </nav>
     </main>
+
     <?php require __DIR__ . '/../partials/footer.php'; ?>
 </body>

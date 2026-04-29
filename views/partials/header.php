@@ -4,8 +4,14 @@
             <img src="/assets/img/logo.svg" alt="PawPrints">
         </a>
 
-        <form role="search">
-            <input id="busqueda" type="search" placeholder="Buscar libros...">
+        <form role="search" method="GET" action="/catalogo">
+            <input 
+                id="busqueda"
+                type="search"
+                name="buscar"
+                placeholder="Buscar libros..."
+                value="<?= htmlspecialchars($_GET['buscar'] ?? '') ?>"
+            >
             <button type="submit">Buscar</button>
         </form>
 
