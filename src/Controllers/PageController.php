@@ -26,8 +26,48 @@ class PageController
         require $this->viewsDir . 'pages/locales.php';
     }
 
-    public function acercaDeNosotros()
+    public function nosotros()
     {
         require $this->viewsDir . 'pages/nosotros.php';
+    }
+
+    public function carrito()
+    {
+        require $this->viewsDir . 'pages/carrito.php';
+    }
+
+    public function ajustes()
+    {
+        require $this->viewsDir . 'pages/ajustes.php';
+    }
+
+    public function cerrarSesion()
+    {
+        require $this->viewsDir . 'pages/cerrarSesion.php';
+    }
+
+    public function formularioCompra()
+    {
+        require $this->viewsDir . 'pages/formularioCompra.php';
+    }
+
+    public function login()
+    {
+        require $this->viewsDir . 'pages/login.php';
+    }
+
+    public function mi_cuenta()
+    {
+        require $this->viewsDir . 'pages/mi_cuenta.php';
+    }
+
+    public function misreservas()
+    {
+        require $this->viewsDir . 'pages/misreservas.php';
+    }
+
+    public function registrate()
+    {
+        require $this->viewsDir . 'pages/registrate.php';
     }
 }
