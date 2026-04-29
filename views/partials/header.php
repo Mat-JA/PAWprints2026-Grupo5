@@ -1,6 +1,6 @@
 <header>
     <div class="header-top">
-        <a href="/index.html">
+        <a href="/">
             <img src="/assets/img/logo.svg" alt="PawPrints">
         </a>
 
@@ -10,11 +10,11 @@
         </form>
 
         <div class="links-header">
-            <a href="/carrito.html">
+            <a href="/carrito">
                 <img src="/assets/img/carrito_logo_darkmode.svg" alt="carrito de compras">
             </a>
 
-            <a href="/mi_cuenta.html">
+            <a href="/mi_cuenta">
                 <img src="/assets/img/mi_cuenta_logo_darkmode.svg" alt="acceso a mi cuenta">
             </a>
         </div>
@@ -26,7 +26,7 @@
             <li><a href="/novedades">Novedades</a></li>
             <li><a href="/top_50">Top 50</a></li>
             <li><a href="/eventos">Locales</a></li>
-            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="/nosotros">Contacto</a></li>
         </ul>
     </nav>
 </header>

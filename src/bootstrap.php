@@ -36,9 +36,18 @@ $router->setLogger($log_app);
 $router->get('/', 'PageController@home');
 $router->get('/catalogo', 'PageController@catalogo');
 $router->get('/eventos', 'PageController@eventos');
-$router->get('/nosotros', 'PageController@acercaDeNosotros');
+$router->get('/nosotros', 'PageController@nosotros');
 
 $router->get('/autores', 'AuthorsController@listAuthors');
 $router->get('/autor', 'AuthorController@getAuthor');
 $router->get('/autor/edit', 'AuthorController@getEdit');
 $router->post('/autor/edit', 'AuthorController@setAuthor');
+
+$router->get('/carrito', 'PageController@carrito');
+$router->get('/ajustes', 'PageController@ajustes');
+$router->get('/cerrarSesion', 'PageController@cerrarSesion');
+$router->get('/formularioCompra', 'PageController@formularioCompra');
+$router->get('/login', 'PageController@login');
+$router->get('/mi_cuenta', 'PageController@mi_cuenta');
+$router->get('/misreservas', 'PageController@misreservas');
+$router->get('/registrate', 'PageController@registrate');
