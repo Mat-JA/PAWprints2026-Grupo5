@@ -15,22 +15,7 @@ main {
 }
 
 .portada-libro {
-    margin: 0 var(--espaciado-largo)
-}
-
-@media (max-width: 750px) {
-    .datos-libro {
-        flex-direction: column;
-    }
-
-    .portada-libro {
-        margin: auto;
-    }
-
-    .imgPortada {
-        max-width: 100%;
-        height: auto;
-    }
+    margin: 0 var(--espaciado-largo);
 }
 
 .portada-libro img {
@@ -45,10 +30,12 @@ main {
     justify-content: center;
     text-align: center;
     margin: 0 var(--espaciado-largo);
+    gap: var(--espaciado-chico);
 }
 
 .texto-datos-libro p {
     font-weight: 600;
+    margin: 0;
 }
 
 .texto-datos-libro button {
@@ -56,18 +43,12 @@ main {
     width: 16rem;
     max-width: 75%;
     background-color: var(--color-secundario);
-    /* fondo violeta */
     color: var(--color-primario);
-    /* texto blanco */
     border: none;
-    /* elimina el borde por defecto */
     cursor: pointer;
-    /* el cursor cambia a manito al pasar por encima */
     font-weight: bold;
-    /* rexto en negrita */
     border-radius: var(--radio-medio);
-    margin: auto;
-
+    margin: var(--espaciado-chico) auto;
 }
 
 .texto-datos-libro button:hover {
@@ -81,7 +62,7 @@ main {
 }
 
 .opinion {
-    margin: var(--espaciado-medio) 0
+    margin: var(--espaciado-medio) 0;
 }
 
 .opinion-datos {
@@ -95,7 +76,21 @@ main {
     margin: 0 var(--espaciado-largo);
 }
 
-@media screen and (max-width: 750px) {
+/* Responsive */
+@media (max-width: 750px) {
+    .datos-libro {
+        flex-direction: column;
+    }
+
+    .portada-libro {
+        margin: auto;
+    }
+
+    .imgPortada {
+        max-width: 100%;
+        height: auto;
+    }
+
     .opinion-datos {
         gap: 5px;
         justify-content: flex-start;

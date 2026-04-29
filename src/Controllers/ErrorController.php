@@ -10,9 +10,7 @@ class ErrorController
     public function notFound()
     {
         http_response_code(404);
-        echo 'pagina no encontrada';
-        //TODO crear vista
-        /* require $this->viewsDir . '/pages/not_found.php'; */
+        require $this->viewsDir . '/pages/notFound.php'; 
     }
 
     public function internalError()

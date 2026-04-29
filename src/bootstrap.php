@@ -13,6 +13,7 @@ use App\Core\Router;
 use App\Core\Config;
 use App\Core\Database\ConnectionBuilder;
 use App\Core\Request;
+use App\Core\Contenedor;
 
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv->load();
@@ -28,13 +29,17 @@ $connectionBuilder = new ConnectionBuilder;
 $connectionBuilder->setLogger($log_app);
 $connection = $connectionBuilder->make($config);
 
+$contenedor = new Contenedor();
+$contenedor->set('conexion', $connection);
+$contenedor->set('logger', $log_app);
+
 $request = new Request;
 
-$router = new Router($log_app);
+$router = new Router($contenedor);
 $router->setLogger($log_app);
 
 $router->get('/', 'PageController@home');
-$router->get('/catalogo', 'PageController@catalogo');
+$router->get('/catalogo', 'LibroController@catalogo');
 $router->get('/eventos', 'PageController@eventos');
 $router->get('/nosotros', 'PageController@nosotros');
 
@@ -51,3 +56,4 @@ $router->get('/login', 'PageController@login');
 $router->get('/mi_cuenta', 'PageController@mi_cuenta');
 $router->get('/misreservas', 'PageController@misreservas');
 $router->get('/registrate', 'PageController@registrate');
+$router->get('/libro', 'LibroController@detalle');
