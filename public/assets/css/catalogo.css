@@ -162,6 +162,21 @@ aside button:hover {
     background-color: rgba(87, 6, 140, 0.1); /* fondo violeta muy suave al pasar el mouse */
 }
 
+
+/* =========================
+   CABECERA CATALOGO
+========================= */
+
+.cabecera-catalogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-left: var(--espaciado-medio);
+    margin-right: var(--espaciado-medio);
+}
+
+
 /* RESPONSIVE */
 /* TABLET */
 @media (max-width: 900px) {

@@ -57,3 +57,4 @@ $router->get('/mi_cuenta', 'PageController@mi_cuenta');
 $router->get('/misreservas', 'PageController@misreservas');
 $router->get('/registrate', 'PageController@registrate');
 $router->get('/libro', 'LibroController@detalle');
+$router->get('/catalogo/exportar', 'LibroController@exportarCsv');

@@ -58,4 +58,41 @@ class LibroController
 
         require $this->viewsDir . 'pages/detalle_libro.php';
     }
+
+    public function exportarCsv()
+    {
+        $conexion = $this->contenedor->get('conexion');
+
+        $repositorio = new LibroRepository($conexion);
+        $libros = $repositorio->obtenerLibrosPaginados(1, 1000, null);
+
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=catalogo.csv');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+
+        echo "\xEF\xBB\xBF"; // UTF-8 BOM
+
+        $output = fopen('php://output', 'w');
+
+        fputcsv($output, ['ID', 'ISBN', 'Descripcion corta', 'Precio', 'Stock'], ',', '"', '\\');
+
+        foreach ($libros as $libro) {
+            fputcsv($output, [
+                $libro->fields['id'],
+                $libro->fields['isbn'],
+                $libro->fields['descripcion_corta'],
+                $libro->fields['precio'],
+                $libro->fields['stock']
+            ], ',', '"', '\\');
+        }
+
+        fclose($output);
+        exit;
+    }
+    
 }

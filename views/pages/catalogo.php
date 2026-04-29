@@ -16,7 +16,13 @@
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
     <main>
-        <h2>Nuestros libros</h2>
+        <div class="cabecera-catalogo">
+            <h2>Nuestros libros</h2>
+
+            <a href="/catalogo/exportar" class="btn-filtro btn-csv">
+                Descargar CSV
+            </a>
+        </div>
         <div class="contenido">
             <section class="grilla-libros">
 
