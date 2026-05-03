@@ -6,7 +6,6 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Psr\Log\LogLevel;
 use Dotenv\Dotenv;
 
 use App\Core\Router;
