@@ -19,9 +19,41 @@ final class FirstTablesMigration extends AbstractMigration
      */
     public function change(): void
     {
-        $tableAutor = $this->table('authors');
-        $tableAutor->addColumn('name', 'string', ['limit' => 60])
+        $tableAutor = $this->table('autores');
+        $tableAutor->addColumn('nombre', 'string', ['limit' => 60])
             ->addColumn('bio', 'string', ['limit' => 250])
+            ->create();
+
+        $tableAutor = $this->table('libros');
+        $tableAutor->addColumn('titulo', 'string', ['limit' => 75])
+            ->addColumn('isbn', 'string', ['limit' => 25])
+            ->addColumn('desc_corta', 'string', ['limit' => 150])
+            ->addColumn('descripcion', 'string', ['limit' => 300])
+            ->addColumn('imagen_url', 'string', ['limit' => 100])
+            ->addColumn('fecha_pub', 'date')
+            ->addColumn('stock', 'integer')
+            ->addColumn('created_at', 'timestamp')
+            ->create();
+
+        $tableAutorLibro = $this->table(
+            'autor_libro',
+            [
+                'id' => false,
+                'primary_key' => ['autor_id', 'libro_id'],
+            ]
+        );
+
+        $tableAutorLibro
+            ->addColumn('autor_id', 'integer')
+            ->addColumn('libro_id', 'integer')
+            ->addForeignKey('autor_id', 'autores', 'id', [
+                'delete' => 'NO_ACTION',
+                'update' => 'NO_ACTION',
+            ])
+            ->addForeignKey('libro_id', 'libros', 'id', [
+                'delete' => 'NO_ACTION',
+                'update' => 'NO_ACTION',
+            ])
             ->create();
     }
 }
