@@ -9,7 +9,6 @@ use Exception;
 use App\Core\Exceptions\RouteNotFoundException;
 use App\Core\Request;
 use App\Core\Traits\Loggable;
-use App\Core\Contenedor;
 use App\Core\Exceptions\PageNotFound;
 
 class Router
@@ -23,11 +22,9 @@ class Router
 
     public string $notFound = 'not_found';
     public string $internalError = 'internal_error';
-    public Contenedor $contenedor;
 
-    public function __construct(Contenedor $contenedor)
+    public function __construct()
     {
-        $this->contenedor = $contenedor;
         $this->get($this->notFound, 'ErrorController@notFound');
         $this->get($this->internalError, 'ErrorController@internalError');
     }
@@ -82,7 +79,7 @@ class Router
     public function call($controllerName, $method)
     {
         $clase = "App\\Controllers\\{$controllerName}";
-        $controller = new $clase($this->contenedor);
+        $controller = new $clase();
         $controller->$method();
     }
 

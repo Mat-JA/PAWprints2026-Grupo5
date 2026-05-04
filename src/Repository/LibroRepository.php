@@ -19,7 +19,7 @@ class LibroRepository
         $offset = ($pagina - 1) * $limite;
 
         if ($busqueda) {
-            $sql = "SELECT * FROM libro
+            $sql = "SELECT * FROM libros
                     WHERE descripcion_corta ILIKE :busqueda
                     OR descripcion_completa ILIKE :busqueda
                     OR isbn ILIKE :busqueda
@@ -29,7 +29,7 @@ class LibroRepository
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':busqueda', '%' . $busqueda . '%');
         } else {
-            $sql = "SELECT * FROM libro
+            $sql = "SELECT * FROM libros
                     ORDER BY id
                     LIMIT :limite OFFSET :offset";
 
@@ -57,7 +57,7 @@ class LibroRepository
     public function contarLibros(?string $busqueda = null): int
     {
         if ($busqueda) {
-            $sql = "SELECT COUNT(*) FROM libro
+            $sql = "SELECT COUNT(*) FROM libros
                     WHERE descripcion_corta ILIKE :busqueda
                     OR descripcion_completa ILIKE :busqueda
                     OR isbn ILIKE :busqueda";
@@ -65,7 +65,7 @@ class LibroRepository
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':busqueda', '%' . $busqueda . '%');
         } else {
-            $stmt = $this->conexion->prepare("SELECT COUNT(*) FROM libro");
+            $stmt = $this->conexion->prepare("SELECT COUNT(*) FROM libros");
         }
 
         $stmt->execute();
@@ -74,7 +74,7 @@ class LibroRepository
     }
 
     public function obtenerPorId(int $id): ?Libro{
-        $sql = "SELECT * FROM libro WHERE id = :id LIMIT 1";
+        $sql = "SELECT * FROM libros WHERE id = :id LIMIT 1";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();

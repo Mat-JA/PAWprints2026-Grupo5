@@ -28,13 +28,13 @@ $connectionBuilder = new ConnectionBuilder;
 $connectionBuilder->setLogger($log_app);
 $connection = $connectionBuilder->make($config);
 
-$contenedor = new Contenedor();
-$contenedor->set('conexion', $connection);
-$contenedor->set('logger', $log_app);
+/* $contenedor = new Contenedor(); */
+/* $contenedor->set('conexion', $connection); */
+/* $contenedor->set('logger', $log_app); */
 
 $request = new Request;
 
-$router = new Router($contenedor);
+$router = new Router();
 $router->setLogger($log_app);
 
 $router->get('/', 'PageController@home');

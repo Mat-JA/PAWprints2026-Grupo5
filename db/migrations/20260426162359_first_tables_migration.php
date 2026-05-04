@@ -29,7 +29,7 @@ final class FirstTablesMigration extends AbstractMigration
             ->addColumn('isbn', 'string', ['limit' => 25])
             ->addColumn('desc_corta', 'string', ['limit' => 150])
             ->addColumn('descripcion', 'string', ['limit' => 300])
-            ->addColumn('imagen_url', 'string', ['limit' => 100])
+            ->addColumn('imagen_url', 'string', ['limit' => 200])
             ->addColumn('fecha_pub', 'date')
             ->addColumn('stock', 'integer')
             ->addColumn('created_at', 'timestamp')
