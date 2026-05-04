@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/detalle_libro.css">
-    <title>PawPrints - <?= $libro->fields['descripcion_corta'] ?></title>
+    <title>PawPrints - <?= htmlspecialchars($libro->fields['desc_corta'] ?? '') ?></title>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 
                     <div class="portada-libro">
                         <img 
-                            src="<?= $libro->fields['imagen_url'] ?>" 
+                            src="<?= htmlspecialchars($libro->fields['imagen_url'] ?? '') ?>" 
                             alt="Portada del libro" 
                             class="imgPortada"
                         >
@@ -31,13 +31,13 @@
 
                     <div class="texto-datos-libro">
 
-                        <h1><?= $libro->fields['descripcion_corta'] ?></h1>
+                        <h1><?= htmlspecialchars($libro->fields['desc_corta'] ?? '') ?></h1>
 
-                        <h2><?= $libro->fields['isbn'] ?></h2>
+                        <h2><?= htmlspecialchars($libro->fields['isbn'] ?? '') ?></h2>
 
-                        <p>Precio: $<?= $libro->fields['precio'] ?></p>
+                        <p>Precio: $<?= number_format($libro->fields['precio'] ?? 0, 2, ',', '.') ?></p>
 
-                        <p>Stock: <?= $libro->fields['stock'] ?></p>
+                        <p>Stock: <?= htmlspecialchars($libro->fields['stock'] ?? '') ?></p>
 
                         <button>Agregar al carrito</button>
 
@@ -52,7 +52,7 @@
                     <h2>Descripción</h2>
 
                     <p>
-                        <?= $libro->fields['descripcion_completa'] ?>
+                        <?= htmlspecialchars($libro->fields['descripcion'] ?? '') ?>
                     </p>
 
                 </section>

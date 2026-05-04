@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/catalogo.css">
+    <link rel="stylesheet" href="/assets/css/tarjeta_libro.css">
 </head>
 
 <body>
@@ -27,20 +28,7 @@
             <section class="grilla-libros">
 
             <?php foreach ($libros as $libro): ?>
-                <article>
-                    <h3><?= htmlspecialchars($libro->fields['titulo']) ?></h3>
-
-                    <a href="/libro?id=<?= $libro->fields['id'] ?>">
-                        <img src="<?= htmlspecialchars($libro->fields['imagen_url']) ?>" 
-                            alt="<?= htmlspecialchars($libro->fields['desc_corta']) ?>">
-                    </a>
-
-                    <p>ISBN: <?= htmlspecialchars($libro->fields['isbn']) ?></p>
-
-                    <p>$<?= number_format($libro->fields['precio'], 2, ',', '.') ?></p>
-
-                    <button>Agregar al carrito</button>
-                </article>
+                <?php require __DIR__ . '/../partials/tarjeta_libro.php'; ?>
             <?php endforeach; ?>
 
             </section>

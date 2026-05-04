@@ -1,6 +1,8 @@
 body {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    overflow-x: hidden;
 }
 
 main {
@@ -98,5 +100,47 @@ main {
 
     .opinion-datos p {
         margin: 0;
+    }
+}
+
+/* Mobile 360px */
+@media (max-width: 360px) {
+    .datos-libro {
+        padding: var(--espaciado-chico) var(--espaciado-chico);
+    }
+
+    .texto-datos-libro {
+        margin: 0;
+    }
+
+    .texto-datos-libro h1 {
+        font-size: 1.2rem;
+    }
+
+    .texto-datos-libro h2 {
+        font-size: 1rem;
+    }
+
+    .texto-datos-libro p {
+        font-size: 0.9rem;
+    }
+
+    .portada-libro {
+        margin: 0 auto;
+    }
+
+    .portada-libro img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .texto-datos-libro button {
+        width: 100%;
+        max-width: 100%;
+        height: 3rem;
+    }
+
+    main {
+        padding: var(--espaciado-medio) var(--espaciado-chico);
     }
 }
