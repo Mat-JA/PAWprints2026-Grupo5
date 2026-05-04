@@ -6,11 +6,13 @@ use App\Services\LibroService;
 use App\Services\CompraService;
 use App\Core\Exceptions\PageNotFound;
 use App\Core\Exceptions\StockInsuficienteException;
+use App\Services\MailService;
 
 class LibroController
 {
     private LibroService $libroService;
     private CompraService $compraService;
+    private MailService $mailService;
     public string $viewsDir;
 
     public function __construct(LibroService $libroService, CompraService $compraService)
@@ -123,9 +125,44 @@ class LibroController
 
             $libro = $this->libroService->obtenerPorId($datos['id_libro']);
             $nombre = $datos['nombre'] ?? '';
+            $cuerpo = $this->construirEmail($datos);
+
+            $this->mailService->send($this->reservasMail, $asunto, $cuerpo);
             require $this->viewsDir . 'pages/compraExitosa.php';
         } catch (StockInsuficienteException $e) {
             require $this->viewsDir . 'pages/stockInsuficiente.php';
         }
+    }
+
+    private function construirEmail(array $d): string
+    {
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $fecha = date('d/m/Y H:i');
+        return "
+            <h2>Nueva Reserva de Libro</h2>
+
+            <h3>Datos de Envío</h3>
+            <ul>
+                <li><strong>Nombre:</strong> {$d['envio_nombre']} {$d['envio_apellido']}</li>
+                <li><strong>Email:</strong> {$d['envio_email']}</li>
+                <li><strong>País:</strong> {$d['envio_pais']}</li>
+                <li><strong>Provincia:</strong> {$d['envio_provincia']}</li>
+                <li><strong>Ciudad:</strong> {$d['envio_ciudad']}</li>
+                <li><strong>Dirección:</strong> {$d['envio_calle']} {$d['envio_nro_calle']}</li>
+            </ul>
+
+            <h3>Datos de Facturación</h3>
+            <ul>
+                <li><strong>Nombre:</strong> {$d['fact_nombre']} {$d['fact_apellido']}</li>
+                <li><strong>Email:</strong> {$d['fact_email']}</li>
+                <li><strong>País:</strong> {$d['fact_pais']}</li>
+                <li><strong>Provincia:</strong> {$d['fact_provincia']}</li>
+                <li><strong>Ciudad:</strong> {$d['fact_ciudad']}</li>
+                <li><strong>Dirección:</strong> {$d['fact_calle']} {$d['fact_nro_calle']}</li>
+                <li><strong>Vencimiento tarjeta:</strong> {$d['fact_vencimiento']}</li>
+            </ul>
+
+            <p><em>Reserva recibida el {$fecha}</em></p>
+        ";
     }
 }
