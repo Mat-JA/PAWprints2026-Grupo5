@@ -12,6 +12,7 @@ use App\Core\Router;
 use App\Core\Config;
 use App\Core\Database\ConnectionBuilder;
 use App\Core\Request;
+use App\Services\MailService;
 
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv->load();
@@ -26,6 +27,8 @@ $log_app->pushHandler($handler);
 $connectionBuilder = new ConnectionBuilder;
 $connectionBuilder->setLogger($log_app);
 $connection = $connectionBuilder->make($config);
+
+$mailService = new MailService();
 
 $request = new Request;
 
@@ -50,12 +53,12 @@ $router->get('/ajustes', function () {
 $router->get('/cerrarSesion', function () {
     (new \App\Controllers\PageController())->cerrarSesion();
 });
-$router->get('/formularioCompra', function () use ($connection) {
+$router->get('/formularioCompra', function () use ($connection, $mailService) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $compraRepo  = new \App\Repository\CompraRepository($connection);
     $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
     $controller->formularioCompra();
 });
 $router->get('/login', function () {
@@ -84,38 +87,38 @@ $router->get('/registrate', function () {
 /*     (new \App\Controllers\AuthorController())->setAuthor(); */
 /* }); */
 
-$router->get('/catalogo', function () use ($connection) {
+$router->get('/catalogo', function () use ($connection, $mailService) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $compraRepo  = new \App\Repository\CompraRepository($connection);
     $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
     $controller->catalogo();
 });
 
-$router->get('/libro', function () use ($connection) {
+$router->get('/libro', function () use ($connection, $mailService) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $compraRepo  = new \App\Repository\CompraRepository($connection);
     $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
     $controller->detalle();
 });
 
-$router->get('/catalogo/exportar', function () use ($connection) {
+$router->get('/catalogo/exportar', function () use ($connection, $mailService) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $compraRepo  = new \App\Repository\CompraRepository($connection);
     $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
     $controller->exportarCsv();
 });
 
-$router->post('/procesarCompra', function () use ($connection) {
+$router->post('/procesarCompra', function () use ($connection, $mailService) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $compraRepo  = new \App\Repository\CompraRepository($connection);
     $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
     $controller->procesarCompra();
 });

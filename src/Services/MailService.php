@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as MailException;
 
 class MailService
 {

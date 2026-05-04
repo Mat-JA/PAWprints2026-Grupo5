@@ -14,12 +14,18 @@ class LibroController
     private CompraService $compraService;
     private MailService $mailService;
     public string $viewsDir;
+    private string $reservasMail;
 
-    public function __construct(LibroService $libroService, CompraService $compraService)
-    {
+    public function __construct(
+        LibroService $libroService,
+        CompraService $compraService,
+        MailService $mailService,
+    ) {
         $this->libroService = $libroService;
         $this->compraService = $compraService;
+        $this->mailService = $mailService;
         $this->viewsDir = __DIR__ . '/../../views/';
+        $this->reservasMail = $_ENV['RESERVAS_MAIL'];
     }
 
     public function catalogo()
@@ -126,6 +132,7 @@ class LibroController
             $libro = $this->libroService->obtenerPorId($datos['id_libro']);
             $nombre = $datos['nombre'] ?? '';
             $cuerpo = $this->construirEmail($datos);
+            $asunto = 'Nueva Compra';
 
             $this->mailService->send($this->reservasMail, $asunto, $cuerpo);
             require $this->viewsDir . 'pages/compraExitosa.php';
@@ -141,28 +148,16 @@ class LibroController
         return "
             <h2>Nueva Reserva de Libro</h2>
 
-            <h3>Datos de Envío</h3>
+            <h3>Datos</h3>
             <ul>
-                <li><strong>Nombre:</strong> {$d['envio_nombre']} {$d['envio_apellido']}</li>
-                <li><strong>Email:</strong> {$d['envio_email']}</li>
-                <li><strong>País:</strong> {$d['envio_pais']}</li>
-                <li><strong>Provincia:</strong> {$d['envio_provincia']}</li>
-                <li><strong>Ciudad:</strong> {$d['envio_ciudad']}</li>
-                <li><strong>Dirección:</strong> {$d['envio_calle']} {$d['envio_nro_calle']}</li>
+                <li><strong>Nombre:</strong> {$d['nombre']} {$d['apellido']}</li>
+                <li><strong>Email:</strong> {$d['email']}</li>
+                <li><strong>País:</strong> {$d['pais']}</li>
+                <li><strong>Provincia:</strong> {$d['provincia']}</li>
+                <li><strong>Ciudad:</strong> {$d['ciudad']}</li>
+                <li><strong>Dirección:</strong> {$d['calle']} {$d['nro_calle']}</li>
             </ul>
-
-            <h3>Datos de Facturación</h3>
-            <ul>
-                <li><strong>Nombre:</strong> {$d['fact_nombre']} {$d['fact_apellido']}</li>
-                <li><strong>Email:</strong> {$d['fact_email']}</li>
-                <li><strong>País:</strong> {$d['fact_pais']}</li>
-                <li><strong>Provincia:</strong> {$d['fact_provincia']}</li>
-                <li><strong>Ciudad:</strong> {$d['fact_ciudad']}</li>
-                <li><strong>Dirección:</strong> {$d['fact_calle']} {$d['fact_nro_calle']}</li>
-                <li><strong>Vencimiento tarjeta:</strong> {$d['fact_vencimiento']}</li>
-            </ul>
-
-            <p><em>Reserva recibida el {$fecha}</em></p>
+            <p><em>Reserva creada el {$fecha}</em></p>
         ";
     }
 }
