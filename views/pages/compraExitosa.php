@@ -22,7 +22,7 @@
                 <p>Precio: $<?= number_format($libro->fields['precio'] ?? 0, 2, ',', '.') ?></p>
             </div>
         <?php endif; ?>
-        <p>Gracias por tu compra. Te contactaremos pronto.</p>
+        <p>Gracias por tu compra, <?= htmlspecialchars($nombre ?? '') ?>. Te contactaremos pronto.</p>
     </main>
     <?php require __DIR__ . '/../partials/footer.php'; ?>
 </body>

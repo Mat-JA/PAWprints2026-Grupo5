@@ -53,7 +53,9 @@ $router->get('/cerrarSesion', function () {
 $router->get('/formularioCompra', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
-    $controller  = new \App\Controllers\LibroController($servicio);
+    $compraRepo  = new \App\Repository\CompraRepository($connection);
+    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
     $controller->formularioCompra();
 });
 $router->get('/login', function () {
@@ -85,27 +87,35 @@ $router->get('/registrate', function () {
 $router->get('/catalogo', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
-    $controller  = new \App\Controllers\LibroController($servicio);
+    $compraRepo  = new \App\Repository\CompraRepository($connection);
+    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
     $controller->catalogo();
 });
 
 $router->get('/libro', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
-    $controller  = new \App\Controllers\LibroController($servicio);
+    $compraRepo  = new \App\Repository\CompraRepository($connection);
+    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
     $controller->detalle();
 });
 
 $router->get('/catalogo/exportar', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
-    $controller  = new \App\Controllers\LibroController($servicio);
+    $compraRepo  = new \App\Repository\CompraRepository($connection);
+    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
     $controller->exportarCsv();
 });
 
 $router->post('/procesarCompra', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
-    $controller  = new \App\Controllers\LibroController($servicio);
+    $compraRepo  = new \App\Repository\CompraRepository($connection);
+    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
+    $controller  = new \App\Controllers\LibroController($servicio, $compraService);
     $controller->procesarCompra();
 });

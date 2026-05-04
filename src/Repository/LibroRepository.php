@@ -92,4 +92,13 @@ class LibroRepository
 
         return $libro;
     }
+
+    public function decrementarStock(int $id): bool
+    {
+        $sql = "UPDATE " . self::TABLE . " SET stock = stock - 1 WHERE id = :id AND stock > 0";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
 }

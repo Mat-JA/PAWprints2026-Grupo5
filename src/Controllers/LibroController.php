@@ -3,16 +3,20 @@
 namespace App\Controllers;
 
 use App\Services\LibroService;
+use App\Services\CompraService;
 use App\Core\Exceptions\PageNotFound;
+use App\Core\Exceptions\StockInsuficienteException;
 
 class LibroController
 {
     private LibroService $libroService;
+    private CompraService $compraService;
     public string $viewsDir;
 
-    public function __construct(LibroService $libroService)
+    public function __construct(LibroService $libroService, CompraService $compraService)
     {
         $this->libroService = $libroService;
+        $this->compraService = $compraService;
         $this->viewsDir = __DIR__ . '/../../views/';
     }
 
@@ -112,9 +116,16 @@ class LibroController
         foreach ($_POST as $key => $value) {
             $datos[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
         }
+        $datos['id_libro'] = (int) $datos['id_libro'];
 
-        $libro = $this->libroService->obtenerPorId((int)$id_libro);
+        try {
+            $this->compraService->procesarCompra($datos);
 
-        require $this->viewsDir . 'pages/compraExitosa.php';
+            $libro = $this->libroService->obtenerPorId($datos['id_libro']);
+            $nombre = $datos['nombre'] ?? '';
+            require $this->viewsDir . 'pages/compraExitosa.php';
+        } catch (StockInsuficienteException $e) {
+            require $this->viewsDir . 'pages/stockInsuficiente.php';
+        }
     }
 }
