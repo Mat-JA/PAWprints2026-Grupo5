@@ -50,8 +50,11 @@ $router->get('/ajustes', function() {
 $router->get('/cerrarSesion', function() {
     (new \App\Controllers\PageController())->cerrarSesion();
 });
-$router->get('/formularioCompra', function() {
-    (new \App\Controllers\PageController())->formularioCompra();
+$router->get('/formularioCompra', function() use ($connection) {
+    $repositorio = new \App\Repository\LibroRepository($connection);
+    $servicio    = new \App\Services\LibroService($repositorio);
+    $controller  = new \App\Controllers\LibroController($servicio);
+    $controller->formularioCompra();
 });
 $router->get('/login', function() {
     (new \App\Controllers\PageController())->login();
@@ -98,4 +101,11 @@ $router->get('/catalogo/exportar', function() use ($connection) {
     $servicio    = new \App\Services\LibroService($repositorio);
     $controller  = new \App\Controllers\LibroController($servicio);
     $controller->exportarCsv();
+});
+
+$router->post('/procesarCompra', function() use ($connection) {
+    $repositorio = new \App\Repository\LibroRepository($connection);
+    $servicio    = new \App\Services\LibroService($repositorio);
+    $controller  = new \App\Controllers\LibroController($servicio);
+    $controller->procesarCompra();
 });

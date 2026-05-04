@@ -10,12 +10,5 @@
 
     <p>$<?= number_format($libro->fields['precio'] ?? 0, 2, ',', '.') ?></p>
 
-    <form action="/carrito/agregar" method="post">
-        <input type="hidden" name="id_libro" value="<?= $libro->fields['id'] ?>">
-        <input type="hidden" name="titulo" value="<?= htmlspecialchars($libro->fields['titulo']) ?>">
-        <button type="submit"
-                aria-label="Agregar <?= htmlspecialchars($libro->fields['titulo']) ?> al carrito">
-            Agregar al carrito
-        </button>
-    </form>
+    <a href="/formularioCompra?id=<?= $libro->fields['id'] ?>" class="btn-comprar">Agregar al carrito</a>
 </article>

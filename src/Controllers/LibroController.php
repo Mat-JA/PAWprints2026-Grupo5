@@ -82,4 +82,39 @@ class LibroController
         fclose($output);
         exit;
     }
+
+    public function formularioCompra()
+    {
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            throw new PageNotFound('Libro no encontrado');
+        }
+
+        $libro = $this->libroService->obtenerPorId((int)$id);
+
+        if (!$libro) {
+            throw new PageNotFound('Libro no encontrado');
+        }
+
+        require $this->viewsDir . 'pages/formularioCompra.php';
+    }
+
+    public function procesarCompra()
+    {
+        $id_libro = $_POST['id_libro'] ?? null;
+
+        if (!$id_libro) {
+            throw new PageNotFound('Libro no especificado');
+        }
+
+        $datos = [];
+        foreach ($_POST as $key => $value) {
+            $datos[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        }
+
+        $libro = $this->libroService->obtenerPorId((int)$id_libro);
+
+        require $this->viewsDir . 'pages/compraExitosa.php';
+    }
 }
