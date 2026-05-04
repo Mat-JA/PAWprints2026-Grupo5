@@ -46,11 +46,6 @@ class PageController
         require $this->viewsDir . 'pages/cerrarSesion.php';
     }
 
-    public function formularioCompra()
-    {
-        require $this->viewsDir . 'pages/formularioCompra.php';
-    }
-
     public function login()
     {
         require $this->viewsDir . 'pages/login.php';
@@ -69,5 +64,10 @@ class PageController
     public function registrate()
     {
         require $this->viewsDir . 'pages/registrate.php';
+    }
+
+    public function reservaConfirmada()
+    {
+        require $this->viewsDir . 'pages/reservaConfirmada.php';
     }
 }

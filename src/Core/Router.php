@@ -33,7 +33,8 @@ class Router
     }
 
     public function dispatch(Request $request): void
-{
+    {
+
     try {
         list($path, $http_method) = $request->route();
 

@@ -15,6 +15,9 @@ use App\Core\Database\ConnectionBuilder;
 use App\Core\Request;
 use App\Core\Contenedor;
 
+use App\Services\MailService;
+use App\Services\ReservaService;
+
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv->load();
 
@@ -32,6 +35,10 @@ $connection = $connectionBuilder->make($config);
 $contenedor = new Contenedor();
 $contenedor->set('conexion', $connection);
 $contenedor->set('logger', $log_app);
+
+$mailService    = new MailService();
+$reservaService = new ReservaService($mailService);
+$contenedor->set('reservaService', $reservaService);
 
 $request = new Request;
 
@@ -51,7 +58,9 @@ $router->post('/autor/edit', 'AuthorController@setAuthor');
 $router->get('/carrito', 'PageController@carrito');
 $router->get('/ajustes', 'PageController@ajustes');
 $router->get('/cerrarSesion', 'PageController@cerrarSesion');
-$router->get('/formularioCompra', 'PageController@formularioCompra');
+$router->get('/formularioCompra',   'ReservaController@mostrar');
+$router->post('/formularioCompra',  'ReservaController@procesar');
+$router->get('/reserva-confirmada', 'PageController@reservaConfirmada');
 $router->get('/login', 'PageController@login');
 $router->get('/mi_cuenta', 'PageController@mi_cuenta');
 $router->get('/misreservas', 'PageController@misreservas');
