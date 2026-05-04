@@ -1,0 +1,23 @@
+.confirmacion-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  gap: var(--espaciado-largo);
+}
+
+.btn-volver {
+  display: inline-block;
+  padding: var(--espaciado-chico) var(--espaciado-largo);
+  background-color: var(--color-secundario);
+  color: var(--color-primario);
+  border-radius: var(--radio-chico);
+  transition: background-color 0.2s;
+}
+
+.btn-volver:hover {
+  background-color: var(--color-monocromatico);
+  text-decoration: none;
+}
