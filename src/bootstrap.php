@@ -12,7 +12,6 @@ use App\Core\Router;
 use App\Core\Config;
 use App\Core\Database\ConnectionBuilder;
 use App\Core\Request;
-use App\Core\Contenedor;
 
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv->load();
@@ -28,32 +27,75 @@ $connectionBuilder = new ConnectionBuilder;
 $connectionBuilder->setLogger($log_app);
 $connection = $connectionBuilder->make($config);
 
-/* $contenedor = new Contenedor(); */
-/* $contenedor->set('conexion', $connection); */
-/* $contenedor->set('logger', $log_app); */
-
 $request = new Request;
 
 $router = new Router();
 $router->setLogger($log_app);
 
-$router->get('/', 'PageController@home');
-$router->get('/catalogo', 'LibroController@catalogo');
-$router->get('/eventos', 'PageController@eventos');
-$router->get('/nosotros', 'PageController@nosotros');
+$router->get('/', function() {
+    (new \App\Controllers\PageController())->home();
+});
+$router->get('/eventos', function() {
+    (new \App\Controllers\PageController())->eventos();
+});
+$router->get('/nosotros', function() {
+    (new \App\Controllers\PageController())->nosotros();
+});
+$router->get('/carrito', function() {
+    (new \App\Controllers\PageController())->carrito();
+});
+$router->get('/ajustes', function() {
+    (new \App\Controllers\PageController())->ajustes();
+});
+$router->get('/cerrarSesion', function() {
+    (new \App\Controllers\PageController())->cerrarSesion();
+});
+$router->get('/formularioCompra', function() {
+    (new \App\Controllers\PageController())->formularioCompra();
+});
+$router->get('/login', function() {
+    (new \App\Controllers\PageController())->login();
+});
+$router->get('/mi_cuenta', function() {
+    (new \App\Controllers\PageController())->mi_cuenta();
+});
+$router->get('/misreservas', function() {
+    (new \App\Controllers\PageController())->misreservas();
+});
+$router->get('/registrate', function() {
+    (new \App\Controllers\PageController())->registrate();
+});
 
-$router->get('/autores', 'AuthorsController@listAuthors');
-$router->get('/autor', 'AuthorController@getAuthor');
-$router->get('/autor/edit', 'AuthorController@getEdit');
-$router->post('/autor/edit', 'AuthorController@setAuthor');
+/* $router->get('/autores', function() { */
+/*     (new \App\Controllers\AuthorsController())->listAuthors(); */
+/* }); */
+/* $router->get('/autor', function() { */
+/*     (new \App\Controllers\AuthorController())->getAuthor(); */
+/* }); */
+/* $router->get('/autor/edit', function() { */
+/*     (new \App\Controllers\AuthorController())->getEdit(); */
+/* }); */
+/* $router->post('/autor/edit', function() { */
+/*     (new \App\Controllers\AuthorController())->setAuthor(); */
+/* }); */
 
-$router->get('/carrito', 'PageController@carrito');
-$router->get('/ajustes', 'PageController@ajustes');
-$router->get('/cerrarSesion', 'PageController@cerrarSesion');
-$router->get('/formularioCompra', 'PageController@formularioCompra');
-$router->get('/login', 'PageController@login');
-$router->get('/mi_cuenta', 'PageController@mi_cuenta');
-$router->get('/misreservas', 'PageController@misreservas');
-$router->get('/registrate', 'PageController@registrate');
-$router->get('/libro', 'LibroController@detalle');
-$router->get('/catalogo/exportar', 'LibroController@exportarCsv');
+$router->get('/catalogo', function() use ($connection) {
+    $repositorio = new \App\Repository\LibroRepository($connection);
+    $servicio    = new \App\Services\LibroService($repositorio);
+    $controller  = new \App\Controllers\LibroController($servicio);
+    $controller->catalogo();
+});
+
+$router->get('/libro', function() use ($connection) {
+    $repositorio = new \App\Repository\LibroRepository($connection);
+    $servicio    = new \App\Services\LibroService($repositorio);
+    $controller  = new \App\Controllers\LibroController($servicio);
+    $controller->detalle();
+});
+
+$router->get('/catalogo/exportar', function() use ($connection) {
+    $repositorio = new \App\Repository\LibroRepository($connection);
+    $servicio    = new \App\Services\LibroService($repositorio);
+    $controller  = new \App\Controllers\LibroController($servicio);
+    $controller->exportarCsv();
+});

@@ -25,81 +25,54 @@ class Router
 
     public function __construct()
     {
-        $this->get($this->notFound, 'ErrorController@notFound');
-        $this->get($this->internalError, 'ErrorController@internalError');
+        $this->get($this->notFound, function() {
+            (new \App\Controllers\ErrorController())->notFound();
+        });
+        $this->get($this->internalError, function() {
+            (new \App\Controllers\ErrorController())->internalError();
+        });
     }
 
-    public function dispatch(Request $request): void
-{
-    try {
-        list($path, $http_method) = $request->route();
-
-        list($controllerName, $method) = $this->getController($path, $http_method);
-
-        $this->logger->info(
-            'Status Code: 200 OK',
-            [
-                'Path' => $path,
-                'Method' => $http_method,
-            ]
-        );
-
-        $this->call($controllerName, $method);
-
-    } catch (RouteNotFoundException | PageNotFound $e) {
-
-        $this->logger->debug(
-            'Status Code: 404 - Page Not Found',
-            ['ERROR' => $e],
-        );
-
-        list($controllerName, $method) = $this->getController($this->notFound, 'GET');
-        $this->call($controllerName, $method);
-
-    } catch (Exception $e) {
-
-        $this->logger->debug(
-            'Status Code: 500 - Internal Server Error',
-            ['ERROR' => $e],
-        );
-
-        list($controllerName, $method) = $this->getController($this->internalError, 'GET');
-        $this->call($controllerName, $method);
-    }
-}
-
-    public function getController($path, $http_method)
-    {
-        if (!$this->routeExists($path, $http_method)) {
-            throw new RouteNotFoundException('No existe ruta para este Path');
-        }
-        return explode('@', $this->routes[$http_method][$path]);
-    }
-
-    public function call($controllerName, $method)
-    {
-        $clase = "App\\Controllers\\{$controllerName}";
-        $controller = new $clase();
-        $controller->$method();
-    }
-
-    public function loadRoutes($path, $action, $http_method = 'GET'): void
+    public function loadRoutes(string $path, callable $action, string $http_method = 'GET'): void
     {
         $this->routes[$http_method][$path] = $action;
     }
 
-    public function get($path, $action)
+    public function get(string $path, callable $action): void
     {
         $this->loadRoutes($path, $action, 'GET');
     }
 
-    public function post($path, $action)
+    public function post(string $path, callable $action): void
     {
         $this->loadRoutes($path, $action, 'POST');
     }
 
-    public function routeExists($path, $http_method): bool
+    public function dispatch(Request $request): void
     {
-        return (array_key_exists($path, $this->routes[$http_method]));
+        try {
+            [$path, $http_method] = $request->route();
+
+            if (!$this->routeExists($path, $http_method)) {
+                throw new RouteNotFoundException('No existe ruta para este Path');
+            }
+
+            $this->logger->info('Status Code: 200 OK', ['Path' => $path, 'Method' => $http_method]);
+
+            ($this->routes[$http_method][$path])();
+
+        } catch (RouteNotFoundException | PageNotFound $e) {
+            $this->logger->debug('Status Code: 404 - Page Not Found', ['ERROR' => $e]);
+            ($this->routes['GET'][$this->notFound])();
+
+        } catch (Exception $e) {
+            $this->logger->debug('Status Code: 500 - Internal Server Error', ['ERROR' => $e]);
+            ($this->routes['GET'][$this->internalError])();
+        }
+    }
+
+    public function routeExists(string $path, string $http_method): bool
+    {
+        return array_key_exists($path, $this->routes[$http_method]);
     }
 }

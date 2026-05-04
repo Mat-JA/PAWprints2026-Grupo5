@@ -2,55 +2,47 @@
 
 namespace App\Controllers;
 
-use App\Core\Contenedor;
-use App\Repository\LibroRepository;
+use App\Services\LibroService;
 use App\Core\Exceptions\PageNotFound;
 
 class LibroController
 {
+    private LibroService $libroService;
     public string $viewsDir;
-    private Contenedor $contenedor;
 
-    public function __construct(Contenedor $contenedor)
+    public function __construct(LibroService $libroService)
     {
-        $this->contenedor = $contenedor;
+        $this->libroService = $libroService;
         $this->viewsDir = __DIR__ . '/../../views/';
     }
 
     public function catalogo()
     {
-        $conexion = $this->contenedor->get('conexion');
-
         $pagina = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
         $limite = isset($_GET['limite']) ? (int) $_GET['limite'] : 4;
         $busqueda = $_GET['buscar'] ?? null;
 
-        $repositorio = new LibroRepository($conexion);
-
-        $totalLibros = $repositorio->contarLibros($busqueda);
-        $totalPaginas = ceil($totalLibros / $limite);
+        $resultado = $this->libroService->obtenerPaginado($pagina, $limite, $busqueda);
+        $libros = $resultado['libros'];
+        $totalPaginas = $resultado['totalPaginas'];
+        $totalLibros = $resultado['totalLibros'];
 
         if ($pagina < 1 || ($pagina > $totalPaginas && $totalLibros > 0)) {
             throw new PageNotFound('La página solicitada no existe');
         }
-
-        $libros = $repositorio->obtenerLibrosPaginados($pagina, $limite, $busqueda);
 
         require $this->viewsDir . 'pages/catalogo.php';
     }
 
     public function detalle()
     {
-        $conexion = $this->contenedor->get('conexion');
-        $repositorio = new LibroRepository($conexion);
-
         $id = $_GET['id'] ?? null;
 
         if (!$id) {
             throw new PageNotFound('Libro no encontrado');
         }
 
-        $libro = $repositorio->obtenerPorId((int)$id);
+        $libro = $this->libroService->obtenerPorId((int)$id);
 
         if (!$libro) {
             throw new PageNotFound('Libro no encontrado');
@@ -61,10 +53,7 @@ class LibroController
 
     public function exportarCsv()
     {
-        $conexion = $this->contenedor->get('conexion');
-
-        $repositorio = new LibroRepository($conexion);
-        $libros = $repositorio->obtenerLibrosPaginados(1, 1000, null);
+        $libros = $this->libroService->obtenerTodosParaCsv();
 
         while (ob_get_level()) {
             ob_end_clean();
@@ -79,14 +68,13 @@ class LibroController
 
         $output = fopen('php://output', 'w');
 
-        fputcsv($output, ['ID', 'ISBN', 'Descripcion corta', 'Precio', 'Stock'], ',', '"', '\\');
+        fputcsv($output, ['ID', 'ISBN', 'Descripcion corta', 'Stock'], ',', '"', '\\');
 
         foreach ($libros as $libro) {
             fputcsv($output, [
                 $libro->fields['id'],
                 $libro->fields['isbn'],
-                $libro->fields['descripcion_corta'],
-                $libro->fields['precio'],
+                $libro->fields['desc_corta'],
                 $libro->fields['stock']
             ], ',', '"', '\\');
         }
@@ -94,5 +82,4 @@ class LibroController
         fclose($output);
         exit;
     }
-    
 }

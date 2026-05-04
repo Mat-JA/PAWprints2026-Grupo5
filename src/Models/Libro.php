@@ -7,16 +7,17 @@ use App\Core\Exceptions\InvalidValueFormatException;
 
 class Libro extends AbstractModel
 {
-    public string $table = 'libro';
+    public string $table = 'libros';
 
     public array $fields = [
         'id' => null,
+        'titulo' => null,
         'isbn' => null,
-        'descripcion_corta' => null,
-        'descripcion_completa' => null,
-        'precio' => null,
+        'desc_corta' => null,
+        'descripcion' => null,
         'imagen_url' => null,
-        'fecha_publicacion' => null,
+        'fecha_pub' => null,
+        'precio' => null,
         'stock' => null,
         'created_at' => null,
     ];
@@ -30,6 +31,11 @@ class Libro extends AbstractModel
         $this->fields['id'] = $id;
     }
 
+    public function setTitulo(string $titulo)
+    {
+        $this->fields['titulo'] = $titulo;
+    }
+
     public function setIsbn(string $isbn)
     {
         if (strlen($isbn) > 20) {
@@ -39,27 +45,18 @@ class Libro extends AbstractModel
         $this->fields['isbn'] = $isbn;
     }
 
-    public function setDescripcion_corta(string $descripcion)
+    public function setDesc_corta(string $descripcion)
     {
         if (strlen($descripcion) > 255) {
             throw new InvalidValueFormatException('La descripción corta no debe superar 255 caracteres');
         }
 
-        $this->fields['descripcion_corta'] = $descripcion;
+        $this->fields['desc_corta'] = $descripcion;
     }
 
-    public function setDescripcion_completa(string $descripcion)
+    public function setDescripcion(string $descripcion)
     {
-        $this->fields['descripcion_completa'] = $descripcion;
-    }
-
-    public function setPrecio(float $precio)
-    {
-        if ($precio < 0) {
-            throw new InvalidValueFormatException('El precio no puede ser negativo');
-        }
-
-        $this->fields['precio'] = $precio;
+        $this->fields['descripcion'] = $descripcion;
     }
 
     public function setImagen_url(string $imagen)
@@ -67,9 +64,9 @@ class Libro extends AbstractModel
         $this->fields['imagen_url'] = $imagen;
     }
 
-    public function setFecha_publicacion(string $fecha)
+    public function setFecha_pub(string $fecha)
     {
-        $this->fields['fecha_publicacion'] = $fecha;
+        $this->fields['fecha_pub'] = $fecha;
     }
 
     public function setStock(int $stock)
@@ -79,6 +76,15 @@ class Libro extends AbstractModel
         }
 
         $this->fields['stock'] = $stock;
+    }
+
+    public function setPrecio(float $precio)
+    {
+        if ($precio < 0.0) {
+            throw new InvalidValueFormatException('El stock no puede ser negativo');
+        }
+
+        $this->fields['precio'] = $precio;
     }
 
     public function setCreated_at(string $createdAt)

@@ -7,6 +7,8 @@ use App\Models\Libro;
 
 class LibroRepository
 {
+    private const TABLE = 'libros';
+
     private PDO $conexion;
 
     public function __construct(PDO $conexion)
@@ -19,9 +21,9 @@ class LibroRepository
         $offset = ($pagina - 1) * $limite;
 
         if ($busqueda) {
-            $sql = "SELECT * FROM libros
-                    WHERE descripcion_corta ILIKE :busqueda
-                    OR descripcion_completa ILIKE :busqueda
+            $sql = "SELECT * FROM " . self::TABLE . "
+                    WHERE desc_corta ILIKE :busqueda
+                    OR descripcion ILIKE :busqueda
                     OR isbn ILIKE :busqueda
                     ORDER BY id
                     LIMIT :limite OFFSET :offset";
@@ -29,7 +31,7 @@ class LibroRepository
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':busqueda', '%' . $busqueda . '%');
         } else {
-            $sql = "SELECT * FROM libros
+            $sql = "SELECT * FROM " . self::TABLE . "
                     ORDER BY id
                     LIMIT :limite OFFSET :offset";
 
@@ -57,15 +59,15 @@ class LibroRepository
     public function contarLibros(?string $busqueda = null): int
     {
         if ($busqueda) {
-            $sql = "SELECT COUNT(*) FROM libros
-                    WHERE descripcion_corta ILIKE :busqueda
-                    OR descripcion_completa ILIKE :busqueda
+            $sql = "SELECT COUNT(*) FROM " . self::TABLE . "
+                    WHERE desc_corta ILIKE :busqueda
+                    OR descripcion ILIKE :busqueda
                     OR isbn ILIKE :busqueda";
 
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':busqueda', '%' . $busqueda . '%');
         } else {
-            $stmt = $this->conexion->prepare("SELECT COUNT(*) FROM libros");
+            $stmt = $this->conexion->prepare("SELECT COUNT(*) FROM " . self::TABLE);
         }
 
         $stmt->execute();
@@ -74,7 +76,7 @@ class LibroRepository
     }
 
     public function obtenerPorId(int $id): ?Libro{
-        $sql = "SELECT * FROM libros WHERE id = :id LIMIT 1";
+        $sql = "SELECT * FROM " . self::TABLE . " WHERE id = :id LIMIT 1";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();

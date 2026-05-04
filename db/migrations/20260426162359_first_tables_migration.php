@@ -31,6 +31,7 @@ final class FirstTablesMigration extends AbstractMigration
             ->addColumn('descripcion', 'string', ['limit' => 300])
             ->addColumn('imagen_url', 'string', ['limit' => 200])
             ->addColumn('fecha_pub', 'date')
+            ->addColumn('precio', 'float')
             ->addColumn('stock', 'integer')
             ->addColumn('created_at', 'timestamp')
             ->create();

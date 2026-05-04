@@ -28,11 +28,11 @@
 
             <?php foreach ($libros as $libro): ?>
                 <article>
-                    <h3><?= htmlspecialchars($libro->fields['descripcion_corta']) ?></h3>
+                    <h3><?= htmlspecialchars($libro->fields['titulo']) ?></h3>
 
                     <a href="/libro?id=<?= $libro->fields['id'] ?>">
                         <img src="<?= htmlspecialchars($libro->fields['imagen_url']) ?>" 
-                            alt="<?= htmlspecialchars($libro->fields['descripcion_corta']) ?>">
+                            alt="<?= htmlspecialchars($libro->fields['desc_corta']) ?>">
                     </a>
 
                     <p>ISBN: <?= htmlspecialchars($libro->fields['isbn']) ?></p>
