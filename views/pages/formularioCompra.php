@@ -15,18 +15,18 @@
 </head>
 
 <body>
-  
+
   <?php require __DIR__ . '/../partials/header.php'; ?>
 
   <main>
     <h1>Formulario de compra</h1>
 
     <?php if (isset($libro)): ?>
-    <div class="resumen-libro">
+      <div class="resumen-libro">
         <img src="<?= htmlspecialchars($libro->fields['imagen_url']) ?>" alt="<?= htmlspecialchars($libro->fields['desc_corta']) ?>" width="100">
         <h2><?= htmlspecialchars($libro->fields['titulo']) ?></h2>
         <p>Precio: $<?= number_format($libro->fields['precio'] ?? 0, 2, ',', '.') ?></p>
-    </div>
+      </div>
     <?php endif; ?>
 
     <form method="post" action="/procesarCompra" name="formularioCompra" class="formularioCompra">
@@ -143,7 +143,7 @@
       </label>
     </form>
   </main>
-  
+
   <?php require __DIR__ . '/../partials/footer.php'; ?>
 
 </body>

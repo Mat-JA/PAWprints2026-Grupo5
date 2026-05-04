@@ -32,40 +32,40 @@ $request = new Request;
 $router = new Router();
 $router->setLogger($log_app);
 
-$router->get('/', function() {
+$router->get('/', function () {
     (new \App\Controllers\PageController())->home();
 });
-$router->get('/eventos', function() {
+$router->get('/eventos', function () {
     (new \App\Controllers\PageController())->eventos();
 });
-$router->get('/nosotros', function() {
+$router->get('/nosotros', function () {
     (new \App\Controllers\PageController())->nosotros();
 });
-$router->get('/carrito', function() {
+$router->get('/carrito', function () {
     (new \App\Controllers\PageController())->carrito();
 });
-$router->get('/ajustes', function() {
+$router->get('/ajustes', function () {
     (new \App\Controllers\PageController())->ajustes();
 });
-$router->get('/cerrarSesion', function() {
+$router->get('/cerrarSesion', function () {
     (new \App\Controllers\PageController())->cerrarSesion();
 });
-$router->get('/formularioCompra', function() use ($connection) {
+$router->get('/formularioCompra', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $controller  = new \App\Controllers\LibroController($servicio);
     $controller->formularioCompra();
 });
-$router->get('/login', function() {
+$router->get('/login', function () {
     (new \App\Controllers\PageController())->login();
 });
-$router->get('/mi_cuenta', function() {
+$router->get('/mi_cuenta', function () {
     (new \App\Controllers\PageController())->mi_cuenta();
 });
-$router->get('/misreservas', function() {
+$router->get('/misreservas', function () {
     (new \App\Controllers\PageController())->misreservas();
 });
-$router->get('/registrate', function() {
+$router->get('/registrate', function () {
     (new \App\Controllers\PageController())->registrate();
 });
 
@@ -82,28 +82,28 @@ $router->get('/registrate', function() {
 /*     (new \App\Controllers\AuthorController())->setAuthor(); */
 /* }); */
 
-$router->get('/catalogo', function() use ($connection) {
+$router->get('/catalogo', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $controller  = new \App\Controllers\LibroController($servicio);
     $controller->catalogo();
 });
 
-$router->get('/libro', function() use ($connection) {
+$router->get('/libro', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $controller  = new \App\Controllers\LibroController($servicio);
     $controller->detalle();
 });
 
-$router->get('/catalogo/exportar', function() use ($connection) {
+$router->get('/catalogo/exportar', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $controller  = new \App\Controllers\LibroController($servicio);
     $controller->exportarCsv();
 });
 
-$router->post('/procesarCompra', function() use ($connection) {
+$router->post('/procesarCompra', function () use ($connection) {
     $repositorio = new \App\Repository\LibroRepository($connection);
     $servicio    = new \App\Services\LibroService($repositorio);
     $controller  = new \App\Controllers\LibroController($servicio);

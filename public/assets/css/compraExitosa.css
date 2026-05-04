@@ -1,0 +1,35 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.resumen-libro {
+    margin: 20px 0;
+}
+
+ul.datos-usuario {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+ul.datos-usuario li {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+ul.datos-usuario li strong {
+    font-weight: 600;
+}

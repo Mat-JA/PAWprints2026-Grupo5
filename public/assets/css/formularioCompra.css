@@ -1,7 +1,19 @@
 /*DEO GLORIA*/
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 20px;
 }
 
 h1 {
@@ -15,27 +27,32 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     gap: 15px;
     margin-bottom: 20px;
 }
 
 .leyenda {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 @media screen and (max-width: 500px) {
     .leyenda {
-        font-size: 24px;
+        font-size: 20px;
     }
 }
 
 fieldset {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    min-width: 400px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
     gap: 5px;
     padding-bottom: 10px;
     border-style: none;
@@ -44,42 +61,78 @@ fieldset {
 @media screen and (max-width: 500px) {
     fieldset {
         min-width: 300px;
+        max-width: 100%;
     }
 }
 
+label {
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    max-width: 600px;
+}
+
+@media screen and (min-width: 501px) {
+    label {
+        font-size: 16px;
+    }
+}
 
 label > * {
     display: block;
 }
 
-label {
-    text-align: start;
-    font-size: 20px;
-}
-
 input[type="text"],
 input[type="email"],
-input[type="month"] {
-    font-size: 20px;
-    padding: 4px;
+input[type="month"],
+input[type="number"],
+.bSelect {
+    width: 100%;
+    max-width: 600px;
+    font-size: 12px;
+    padding: 6px;
+    border-radius: var(--radio-medio);
+    border: 1px solid var(--color-border);
 }
 
-input[type="number"] {
-    font-size: 20px;
-    padding: 4px;
+@media screen and (max-width: 500px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="month"],
+    input[type="number"],
+    .bSelect {
+        max-width: 100%;
+    }
 }
 
 .bSelect {
-    font-size: 20px;
     background-color: var(--color-primario);
     color: var(--color-secundario);
     padding: 4px;
 }
 
-.bSubmit {
-    font-size: 28px;
-    background-color: var(--color-secundario);
-    color: var(--color-primario);
-    padding: 7px;
+label[for="inputSubmit"] {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: inherit;
 }
 
+.bSubmit {
+    display: block;
+    width: 100%;
+    padding: var(--espaciado-chico);
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    border: none;
+    border-radius: var(--radio-chico);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.bSubmit:hover {
+    background-color: var(--color-monocromatico);
+}
