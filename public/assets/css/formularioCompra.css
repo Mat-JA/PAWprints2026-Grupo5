@@ -1,134 +1,166 @@
-/*DEO GLORIA*/
-
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-main {
+.formulario-compra-main {
     display: flex;
     flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     text-align: center;
+
     padding: 20px;
 }
 
-h1 {
+.formulario-titulo {
     margin-top: 30px;
     margin-bottom: 30px;
+
     font-size: 40px;
     font-weight: bolder;
 }
 
-form {
+.resumen-libro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+
+.resumen-libro img {
+    border-radius: var(--radio-medio);
+}
+
+.formularioCompra {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     width: 100%;
     max-width: 600px;
+
     margin: 0 auto;
-    gap: 15px;
     margin-bottom: 20px;
+
+    gap: 15px;
 }
 
-.leyenda {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-@media screen and (max-width: 500px) {
-    .leyenda {
-        font-size: 20px;
-    }
-}
-
-fieldset {
+.formulario-fieldset {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     width: 100%;
     max-width: 600px;
+
     gap: 5px;
+
     padding-bottom: 10px;
+
     border-style: none;
 }
 
 @media screen and (max-width: 500px) {
-    fieldset {
+
+    .formulario-fieldset {
         min-width: 300px;
         max-width: 100%;
     }
 }
 
-label {
+
+.formulario-label {
     text-align: center;
+
     font-size: 14px;
+
     width: 100%;
     max-width: 600px;
 }
 
 @media screen and (min-width: 501px) {
-    label {
+
+    .formulario-label {
         font-size: 16px;
     }
 }
 
-label > * {
+.formulario-label > * {
     display: block;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="month"],
-input[type="number"],
-.bSelect {
+
+.formularioCompra input[type="text"],
+.formularioCompra input[type="email"],
+.formularioCompra input[type="month"],
+.formularioCompra input[type="number"],
+.formularioCompra .bSelect {
+
     width: 100%;
     max-width: 600px;
+
     font-size: 12px;
+
     padding: 6px;
+
     border-radius: var(--radio-medio);
     border: 1px solid var(--color-border);
 }
 
 @media screen and (max-width: 500px) {
-    input[type="text"],
-    input[type="email"],
-    input[type="month"],
-    input[type="number"],
-    .bSelect {
+
+    .formularioCompra input[type="text"],
+    .formularioCompra input[type="email"],
+    .formularioCompra input[type="month"],
+    .formularioCompra input[type="number"],
+    .formularioCompra .bSelect {
+
         max-width: 100%;
     }
 }
 
-.bSelect {
+.formularioCompra .bSelect {
     background-color: var(--color-primario);
     color: var(--color-secundario);
+
     padding: 4px;
 }
 
-label[for="inputSubmit"] {
+.formulario-submit-label {
     display: block;
+
     width: 100%;
     max-width: 600px;
+
     margin: 0 auto;
+
     text-align: center;
-    font-size: inherit;
 }
 
 .bSubmit {
     display: block;
+
     width: 100%;
+
     padding: var(--espaciado-chico);
+
     background-color: var(--color-secundario);
     color: var(--color-primario);
+
     border: none;
     border-radius: var(--radio-chico);
+
     cursor: pointer;
+
     font-weight: bold;
     font-size: 1rem;
 }

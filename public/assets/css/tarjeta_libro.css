@@ -37,19 +37,28 @@
     color: #555;
 }
 
-/* BOTON DE AGREGAR AL CARRRTO */
-.tarjeta-libro button {
-    margin-top: auto; /*empuja el botón hacia abajo, al final de la tarjeta, sin importar cuánto texto tenga cada libro arriba*/
-    width: 100%; /* el boton ocupa todo el ancho de la tarjeta */
+/* BOTON DE AGREGAR AL CARRITO */
+.tarjeta-libro .btn-comprar {
+    margin-top: auto;
+    width: 100%;
     padding: var(--espaciado-chico);
+
     background-color: var(--color-secundario);
     color: var(--color-primario);
-    border: none; /* elimina el borde por defecto */
+
+    border: none;
     border-radius: var(--radio-chico);
-    cursor: pointer; /* el cursor cambia a manito al pasar por encima */
-    font-weight: bold; /* rexto en negrita */
+
+    cursor: pointer;
+    font-weight: bold;
+
+    text-align: center;
+    text-decoration: none;
+
+    display: block;
+    box-sizing: border-box;
 }
 
-.tarjeta-libro button:hover {
+.tarjeta-libro .btn-comprar:hover {
     background-color: var(--color-monocromatico);
 }
