@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/carousel.css">
+    <link rel="stylesheet" href="/assets/css/carousel-eventos.css">
     <title>PawPrints</title>
 </head>
 
@@ -27,13 +29,14 @@
 
         <section class="eventos">
             <h2>Eventos</h2>
-            <a href="/eventos.html">
-                <img src="/assets/img/evento_portada_generica_index.svg" alt="Evento principal">
+            <div class="eventos-carousel">
+                <img src="/assets/img/evento_portada_generica_index.svg" alt="Evento principal 1">
                 <img src="/assets/img/evento_portada_generica_index.svg" alt="Evento principal 2">
-            </a>
+                <img src="/assets/img/evento_portada_generica_index.svg" alt="Evento principal 3">
+            </div>
         </section>
 
-        <section class="carrusel">
+        <section class="novedades">
             <h2>Novedades</h2>
             <div>
                 <article class="tarjeta-libro">
@@ -46,8 +49,7 @@
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
+                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
                     </div>
                 </article>
@@ -61,8 +63,7 @@
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
+                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
                     </div>
                 </article>
@@ -76,8 +77,7 @@
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
+                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
                     </div>
                 </article>
@@ -91,8 +91,7 @@
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
+                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
                     </div>
                 </article>
@@ -106,16 +105,15 @@
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
+                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
                     </div>
                 </article>
             </div>
         </section>
 
-        <section class="carrusel">
-            <h2>Destacado</h2>
+        <section class="destacados">
+            <h2>Destacados</h2>
             <div>
                 <article class="tarjeta-libro">
                     <a href="detalle_libro">
@@ -127,8 +125,7 @@
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
+                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
                     </div>
                 </article>
@@ -142,8 +139,7 @@
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
+                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
                     </div>
                 </article>
@@ -157,8 +153,7 @@
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar <título de libro> al carrito">Agregar al
-                                carrito</button>
+                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
                     </div>
                 </article>
@@ -167,6 +162,17 @@
     </main>
 
     <?php require __DIR__ . '/../partials/footer.php'; ?>
+
+    <script src="/assets/js/carousel.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            new Carousel(".eventos-carousel", {
+                autoplay: true,
+                delay: 3000,
+                transition: "zoom"
+            });
+        });
+    </script>
 </body>
 
 </html>

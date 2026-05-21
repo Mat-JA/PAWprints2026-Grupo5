@@ -28,6 +28,14 @@ class LibroController
         $this->reservasMail = $_ENV['RESERVAS_MAIL'];
     }
 
+    public function home()
+    {
+        $libros = $this->libroService->obtenerTodos();
+        $novedades = $libros;
+        $destacados = $libros;
+        require $this->viewsDir . 'pages/home.php';
+    }
+
     public function catalogo()
     {
         $pagina = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;

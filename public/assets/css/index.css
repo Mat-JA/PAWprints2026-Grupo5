@@ -2,7 +2,6 @@ body {
     text-align: center;
 }
 
-
 h1 {
     font-size: 4rem;
 }
@@ -26,46 +25,20 @@ section {
     padding: 0 var(--espaciado-largo);
 }
 
-
-.carrusel h2,
+.novedades h2,
+.destacados h2,
 .eventos h2 {
     font-size: 2rem;
     border-bottom: 1px solid var(--color-secundario);
 }
 
-.eventos {
-    display: flex;
-    justify-content: center;
-}
-
-.eventos a {
-    text-decoration: none;
-}
-
-.eventos img{
-    margin-top: var(--espaciado-largo);
-    padding: var(--espaciado-medio);
-    border-radius: 30px;
-    width: 100%;
-    max-width: 45%;
-    transition: all 0.2s ease;
-}
-.eventos img:hover {
-    transform: scale(1.025);
-}
-
-.carrusel {
-    display: flex;
-    padding: var(--espaciado-largo) var(--espaciado-chico);
-}
-
-.carrusel>div {
+.novedades > div,
+.destacados > div {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow: hidden;
     justify-content: space-around;
-
     padding: var(--espaciado-largo) var(--espaciado-chico);
 }
 
@@ -90,47 +63,28 @@ section {
     gap: var(--espaciado-medio);
 }
 
-section>div {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--espaciado-largo)
-}
-
 .tarjeta-libro {
     display: flex;
     flex-direction: column;
-    /*apila elementos verticalmente en cada tarjeta*/
     align-items: center;
-    /*centra todo el contenido de la tarjeta horizontalmente*/
     background-color: var(--color-primario);
-    /* fondo blanco para cada tarjeta */
     border-radius: var(--radio-chico);
-    /*eEsquinas redondeadas */
     padding: var(--espaciado-medio);
-    /* espacio interno entre el borde y el contenido */
     box-shadow: 0 2px 8px var(--color-border);
-    /* sombra sutil debajo de la tarjeta */
     transition: transform 0.2s, box-shadow 0.2s;
-    /* anima los cambios de transform y sombra en 0.2 segundos */
-
     flex-shrink: 0;
     width: min(350px, 40%);
-
 }
 
 .tarjeta-libro:hover {
     transform: translateY(-5px);
-    /* mueve la tarjeta 5px hacia arriba al pasar el mouse */
     box-shadow: 0 6px 16px var(--color-border);
-    /* sombra mas grande e intensa al hacer hover */
 }
 
 .tarjeta-libro h3 {
     color: var(--color-secundario);
-    /* color violeta */
     margin: 0;
     margin-bottom: var(--espaciado-medio);
-    /* elimina margen por defecto, deja 8px abajo */
     font-weight: 600;
 }
 
@@ -138,12 +92,9 @@ section>div {
     font-size: 1rem;
     color: var(--color-monocromatico);
     margin: var(--espaciado-chico) 0;
-    /* poco espacio arriba y abajo de cada parrafo */
-
     font-weight: 400;
 }
 
-/* La imagen ocupa todo el ancho de la tarjeta */
 .tarjeta-libro img {
     width: 100%;
 }
@@ -151,23 +102,14 @@ section>div {
 .tarjeta-libro button {
     margin: 0;
     margin-top: auto;
-    /*empuja el botón hacia abajo, al final de la tarjeta, sin importar cuánto texto tenga cada libro arriba*/
     width: 100%;
-    /* el boton ocupa todo el ancho de la tarjeta */
     padding: var(--espaciado-chico);
-    /* espacio interno */
     background-color: var(--color-secundario);
-    /* fondo violeta */
     color: var(--color-primario);
-    /* texto blanco */
     border: none;
-    /* elimina el borde por defecto */
     border-radius: var(--radio-chico);
-    /* esquinas levemente redondeadas */
     cursor: pointer;
-    /* el cursor cambia a manito al pasar por encima */
     font-weight: bold;
-    /* rexto en negrita */
     height: 60px;
 }
 
@@ -183,13 +125,4 @@ article button:hover {
     section {
         padding: 0;
     }
-
-}
-
-@media (max-width: 1100px) {
-
-    .eventos img {
-        max-width: 90%
-    }
-
 }

@@ -70,4 +70,11 @@ class PageController
     {
         require $this->viewsDir . 'pages/registrate.php';
     }
+
+    /* Sacar el comentario si quieren probar carrusel generico
+    public function carousel()
+    {
+        require $this->viewsDir . 'pages/carousel.php';
+    }
+    */
 }

@@ -1,0 +1,37 @@
+/* CSS ADICIONAL PARA EL CARROUSEL DE EVENTOS */
+.eventos-carousel {
+    height: 70vh;
+    border-radius: 12px;
+    background-color: transparent;
+}
+
+.eventos-carousel .carousel-slide {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.eventos-carousel .carousel-prev,
+.eventos-carousel .carousel-next {
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+}
+
+.eventos-carousel .carousel-dots {
+    bottom: 62px;
+}
+
+.eventos-carousel .carousel-thumbs {
+    bottom: 10px;
+}
+
+.eventos-carousel .carousel-thumb {
+    width: 60px;
+    height: 38px;
+}
+
+@media (max-width: 768px) {
+    .eventos-carousel {
+        height: 40vh;
+    }
+}

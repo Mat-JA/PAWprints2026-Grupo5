@@ -101,4 +101,22 @@ class LibroRepository
         $stmt->execute();
         return $stmt->rowCount() > 0;
     }
+
+    public function obtenerTodos(): array
+    {
+        $sql = "SELECT * FROM " . self::TABLE . " ORDER BY id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $libros = [];
+        foreach ($filas as $fila) {
+            $libro = new Libro();
+            $libro->set($fila);
+            $libros[] = $libro;
+        }
+
+        return $libros;
+    }
 }

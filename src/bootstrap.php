@@ -35,8 +35,13 @@ $request = new Request;
 $router = new Router();
 $router->setLogger($log_app);
 
-$router->get('/', function () {
-    (new \App\Controllers\PageController())->home();
+$router->get('/', function () use ($connection, $mailService) {
+    $repositorio   = new \App\Repository\LibroRepository($connection);
+    $servicio      = new \App\Services\LibroService($repositorio);
+    $compraRepo    = new \App\Repository\CompraRepository($connection);
+    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
+    $controller    = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
+    $controller->home();
 });
 $router->get('/eventos', function () {
     (new \App\Controllers\PageController())->eventos();
@@ -122,3 +127,9 @@ $router->post('/procesarCompra', function () use ($connection, $mailService) {
     $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
     $controller->procesarCompra();
 });
+
+/* Sacar el comentario si quieren probar carrusel generico
+$router->get('/carousel', function () {
+    (new \App\Controllers\PageController())->carousel();
+});
+*/

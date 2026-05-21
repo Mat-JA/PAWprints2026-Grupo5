@@ -35,4 +35,9 @@ class LibroService
     {
         return $this->libroRepository->obtenerLibrosPaginados(1, 1000, null);
     }
+
+    public function obtenerTodos(): array
+    {
+        return $this->libroRepository->obtenerTodos();
+    }
 }

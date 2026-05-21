@@ -1,0 +1,207 @@
+
+/* CSS BASE PARA EL CARROUSEL "GENERICO" */
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+    visibility: hidden;
+}
+
+.carousel:not(.eventos-carousel) {
+    height: 100vh;
+}
+
+.carousel-track {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.transition-fade .carousel-slide {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.transition-fade .carousel-slide.active {
+    opacity: 1;
+}
+
+.transition-zoom .carousel-slide {
+    opacity: 0;
+    transform: scale(1.2);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.transition-zoom .carousel-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.transition-slide .carousel-slide {
+    opacity: 1;
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+}
+
+.transition-slide .carousel-slide.active {
+    transform: translateX(0);
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-prev { left: 20px; }
+.carousel-next { right: 20px; }
+
+.carousel-loader {
+    position: absolute;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.carousel-loader-content {
+    width: 300px;
+    text-align: center;
+    color: white;
+}
+
+.carousel-progress {
+    width: 100%;
+    height: 20px;
+    border-radius: 999px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+}
+
+.carousel-progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+}
+
+.carousel-dot {
+    all: unset;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.carousel-dot.active {
+    background: white;
+    transform: scale(1.35);
+}
+
+.carousel-thumbs {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+    max-width: 90%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 4px;
+}
+
+.carousel-thumbs::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-thumb {
+    flex-shrink: 0;
+    width: 80px;
+    height: 50px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.5;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.carousel-thumb.active {
+    opacity: 1;
+    border-color: white;
+}
+
+.carousel-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    z-index: 9000;
+}
+
+@media (max-width: 768px) {
+
+    .carousel-thumb {
+        width: 50px;
+        height: 35px;
+    }
+
+    .carousel-dots {
+        bottom: 62px;
+    }
+}
