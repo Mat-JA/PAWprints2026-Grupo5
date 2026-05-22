@@ -168,4 +168,14 @@ class LibroController
             <p><em>Reserva creada el {$fecha}</em></p>
         ";
     }
+
+    public function apiGetLibros(): void
+    {
+        $libros = $this->libroService->obtenerTodos();
+
+        header('Content-Type: application/json');
+        echo json_encode($libros);
+        exit;
+    }
+
 }

@@ -5,6 +5,7 @@
         </a>
 
         <form role="search" method="GET" action="/catalogo">
+            <label for="busqueda" class="sr-only">Buscar libros</label>
             <input 
                 id="busqueda"
                 type="search"

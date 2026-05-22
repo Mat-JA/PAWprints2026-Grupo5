@@ -1,13 +1,42 @@
+/* Scope: .nosotros-main */
 
-/* MAIN */
-main {
-    padding: 60px;
-    text-align: center;
+.nosotros-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: var(--espaciado-largo) var(--espaciado-medio);
+    background-color: var(--color-primario);
+    gap: var(--espaciado-largo);
 }
 
-/* TEXTO */
-main p {
-    max-width: 600px;
-    padding-top: 20px ;
-    margin: 30px auto;
+.nosotros-titulo {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+    text-align: center;
+    margin: 0;
+}
+
+.nosotros-texto {
+    font-size: var(--fuente-tamano-md);
+    color: var(--color-texto-suave);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Add a beautiful decorative element or style standard spacing */
+.nosotros-texto + .nosotros-texto {
+    margin-top: var(--espaciado-medio);
+}
+
+/* Tablet/Desktop Overrides */
+@media screen and (min-width: 750px) {
+    .nosotros-main {
+        padding: 60px var(--espaciado-medio);
+    }
 }

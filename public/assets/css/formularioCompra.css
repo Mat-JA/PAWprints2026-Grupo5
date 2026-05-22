@@ -1,170 +1,170 @@
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+/* Scope: .formulario-compra-main */
 
 .formulario-compra-main {
-    display: flex;
     flex: 1;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 20px;
+    justify-content: flex-start;
+    padding: var(--espaciado-largo) var(--espaciado-medio);
+    background-color: var(--color-primario);
 }
 
 .formulario-titulo {
-    margin-top: 30px;
-    margin-bottom: 30px;
-
-    font-size: 40px;
-    font-weight: bolder;
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+    margin-bottom: var(--espaciado-largo);
+    text-align: center;
 }
 
+/* Resumen del Libro */
 .resumen-libro {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    gap: 10px;
-
-    margin-bottom: 30px;
+    gap: var(--espaciado-chico);
+    padding: var(--espaciado-medio);
+    background-color: var(--color-fondo-suave);
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-chica);
+    margin-bottom: var(--espaciado-largo);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
 }
 
 .resumen-libro img {
-    border-radius: var(--radio-medio);
+    border-radius: var(--radio-chico);
+    object-fit: cover;
+    box-shadow: var(--sombra-chica);
 }
 
+.resumen-libro h2 {
+    font-size: var(--fuente-tamano-lg);
+    color: var(--color-secundario);
+    font-weight: 600;
+}
+
+.resumen-libro p {
+    font-size: var(--fuente-tamano-md);
+    color: var(--color-texto-suave);
+    font-weight: 500;
+}
+
+/* Formulario */
 .formularioCompra {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
     width: 100%;
     max-width: 600px;
-
-    margin: 0 auto;
-    margin-bottom: 20px;
-
-    gap: 15px;
+    padding: var(--espaciado-medio);
+    background-color: var(--color-fondo-suave);
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-media);
+    gap: var(--espaciado-medio);
 }
 
 .formulario-fieldset {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+    gap: var(--espaciado-medio);
+    border: none;
+    padding: 0;
+    margin: 0;
     width: 100%;
-    max-width: 600px;
-
-    gap: 5px;
-
-    padding-bottom: 10px;
-
-    border-style: none;
 }
-
-@media screen and (max-width: 500px) {
-
-    .formulario-fieldset {
-        min-width: 300px;
-        max-width: 100%;
-    }
-}
-
 
 .formulario-label {
-    text-align: center;
-
-    font-size: 14px;
-
-    width: 100%;
-    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-chico);
+    font-size: var(--fuente-tamano-sm);
+    color: var(--color-texto-suave);
+    text-align: left;
+    font-weight: 500;
 }
-
-@media screen and (min-width: 501px) {
-
-    .formulario-label {
-        font-size: 16px;
-    }
-}
-
-.formulario-label > * {
-    display: block;
-}
-
 
 .formularioCompra input[type="text"],
 .formularioCompra input[type="email"],
-.formularioCompra input[type="month"],
 .formularioCompra input[type="number"],
 .formularioCompra .bSelect {
-
     width: 100%;
-    max-width: 600px;
-
-    font-size: 12px;
-
-    padding: 6px;
-
-    border-radius: var(--radio-medio);
-    border: 1px solid var(--color-border);
+    font-family: var(--fuente-primaria);
+    font-size: var(--fuente-tamano-md);
+    padding: var(--espaciado-chico) var(--espaciado-medio);
+    border-radius: var(--radio-chico);
+    border: 1px solid var(--color-sombreado-primario);
+    background-color: var(--color-primario);
+    color: var(--color-texto-suave);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-@media screen and (max-width: 500px) {
-
-    .formularioCompra input[type="text"],
-    .formularioCompra input[type="email"],
-    .formularioCompra input[type="month"],
-    .formularioCompra input[type="number"],
-    .formularioCompra .bSelect {
-
-        max-width: 100%;
-    }
+.formularioCompra input[type="text"]:focus,
+.formularioCompra input[type="email"]:focus,
+.formularioCompra input[type="number"]:focus,
+.formularioCompra .bSelect:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(92, 6, 140, 0.15);
+    outline: none;
 }
 
 .formularioCompra .bSelect {
-    background-color: var(--color-primario);
-    color: var(--color-secundario);
-
-    padding: 4px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235c068c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--espaciado-medio) center;
+    background-size: 16px;
+    padding-right: var(--espaciado-largo);
+    cursor: pointer;
 }
 
-.formulario-submit-label {
-    display: block;
-
+.formulario-submit-container {
     width: 100%;
-    max-width: 600px;
-
-    margin: 0 auto;
-
-    text-align: center;
+    margin-top: var(--espaciado-chico);
 }
 
 .bSubmit {
     display: block;
-
     width: 100%;
-
-    padding: var(--espaciado-chico);
-
+    padding: var(--espaciado-medio);
     background-color: var(--color-secundario);
     color: var(--color-primario);
-
     border: none;
     border-radius: var(--radio-chico);
-
+    font-size: var(--fuente-tamano-md);
+    font-weight: 600;
     cursor: pointer;
-
-    font-weight: bold;
-    font-size: 1rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: center;
 }
 
 .bSubmit:hover {
     background-color: var(--color-monocromatico);
+}
+
+.bSubmit:active {
+    transform: scale(0.98);
+}
+
+/* Tablet/Desktop overrides */
+@media screen and (min-width: 750px) {
+    .formulario-compra-main {
+        padding: var(--espaciado-largo);
+    }
+    
+    .formularioCompra {
+        padding: var(--espaciado-largo);
+    }
+    
+    .formulario-fieldset {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--espaciado-medio);
+    }
+    
+    /* Let email take full width on grid */
+    .formulario-label[for="email"] {
+        grid-column: span 2;
+    }
 }

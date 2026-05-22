@@ -1,38 +1,33 @@
+/* Header - Mobile First Layout */
+
 .header-top {
+    position: relative;
     background-color: var(--color-secundario);
     color: var(--color-primario);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: var(--espaciado-medio);
-    padding: var(--espaciado-medio) var(--espaciado-largo);
-}
-
-@media (min-width: 750px) {
-    .header-top {
-        background-color: var(--color-secundario);
-        color: var(--color-primario);
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--espaciado-medio);
-        padding: var(--espaciado-medio) var(--espaciado-largo);
-    }
+    padding: var(--espaciado-medio);
 }
 
 header a {
     color: var(--color-primario);
+    display: inline-block;
+    transition: color 0.2s ease;
 }
 
 header button {
     background-color: var(--color-primario);
     color: var(--color-secundario);
     border: none;
-    padding: var(--espaciado-medio) var(--espaciado-medio);
+    padding: var(--espaciado-chico) var(--espaciado-medio);
     border-radius: var(--radio-grande);
     cursor: pointer;
+    font-family: var(--fuente-primaria);
+    font-weight: 600;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 header button:hover {
@@ -44,25 +39,20 @@ header img {
     min-height: 21px;
     height: 50px;
     flex: 0;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 header img:hover {
-    background-color: #5c068c20;
-    transform: scale(1.125);
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.08);
 }
 
 .links-header {
     display: flex;
-    flex: 0.2;
     justify-content: space-evenly;
-}
-
-header nav ul {
-    display: flex;
-    gap: var(--espaciado-medio);
-    list-style: none;
-    font-weight: 600;
+    align-items: center;
+    width: 100%;
+    max-width: 250px;
 }
 
 header nav {
@@ -70,40 +60,81 @@ header nav {
     display: flex;
     width: 100%;
     align-items: center;
-    padding: 0 var(--espaciado-largo);
+    justify-content: center;
+    padding: var(--espaciado-chico) var(--espaciado-medio);
 }
 
-@media (max-width: 750px) {
-    header nav {
-        justify-content: center;
-    }
+header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espaciado-medio);
+    list-style: none;
+    font-weight: 600;
+}
 
-    .links-header {
-        width: 75%;
-        justify-content: space-evenly;
-    }
+header nav a {
+    font-size: var(--fuente-tamano-sm);
+    padding: 4px 8px;
+    border-radius: var(--radio-chico);
+}
 
+header nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
 }
 
 form[role="search"] {
-    flex: 0.5;
+    width: 100%;
+    max-width: 500px;
     display: flex;
     gap: var(--espaciado-medio);
 }
 
 input[type="search"],
 input[type="number"] {
-    padding: var(--espaciado-medio);
+    padding: var(--espaciado-chico) var(--espaciado-medio);
     border: 1px solid var(--color-border);
     color: var(--color-texto);
-    /* para que el texto que escriba el usuario sea violeta */
+    background-color: var(--color-primario);
+    border-radius: var(--radio-grande);
+    font-family: var(--fuente-primaria);
 }
 
 input[type="search"] {
     flex: 1;
-    border-radius: var(--radio-grande);
 }
 
 input[type="search"]::placeholder {
-    color: #5c068c;
+    color: var(--color-texto);
+    opacity: 0.6;
+}
+
+/* Tablet & Desktop Overrides */
+@media (min-width: 750px) {
+    .header-top {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: var(--espaciado-medio) var(--espaciado-largo);
+    }
+
+    header nav {
+        justify-content: flex-start;
+        padding: 0 var(--espaciado-largo);
+    }
+
+    header nav ul {
+        justify-content: flex-start;
+        gap: var(--espaciado-largo);
+    }
+
+    header nav a {
+        font-size: var(--fuente-tamano-md);
+        padding: var(--espaciado-medio) 0;
+    }
+
+    .links-header {
+        width: auto;
+        gap: var(--espaciado-largo);
+    }
 }

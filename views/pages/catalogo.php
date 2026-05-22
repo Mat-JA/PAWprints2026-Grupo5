@@ -25,13 +25,15 @@
             </a>
         </div>
         <div class="contenido">
-            <section class="grilla-libros">
+            <ul class="grilla-libros">
 
             <?php foreach ($libros as $libro): ?>
-                <?php require __DIR__ . '/../partials/tarjeta_libro.php'; ?>
+                <li>
+                    <?php require __DIR__ . '/../partials/tarjeta_libro.php'; ?>
+                </li>
             <?php endforeach; ?>
 
-            </section>
+            </ul>
 
             <aside>
                 <details>

@@ -14,10 +14,10 @@
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main>
+    <main class="logout-main">
         <section class="logout">
-            <h1>Cerrar sesion</h1>
-            <p>Has cerrado sesion con exito!</p>
+            <h1>Cerrar sesión</h1>
+            <p>¡Has cerrado sesión con éxito!</p>
             <a href="/index">Inicio</a>
         </section>
     </main>

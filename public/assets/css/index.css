@@ -1,55 +1,4 @@
-body {
-    text-align: center;
-}
-
-h1 {
-    font-size: 4rem;
-}
-
-.principal {
-    padding: 0;
-}
-
-.principal p {
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.principal img {
-    width: 100%;
-}
-
-section {
-    margin: 0;
-    margin-bottom: var(--espaciado-largo);
-    padding: 0 var(--espaciado-largo);
-}
-
-.novedades h2,
-.destacados h2,
-.eventos h2 {
-    font-size: 2rem;
-    border-bottom: 1px solid var(--color-secundario);
-}
-
-.novedades > div,
-.destacados > div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    justify-content: space-around;
-    padding: var(--espaciado-largo) var(--espaciado-chico);
-}
-
-button:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-}
-
-header {
-    border-bottom: solid 2px var(--color-secundario);
-}
+/* index.css - Mobile First */
 
 main {
     display: flex;
@@ -61,68 +10,101 @@ section {
     display: flex;
     flex-direction: column;
     gap: var(--espaciado-medio);
+    margin-bottom: var(--espaciado-largo);
+    padding: 0 var(--espaciado-medio);
 }
 
-.tarjeta-libro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--color-primario);
-    border-radius: var(--radio-chico);
-    padding: var(--espaciado-medio);
-    box-shadow: 0 2px 8px var(--color-border);
-    transition: transform 0.2s, box-shadow 0.2s;
-    flex-shrink: 0;
-    width: min(350px, 40%);
+.principal {
+    text-align: center;
+    padding: 0;
 }
 
-.tarjeta-libro:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px var(--color-border);
-}
-
-.tarjeta-libro h3 {
+.principal h1 {
+    font-size: 2.2rem;
     color: var(--color-secundario);
-    margin: 0;
-    margin-bottom: var(--espaciado-medio);
-    font-weight: 600;
+    margin: var(--espaciado-medio) 0 var(--espaciado-chico) 0;
 }
 
-.tarjeta-libro p {
+.principal p {
     font-size: 1rem;
-    color: var(--color-monocromatico);
-    margin: var(--espaciado-chico) 0;
     font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 var(--espaciado-medio);
+    color: var(--color-texto-suave);
 }
 
-.tarjeta-libro img {
+.principal img {
     width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
-.tarjeta-libro button {
-    margin: 0;
-    margin-top: auto;
-    width: 100%;
-    padding: var(--espaciado-chico);
-    background-color: var(--color-secundario);
-    color: var(--color-primario);
-    border: none;
-    border-radius: var(--radio-chico);
-    cursor: pointer;
-    font-weight: bold;
-    height: 60px;
+.novedades h2,
+.destacados h2,
+.eventos h2 {
+    font-size: var(--fuente-tamano-lg);
+    border-bottom: 2px solid var(--color-secundario);
+    padding-bottom: var(--espaciado-chico);
+    text-align: left;
 }
 
-article button:hover {
-    background-color: var(--color-secundario);
+/* Grilla de libros: horizontal swipe on mobile, grid on desktop */
+.grilla-libros {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: var(--espaciado-medio);
+    overflow-x: auto;
+    padding: var(--espaciado-chico) 4px var(--espaciado-medio) 4px;
+    scrollbar-width: none; /* Firefox */
+    -webkit-overflow-scrolling: touch;
 }
 
-@media (max-width: 750px) {
-    p {
-        font-size: 0.8rem;
+.grilla-libros::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.grilla-libros > li {
+    flex-shrink: 0;
+    width: 260px;
+}
+
+/* Eventos container */
+.eventos-carousel {
+    margin-top: var(--espaciado-chico);
+}
+
+/* Tablet & Desktop Overrides */
+@media (min-width: 750px) {
+    section {
+        padding: 0 var(--espaciado-largo);
     }
 
-    section {
-        padding: 0;
+    .principal h1 {
+        font-size: 3.5rem;
+    }
+
+    .principal p {
+        font-size: 1.2rem;
+    }
+
+    .novedades h2,
+    .destacados h2,
+    .eventos h2 {
+        font-size: 2rem;
+    }
+
+    .grilla-libros {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--espaciado-largo);
+        overflow-x: visible;
+        padding: var(--espaciado-medio) 0;
+    }
+
+    .grilla-libros > li {
+        width: auto;
     }
 }

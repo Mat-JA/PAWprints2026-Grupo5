@@ -1,168 +1,166 @@
-/* MAIN */
-main {
-    flex: 1; /* hace que el main ocupe todo el espacio disponible entre header y footer */
-    padding: var(--espaciado-medio); /* espacio interno alrededor del contenido */
-    display: flex; /* usa flexbox para organizar el contenido */
-    flex-direction: column; /* apila los elementos (h1 y lista) en columna */
-    align-items: center; /* centra horizontalmente todo lo que está dentro */
-    gap: var(--espaciado-medio); /* espacio entre los elementos hijos (h1 y ul) */
+/* Scope: .reservas-main */
+
+.reservas-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--espaciado-largo) var(--espaciado-medio);
+    background-color: var(--color-primario);
+    gap: var(--espaciado-largo);
 }
 
-/* TÍTULO */
-main h1 {
-    text-align: center; /* centra el texto del título */
+.reservas-titulo {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+    text-align: center;
 }
 
-/* LISTA */
-main ul {
-    list-style: none; /* elimina los puntitos de la lista */
-    width: 100%; /* ocupa todo el ancho disponible */
-    max-width: 900px; /* limita el ancho máximo para que no se estire demasiado */
-    display: flex; /* usa flexbox */
-    flex-direction: column; /* los items (li) se apilan verticalmente */
-    gap: var(--espaciado-medio); /* espacio entre cada card */
+.reservas-lista {
+    list-style: none;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
 }
 
-/* CARD */
-main li {
-    display: grid; /* usa grid para organizar el contenido interno */
-    grid-template-columns: 120px 1fr 120px; 
-    /* 3 columnas: imagen (120px), info (flexible), precio/botón (120px) */
-
-    grid-template-rows: auto auto auto auto auto; 
-    /* define 5 filas (una por cada bloque de contenido) */
-
-    gap: 6px var(--espaciado-medio); 
-    /* espacio entre filas (6px) y columnas (espaciado medio) */
-
-    align-items: start; /* alinea los elementos arriba dentro de cada celda */
-
-    border: 1px solid var(--color-border); /* borde de la card */
-    border-radius: var(--radio-medio); /* esquinas redondeadas */
-    overflow: hidden; /* oculta contenido que se salga del borde */
-    padding: var(--espaciado-medio); /* espacio interno */
+/* Card */
+.reserva-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-medio);
+    background-color: var(--color-fondo-suave);
+    border: 1px solid var(--color-sombreado-primario);
+    border-radius: var(--radio-medio);
+    padding: var(--espaciado-medio);
+    box-shadow: var(--sombra-chica);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    text-align: center;
 }
 
-/* IMAGEN */
-main li img {
-    grid-row: 1 / -1; /* la imagen ocupa desde la primera hasta la última fila (todo el alto) */
-    width: 100%; /* ocupa todo el ancho de su columna */
-    height: 100%; /* ocupa todo el alto disponible */
-    object-fit: cover; /* recorta la imagen para llenar el espacio sin deformarse */
+.reserva-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-media);
+    border-color: var(--color-secundario);
 }
 
-/* RESET MÁRGENES */
-main li h2,
-main li p {
-    margin: 0; /* elimina márgenes por defecto de títulos y párrafos */
+.reserva-imagen {
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radio-chico);
+    box-shadow: var(--sombra-chica);
 }
 
-/* TÍTULO */
-main li h2 {
-    grid-column: 2; /* se ubica en la columna del medio */
-    grid-row: 1; /* primera fila */
-    font-size: 1.1rem; /* tamaño de fuente */
+.reserva-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
 }
 
-/* AUTOR */
-main li p:nth-of-type(1) {
-    grid-column: 2; /* columna del medio */
-    grid-row: 2; /* segunda fila */
+.reserva-titulo-libro {
+    font-size: var(--fuente-tamano-lg);
+    font-weight: 600;
+    margin: 0 0 4px 0;
 }
 
-/* ISBN */
-main li p:nth-of-type(2) {
-    grid-column: 2; /* columna del medio */
-    grid-row: 3; /* tercera fila */
+.reserva-titulo-libro a {
+    color: var(--color-secundario);
 }
 
-/* DESCRIPCIÓN */
-main li p:nth-of-type(3) {
-    grid-column: 2; /* columna del medio */
-    grid-row: 4; /* cuarta fila */
+.reserva-titulo-libro a:hover {
+    text-decoration: underline;
 }
 
-/* PRECIO (alineado con autor) */
-main li p:nth-of-type(4) {
-    grid-column: 3; /* columna derecha */
-    grid-row: 2; /* misma fila que el autor */
-    text-align: right; /* alinea el texto a la derecha */
-    font-weight: 600; /* lo hace más grueso (destacado) */
+.reserva-autor {
+    font-size: var(--fuente-tamano-md);
+    color: var(--color-texto);
+    font-weight: 500;
 }
 
-/* ESTADO (alineado con ISBN) */
-main li p:nth-of-type(5) {
-    grid-column: 3; /* columna derecha */
-    grid-row: 3; /* misma fila que el ISBN */
-    text-align: right; /* alineado a la derecha */
+.reserva-isbn {
+    font-size: var(--fuente-tamano-sm);
+    color: var(--color-texto-suave);
 }
 
-/* BOTÓN ELIMINAR */
-main li button {
-    grid-column: 3; /* columna derecha */
-    grid-row: 5; /* última fila */
-    justify-self: end; /* lo pega a la derecha dentro de la celda */
-    align-self: end; /* lo baja al fondo de la celda */
-
-    background: none; /* sin fondo */
-    border: none; /* sin borde */
-    cursor: pointer; /* cursor tipo mano */
-    font-size: 1.2rem; /* tamaño del ícono/texto */
+.reserva-descripcion {
+    font-size: var(--fuente-tamano-sm);
+    color: var(--color-texto-suave);
+    line-height: 1.4;
+    margin-top: var(--espaciado-chico);
 }
 
-/* HOVER BOTÓN */
-main li button:hover {
-    transform: scale(1.2); /* agranda el botón al pasar el mouse */
+.reserva-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-chico);
+    min-width: 140px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 600px) {
+.reserva-precio {
+    font-size: var(--fuente-tamano-lg);
+    font-weight: 600;
+    color: var(--color-secundario);
+}
 
-    main li {
-        display: flex;
-        flex-direction: column;
-        align-items: center; 
-        /* centra TODOS los elementos horizontalmente */
+.reserva-estado {
+    font-size: var(--fuente-tamano-sm);
+    font-weight: 500;
+    color: var(--color-primario);
+    background-color: var(--color-monocromatico);
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
 
-        text-align: center;
-        gap: var(--espaciado-chico);
+.btn-eliminar-reserva {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-eliminar-reserva img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-eliminar-reserva:hover {
+    transform: scale(1.1);
+    background-color: rgba(92, 6, 140, 0.1);
+}
+
+/* Tablet/Desktop Overrides */
+@media screen and (min-width: 750px) {
+    .reserva-item {
+        flex-direction: row;
+        text-align: left;
+        padding: var(--espaciado-largo);
+        gap: var(--espaciado-largo);
+        align-items: flex-start;
     }
-
-    main li img {
-        width: 100%;
-        max-width: 150px;
-        height: auto;
-        margin: 0 auto;
-        /* imagen centrada y más chica */
+    
+    .reserva-imagen {
+        width: 140px;
     }
-
-    main li h2 {
-        font-size: 1rem;
-        text-align: center;
-        width: 100%;
+    
+    .reserva-meta {
+        align-items: flex-end;
+        align-self: stretch;
+        justify-content: space-between;
     }
-
-    main li p {
-        font-size: 0.9rem;
-        text-align: center;
-        width: 100%;
-    }
-
-    /*FIX PRECIO Y ESTADO */
-    main li p:nth-of-type(4),
-    main li p:nth-of-type(5) {
-        text-align: center;
-    }
-
-    main li button {
-        align-self: center;
-        margin-top: var(--espaciado-chico);
-        /* botón centrado abajo */
-    }
-
-    main li button img {
-        width: 24px;
-        height: 24px;
-        /* tamaño del icono eliminar */
+    
+    .reserva-precio {
+        text-align: right;
     }
 }

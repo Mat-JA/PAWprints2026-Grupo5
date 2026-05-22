@@ -16,24 +16,29 @@
     
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main>
-        <section>
-            <header>
-                <h1>Registrarme</h1>
+    <main class="registrate-main">
+        <section class="registrate-card">
+            <header class="registrate-header">
+                <h1 class="registrate-titulo">Registrarme</h1>
             </header>
 
             <form class="form-registrate" action="" method="post">
-                <label for="email">Correo electronico:</label>
-                <input type="email" id="email" autofocus>
-                <br>
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" required>
-                <br>
-                <label for="confirmar">Confirmar contraseña:</label>
-                <input type="password" id="confirmar" required>
-                <br>
+                <div class="form-group">
+                    <label for="email" class="form-label">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" class="form-input" autofocus required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" id="password" name="password" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmar" class="form-label">Confirmar contraseña:</label>
+                    <input type="password" id="confirmar" name="confirmar" class="form-input" required>
+                </div>
+                
                 <button type="submit" class="btn-registrate">Crear cuenta</button>
-                <br>
             </form>
         </section>
     </main>

@@ -1,37 +1,92 @@
-main {
-    flex: 1;                            /* ocupa el espacio entre header y footer */
+/* Scope: .locales-main */
+
+.locales-main {
+    flex: 1;
     display: flex;
-    flex-direction: column;             /* apila el h1 y las sections en columna */
-    align-items: center;               /* centra todo horizontalmente */
+    flex-direction: column;
+    align-items: center;
     padding: var(--espaciado-largo) var(--espaciado-medio);
-    gap: var(--espaciado-medio);       /* espacio entre el título y cada evento */
+    background-color: var(--color-primario);
 }
 
-main h1 {
+.locales-titulo {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+    margin-bottom: var(--espaciado-largo);
     text-align: center;
 }
 
-/* ── Cada tarjeta de evento ── */
-section {
+.eventos-lista {
     display: flex;
-    flex-direction: column;            /* titulo, fecha e imagen en columna */
-    align-items: center;               /* centra el contenido dentro de la tarjeta */
-    gap: var(--espaciado-chico);       /* espacio entre titulo, fecha e imagen */
+    flex-direction: column;
+    gap: var(--espaciado-largo);
     width: 100%;
-    max-width: 600px;                  /* limita el ancho de cada evento */
+    max-width: 800px;
+    align-items: center;
+}
+
+/* ── Tarjeta de Evento ── */
+.evento-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-chico);
+    width: 100%;
     padding: var(--espaciado-medio);
-    border: 1px solid var(--color-border);
+    background-color: var(--color-fondo-suave);
+    border: 1px solid var(--color-sombreado-primario);
     border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-chica);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-section a {
-    display: block;   /* convierte el <a> en un elemento de bloque (ocupa toda la línea y permite ancho/alto) */
-    width: 100%;      /* hace que el <a> ocupe todo el ancho disponible de la sección */
+.evento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-media);
+    border-color: var(--color-secundario);
 }
 
-section img {
-    width: 100%;                       /* la imagen ocupa todo el ancho de la tarjeta */
-    border-radius: var(--radio-chico); /* esquinas levemente redondeadas */
-    display: block;                    /* evita el espacio extra debajo de la imagen */
+.evento-titulo {
+    font-size: var(--fuente-tamano-lg);
+    font-weight: 600;
+    color: var(--color-secundario);
 }
 
+.evento-fecha {
+    font-size: var(--fuente-tamano-sm);
+    color: var(--color-texto-suave);
+    font-weight: 500;
+}
+
+.evento-imagen-link {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radio-chico);
+    margin-top: var(--espaciado-chico);
+}
+
+.evento-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.evento-card:hover img {
+    transform: scale(1.02);
+}
+
+/* Tablet/Desktop layout */
+@media screen and (min-width: 750px) {
+    .eventos-lista {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--espaciado-largo);
+    }
+    
+    .evento-card {
+        height: 100%;
+    }
+}

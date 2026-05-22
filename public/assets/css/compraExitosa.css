@@ -1,35 +1,126 @@
-main {
+/* Scope: .compra-exitosa-main */
+
+.compra-exitosa-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espaciado-largo) var(--espaciado-medio);
+    background-color: var(--color-primario);
+}
+
+/* TARJETA */
+.compra-exitosa-card {
+    width: 100%;
+    max-width: 500px;
+    padding: var(--espaciado-largo) var(--espaciado-medio);
+    border: 1px solid var(--color-sombreado-primario);
+    border-radius: var(--radio-medio);
+    background-color: var(--color-fondo-suave);
+    box-shadow: var(--sombra-media);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 80vh;
+    gap: var(--espaciado-medio);
     text-align: center;
-    padding: 20px;
+    transition: border-color 0.2s ease;
 }
 
+.compra-exitosa-card:hover {
+    border-color: var(--color-secundario);
+}
+
+/* SUCCESS ICON */
+.success-icon {
+    font-size: 3.5rem;
+    color: var(--color-primario);
+    background-color: var(--color-secundario);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--sombra-chica);
+    margin-bottom: var(--espaciado-chico);
+}
+
+/* TITULO */
+.success-titulo {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+    margin: 0;
+}
+
+/* RESUMEN LIBRO */
 .resumen-libro {
-    margin: 20px 0;
-}
-
-ul.datos-usuario {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    align-items: center;
+    gap: var(--espaciado-chico);
+    padding: var(--espaciado-medio);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radio-chico);
+    background-color: var(--color-primario);
+    width: 100%;
 }
 
-ul.datos-usuario li {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.4;
+.resumen-imagen {
+    border-radius: var(--radio-chico);
+    box-shadow: var(--sombra-chica);
+    object-fit: cover;
 }
 
-ul.datos-usuario li strong {
+.resumen-titulo {
+    font-size: var(--fuente-tamano-md);
     font-weight: 600;
+    color: var(--color-secundario);
+    margin: 0;
+}
+
+.resumen-precio {
+    font-size: var(--fuente-tamano-sm);
+    color: var(--color-texto-suave);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* MENSAJE */
+.success-mensaje {
+    font-size: var(--fuente-tamano-md);
+    color: var(--color-texto-suave);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* BOTON INICIO */
+.btn-inicio {
+    display: inline-block;
+    padding: var(--espaciado-chico) var(--espaciado-medio);
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    border-radius: var(--radio-grande);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--fuente-tamano-md);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: var(--espaciado-chico);
+}
+
+.btn-inicio:hover {
+    background-color: var(--color-monocromatico);
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+.btn-inicio:active {
+    transform: scale(0.98);
+}
+
+/* Tablet/Desktop Overrides */
+@media screen and (min-width: 750px) {
+    .compra-exitosa-card {
+        padding: var(--espaciado-largo);
+    }
 }

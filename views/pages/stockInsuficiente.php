@@ -13,10 +13,11 @@
 
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
-    <main>
-        <h1>Stock insuficiente</h1>
-        <p>Lo sentimos, no hay suficiente stock disponible para completar la compra.</p>
-        <a href="/catalogo">Volver al catálogo</a>
+    <main class="error-404">
+        <h1 class="error-404__code">⚠️</h1>
+        <h2 class="error-404__title">Stock Insuficiente</h2>
+        <p class="error-404__text">Lo sentimos, no hay suficiente stock disponible para completar la compra.</p>
+        <a class="error-404__link" href="/catalogo">Volver al catálogo</a>
     </main>
     <?php require __DIR__ . '/../partials/footer.php'; ?>
 </body>

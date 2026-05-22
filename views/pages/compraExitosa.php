@@ -13,16 +13,22 @@
 
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
-    <main>
-        <h1>¡Compra realizada con éxito!</h1>
-        <?php if (isset($libro)): ?>
-            <div class="resumen-libro">
-                <img src="<?= htmlspecialchars($libro->fields['imagen_url']) ?>" alt="<?= htmlspecialchars($libro->fields['desc_corta']) ?>" width="100">
-                <h2><?= htmlspecialchars($libro->fields['titulo']) ?></h2>
-                <p>Precio: $<?= number_format($libro->fields['precio'] ?? 0, 2, ',', '.') ?></p>
-            </div>
-        <?php endif; ?>
-        <p>Gracias por tu compra, <?= htmlspecialchars($nombre ?? '') ?>. Te contactaremos pronto.</p>
+    <main class="compra-exitosa-main">
+        <section class="compra-exitosa-card">
+            <div class="success-icon">✓</div>
+            <h1 class="success-titulo">¡Compra realizada con éxito!</h1>
+            
+            <?php if (isset($libro)): ?>
+                <div class="resumen-libro">
+                    <img src="<?= htmlspecialchars($libro->fields['imagen_url']) ?>" alt="<?= htmlspecialchars($libro->fields['desc_corta']) ?>" width="100" class="resumen-imagen">
+                    <h2 class="resumen-titulo"><?= htmlspecialchars($libro->fields['titulo']) ?></h2>
+                    <p class="resumen-precio">Precio: $<?= number_format($libro->fields['precio'] ?? 0, 2, ',', '.') ?></p>
+                </div>
+            <?php endif; ?>
+            
+            <p class="success-mensaje">Gracias por tu compra, <?= htmlspecialchars($nombre ?? '') ?>. Te contactaremos pronto.</p>
+            <a href="/index" class="btn-inicio">Volver al Inicio</a>
+        </section>
     </main>
     <?php require __DIR__ . '/../partials/footer.php'; ?>
 </body>

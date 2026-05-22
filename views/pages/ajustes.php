@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/assets/css/print.css">
   <link rel="stylesheet" href="/assets/css/header.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
+  <link rel="stylesheet" href="/assets/css/ajustes.css">
   <title>PawPrints - Ajustes</title>
 </head>
 
@@ -18,17 +19,14 @@
   
   <?php require __DIR__ . '/../partials/header.php'; ?>
 
-  <main>
-    <h1>Ajustes</h1>
+  <main class="ajustes-main">
+    <h1 class="ajustes-titulo">Ajustes</h1>
+    <section class="ajustes-seccion">
+      <div class="construccion-icon">⚙️</div>
+      <p class="ajustes-mensaje">Página en construcción</p>
+      <a href="/mi_cuenta" class="btn-volver">Volver a Mi Cuenta</a>
+    </section>
   </main>
-
-  <br />
-
-  <section>
-    <p>Página en construcción</p>
-  </section>
-
-  <br />
 
   <?php require __DIR__ . '/../partials/footer.php'; ?>
 

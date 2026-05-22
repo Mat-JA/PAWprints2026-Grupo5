@@ -15,23 +15,26 @@
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main>
-        <h1>Eventos locales</h1>
-        <section>
-            <h2>Nombre Evento 1</h2>
-            <h4>fecha evento1</h4>
-            <a href="/eventos/1">
-                <img src="/assets/img/evento_portada_generica.svg" alt="portada evento 1">
-            </a>
-        </section>
+    <main class="locales-main">
+        <h1 class="locales-titulo">Eventos locales</h1>
+        
+        <div class="eventos-lista">
+            <section class="evento-card">
+                <h2 class="evento-titulo">Nombre Evento 1</h2>
+                <time class="evento-fecha">fecha evento1</time>
+                <a href="/eventos/1" class="evento-imagen-link">
+                    <img src="/assets/img/evento_portada_generica.svg" alt="portada evento 1">
+                </a>
+            </section>
 
-        <section>
-            <h2>Nombre Evento 2</h2>
-            <h4>fecha evento2</h4>
-            <a href="/eventos/2">
-                <img src="/assets/img/evento_portada_generica.svg"  alt="portada evento 1">
-            </a>
-        </section>
+            <section class="evento-card">
+                <h2 class="evento-titulo">Nombre Evento 2</h2>
+                <time class="evento-fecha">fecha evento2</time>
+                <a href="/eventos/2" class="evento-imagen-link">
+                    <img src="/assets/img/evento_portada_generica.svg" alt="portada evento 2">
+                </a>
+            </section>
+        </div>
     </main>
     
     <?php require __DIR__ . '/../partials/footer.php'; ?>

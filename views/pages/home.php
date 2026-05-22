@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/tarjeta_libro.css">
     <link rel="stylesheet" href="/assets/css/carousel.css">
     <link rel="stylesheet" href="/assets/css/carousel-eventos.css">
     <title>PawPrints</title>
@@ -38,126 +39,126 @@
 
         <section class="novedades">
             <h2>Novedades</h2>
-            <div>
-                <article class="tarjeta-libro">
-                    <a href="detalle_libro">
-                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
+            <ul class="grilla-libros">
+                <li>
+                    <article class="tarjeta-libro">
                         <h3>Título de libro</h3>
+                        <a href="detalle_libro">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
+                        </a>
                         <p>$ Precio</p>
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
+                            <button type="submit" class="btn-comprar" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
-                    </div>
-                </article>
-                <article class="tarjeta-libro">
-                    <a href="detalle_libro">
-                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
+                    </article>
+                </li>
+                <li>
+                    <article class="tarjeta-libro">
                         <h3>Título de libro</h3>
+                        <a href="detalle_libro">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
+                        </a>
                         <p>$ Precio</p>
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
+                            <button type="submit" class="btn-comprar" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
-                    </div>
-                </article>
-                <article class="tarjeta-libro">
-                    <a href="detalle_libro">
-                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
+                    </article>
+                </li>
+                <li>
+                    <article class="tarjeta-libro">
                         <h3>Título de libro</h3>
+                        <a href="detalle_libro">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
+                        </a>
                         <p>$ Precio</p>
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
+                            <button type="submit" class="btn-comprar" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
-                    </div>
-                </article>
-                <article class="tarjeta-libro">
-                    <a href="detalle_libro">
-                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
+                    </article>
+                </li>
+                <li>
+                    <article class="tarjeta-libro">
                         <h3>Título de libro</h3>
+                        <a href="detalle_libro">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
+                        </a>
                         <p>$ Precio</p>
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
+                            <button type="submit" class="btn-comprar" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
-                    </div>
-                </article>
-                <article class="tarjeta-libro">
-                    <a href="detalle_libro">
-                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
+                    </article>
+                </li>
+                <li>
+                    <article class="tarjeta-libro">
                         <h3>Título de libro</h3>
+                        <a href="detalle_libro">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
+                        </a>
                         <p>$ Precio</p>
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
+                            <button type="submit" class="btn-comprar" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
-                    </div>
-                </article>
-            </div>
+                    </article>
+                </li>
+            </ul>
         </section>
-
+ 
         <section class="destacados">
             <h2>Destacados</h2>
-            <div>
-                <article class="tarjeta-libro">
-                    <a href="detalle_libro">
-                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
+            <ul class="grilla-libros">
+                <li>
+                    <article class="tarjeta-libro">
                         <h3>Título de libro</h3>
+                        <a href="detalle_libro">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
+                        </a>
                         <p>$ Precio</p>
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
+                            <button type="submit" class="btn-comprar" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
-                    </div>
-                </article>
-                <article class="tarjeta-libro">
-                    <a href="detalle_libro">
-                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
+                    </article>
+                </li>
+                <li>
+                    <article class="tarjeta-libro">
                         <h3>Título de libro</h3>
+                        <a href="detalle_libro">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
+                        </a>
                         <p>$ Precio</p>
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
+                            <button type="submit" class="btn-comprar" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
-                    </div>
-                </article>
-                <article class="tarjeta-libro">
-                    <a href="detalle_libro">
-                        <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
-                    </a>
-                    <div>
+                    </article>
+                </li>
+                <li>
+                    <article class="tarjeta-libro">
                         <h3>Título de libro</h3>
+                        <a href="detalle_libro">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro">
+                        </a>
                         <p>$ Precio</p>
                         <form action="/carrito/agregar" method="post">
                             <input type="hidden" name="id_libro" value="123">
                             <input type="hidden" name="título" value="Título del libro">
-                            <button type="submit" aria-label="Agregar al carrito">Agregar al carrito</button>
+                            <button type="submit" class="btn-comprar" aria-label="Agregar al carrito">Agregar al carrito</button>
                         </form>
-                    </div>
-                </article>
-            </div>
+                    </article>
+                </li>
+            </ul>
         </section>
     </main>
 

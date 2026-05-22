@@ -1,95 +1,210 @@
-/*DEO GLORIA*/
+/* Scope: .mi-cuenta-main */
 
-main {
-    text-align: center;
-}
-
-main > h1 {
-    margin: 30px;
-    font-size: 40px;
-    font-weight: bold;
-}
-
-main > p {
-    display: inline;
-    margin: 0 auto;
-    padding: 0 4em 0 4em;
-    font-size: 20px;
-}
-
-@media screen and (max-width: 500px) {
-    main > p {
-        display: block;
-        margin: 7px auto;
-    }
-}
-
-#userPic {
-    display: block;
-    margin: 0 auto;
-}
-
-.misPedidos {
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    align-items: center; 
-}
-
-.misPedidosTitulo {
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.titulo {
-    font-size: 24px;
-}
-
-@media screen and (max-width: 500px) {
-    .pedido {
-        max-width: 300px;
-    }
-    
-    .portada {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
-.pedido {
-    font-size: 20px;
-    background-color: #ffffff; 
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.15); 
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.pedido:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 6px 16px rgba(87, 6, 140, 0.3);
-}
-
-.managementLinks {
+.mi-cuenta-main {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: var(--espaciado-largo) var(--espaciado-medio);
+    background-color: var(--color-primario);
+    gap: var(--espaciado-largo);
+}
+
+/* ── Perfil de Usuario ── */
+.mi-cuenta-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-medio);
+    text-align: center;
+    background-color: var(--color-fondo-suave);
+    padding: var(--espaciado-largo);
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-chica);
+    width: 100%;
+    max-width: 600px;
+}
+
+.user-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-secundario);
+    box-shadow: var(--sombra-chica);
+}
+
+.user-detalles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-chico);
+}
+
+.mi-cuenta-titulo {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+    margin: 0;
+}
+
+.user-name {
+    font-size: var(--fuente-tamano-lg);
+    font-weight: 500;
+    color: var(--color-texto);
+}
+
+.user-date {
+    font-size: var(--fuente-tamano-sm);
+    color: var(--color-texto-suave);
+}
+
+/* ── Mis Pedidos ── */
+.misPedidos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+    width: 100%;
+    max-width: 800px;
+}
+
+.mis-pedidos-header {
+    text-align: center;
+    border-bottom: 2px solid var(--color-fondo-suave);
+    padding-bottom: var(--espaciado-chico);
+}
+
+.misPedidosTitulo {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+}
+
+.pedidos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+    width: 100%;
+}
+
+.pedido {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+    background-color: var(--color-fondo-suave);
+    border-radius: var(--radio-medio);
+    padding: var(--espaciado-medio);
+    box-shadow: var(--sombra-chica);
+    border: 1px solid var(--color-sombreado-primario);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pedido:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-media);
+    border-color: var(--color-secundario);
+}
+
+.pedido-header {
+    border-bottom: 1px solid var(--color-sombreado-primario);
+    padding-bottom: var(--espaciado-chico);
+}
+
+.pedido-titulo {
+    font-size: var(--fuente-tamano-lg);
+    font-weight: 600;
+    color: var(--color-secundario);
+}
+
+.pedido .portada {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+    align-self: center;
+    border-radius: var(--radio-chico);
+    box-shadow: var(--sombra-chica);
+}
+
+.pedido-detalles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-chico);
+    font-size: var(--fuente-tamano-sm);
+    color: var(--color-texto-suave);
+}
+
+.pedido-detalles p {
+    margin: 0;
+}
+
+.estado {
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radio-chico);
+    font-size: var(--fuente-tamano-sm);
+    display: inline-block;
+}
+
+.estado.entregado {
+    background-color: rgba(92, 6, 140, 0.1);
+    color: var(--color-secundario);
+}
+
+/* ── Management Links ── */
+.managementLinks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+    width: 100%;
+    max-width: 600px;
 }
 
 .bLink {
-    padding: 2px;
-    margin: 7px;
-    font-size: 20px;
-    background-color: #ffffff; 
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 2px 8px rgba(87, 6, 140, 0.45); 
-    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+    text-align: center;
+    padding: var(--espaciado-medio);
+    font-size: var(--fuente-tamano-md);
+    font-weight: 600;
+    color: var(--color-secundario);
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-secundario);
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-chica);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
 
 .bLink:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 6px 16px rgba(87, 6, 140, 0.3);
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Tablet/Desktop Overrides */
+@media screen and (min-width: 750px) {
+    .mi-cuenta-perfil {
+        flex-direction: row;
+        text-align: left;
+        gap: var(--espaciado-largo);
+        padding: var(--espaciado-largo);
+    }
+    
+    .pedidos-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--espaciado-medio);
+    }
+
+    .pedido {
+        padding: var(--espaciado-largo);
+    }
+
+    .managementLinks {
+        flex-direction: row;
+        justify-content: center;
+        gap: var(--espaciado-largo);
+    }
+
+    .bLink {
+        flex: 1;
+    }
 }

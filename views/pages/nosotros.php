@@ -15,9 +15,9 @@
     
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main>
-        <h1>Acerca de nosotros</h1>
-        <p>
+    <main class="nosotros-main">
+        <h1 class="nosotros-titulo">Acerca de nosotros</h1>
+        <p class="nosotros-texto">
             En PawPrints creemos que cada libro deja una huella. Algunas son sutiles, otras permanecen para siempre,
             pero todas tienen algo en común: nos conectan con nuevas ideas, historias y formas de ver el mundo. Nuestra
             librería nace con la intención de crear un espacio donde descubrir libros sea una experiencia simple y
@@ -25,7 +25,7 @@
             buscando o uno que no sabía que necesitaba.
         </p>
 
-        <p>
+        <p class="nosotros-texto">
             Cuidamos la selección de nuestro catálogo para ofrecer variedad y calidad, pensando en distintos gustos,
             intereses y momentos. Porque entendemos que la lectura no es siempre la misma: a veces buscamos aprender,
             otras desconectar, y otras simplemente disfrutar. En PawPrints valoramos tanto las grandes historias como

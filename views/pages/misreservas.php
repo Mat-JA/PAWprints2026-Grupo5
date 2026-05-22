@@ -16,45 +16,59 @@
     
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main>
+    <main class="reservas-main">
 
-        <h1>Mis Reservas</h1>
-        <ul>
-            <li>
-                <img src="/assets/img/portadaGenerica.png" alt="detalle imagen libro 1">
-                <h2><a href="/libros/libro1">Titulo del libro 1</a></h2>
-                <p>Autor</p>
-                <p>isbn</p>
-                <p>Descripción</p>
-                <p>$Precio</p>
-                <p>Estado</p>
-                <button>
-                    <img src="/assets/img/iconoEliminar.svg" alt="Eliminar">
-                </button>
+        <h1 class="reservas-titulo">Mis Reservas</h1>
+        <ul class="reservas-lista">
+            <li class="reserva-item">
+                <img src="/assets/img/portadaGenerica.png" alt="detalle imagen libro 1" class="reserva-imagen">
+                <div class="reserva-info">
+                    <h3 class="reserva-titulo-libro"><a href="/libros/libro1">Titulo del libro 1</a></h3>
+                    <p class="reserva-autor">Autor</p>
+                    <p class="reserva-isbn">isbn</p>
+                    <p class="reserva-descripcion">Descripción</p>
+                </div>
+                <div class="reserva-meta">
+                    <p class="reserva-precio">$Precio</p>
+                    <p class="reserva-estado">Estado</p>
+                    <button class="btn-eliminar-reserva" aria-label="Eliminar reserva">
+                        <img src="/assets/img/iconoEliminar.svg" alt="Eliminar">
+                    </button>
+                </div>
             </li>
-            <li>
-                <img src="/assets/img/portadaGenerica.png" alt="detalle imagen libro 2">
-                <h2><a href="/libros/libro2">Titulo del libro 2</a></h2>
-                <p>Autor</p>
-                <p>isbn</p>
-                <p>Descripción</p>
-                <p>$Precio</p>
-                <p>Estado</p>
-                <button>
-                    <img src="/assets/img/iconoEliminar.svg" alt="Eliminar">
-                </button>
+            
+            <li class="reserva-item">
+                <img src="/assets/img/portadaGenerica.png" alt="detalle imagen libro 2" class="reserva-imagen">
+                <div class="reserva-info">
+                    <h3 class="reserva-titulo-libro"><a href="/libros/libro2">Titulo del libro 2</a></h3>
+                    <p class="reserva-autor">Autor</p>
+                    <p class="reserva-isbn">isbn</p>
+                    <p class="reserva-descripcion">Descripción</p>
+                </div>
+                <div class="reserva-meta">
+                    <p class="reserva-precio">$Precio</p>
+                    <p class="reserva-estado">Estado</p>
+                    <button class="btn-eliminar-reserva" aria-label="Eliminar reserva">
+                        <img src="/assets/img/iconoEliminar.svg" alt="Eliminar">
+                    </button>
+                </div>
             </li>
-            <li>
-                <img src="/assets/img/portadaGenerica.png" alt="detalle imagen libro 3">
-                <h2><a href="/libros/libro3">Titulo del libro 3</a></h2>
-                <p>Autor</p>
-                <p>isbn</p>
-                <p>Descripción</p>
-                <p>$Precio</p>
-                <p>Estado</p>
-                <button>
-                    <img src="/assets/img/iconoEliminar.svg" alt="Eliminar">
-                </button>
+            
+            <li class="reserva-item">
+                <img src="/assets/img/portadaGenerica.png" alt="detalle imagen libro 3" class="reserva-imagen">
+                <div class="reserva-info">
+                    <h3 class="reserva-titulo-libro"><a href="/libros/libro3">Titulo del libro 3</a></h3>
+                    <p class="reserva-autor">Autor</p>
+                    <p class="reserva-isbn">isbn</p>
+                    <p class="reserva-descripcion">Descripción</p>
+                </div>
+                <div class="reserva-meta">
+                    <p class="reserva-precio">$Precio</p>
+                    <p class="reserva-estado">Estado</p>
+                    <button class="btn-eliminar-reserva" aria-label="Eliminar reserva">
+                        <img src="/assets/img/iconoEliminar.svg" alt="Eliminar">
+                    </button>
+                </div>
             </li>
         </ul>
     </main>

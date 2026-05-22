@@ -14,51 +14,39 @@
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main>
+    <main class="detalle-main">
+        <article class="detalle-libro">
+            <div class="datos-libro">
+                <div class="portada-libro">
+                    <img 
+                        src="<?= htmlspecialchars($libro->fields['imagen_url'] ?? '') ?>" 
+                        alt="Portada del libro" 
+                        class="imgPortada"
+                    >
+                </div>
 
-        <section>
-            <article class="detalle-libro">
+                <div class="texto-datos-libro">
+                    <h1><?= htmlspecialchars($libro->fields['desc_corta'] ?? '') ?></h1>
+                    
+                    <p class="libro-isbn"><strong>ISBN:</strong> <?= htmlspecialchars($libro->fields['isbn'] ?? '') ?></p>
+                    
+                    <p class="libro-precio">Precio: $<?= number_format($libro->fields['precio'] ?? 0, 2, ',', '.') ?></p>
+                    
+                    <p class="libro-stock">Stock: <?= htmlspecialchars($libro->fields['stock'] ?? '') ?></p>
+                    
+                    <button class="btn-comprar">Agregar al carrito</button>
+                    
+                    <p class="libro-puntuacion">Puntuación: ★ 5/5</p>
+                </div>
+            </div>
 
-                <section class="datos-libro">
-
-                    <div class="portada-libro">
-                        <img 
-                            src="<?= htmlspecialchars($libro->fields['imagen_url'] ?? '') ?>" 
-                            alt="Portada del libro" 
-                            class="imgPortada"
-                        >
-                    </div>
-
-                    <div class="texto-datos-libro">
-
-                        <h1><?= htmlspecialchars($libro->fields['desc_corta'] ?? '') ?></h1>
-
-                        <h2><?= htmlspecialchars($libro->fields['isbn'] ?? '') ?></h2>
-
-                        <p>Precio: $<?= number_format($libro->fields['precio'] ?? 0, 2, ',', '.') ?></p>
-
-                        <p>Stock: <?= htmlspecialchars($libro->fields['stock'] ?? '') ?></p>
-
-                        <button>Agregar al carrito</button>
-
-                        <p>Puntuación: 5/5</p>
-
-                    </div>
-
-                </section>
-
-                <section class="descripcion-libro">
-
-                    <h2>Descripción</h2>
-
-                    <p>
-                        <?= htmlspecialchars($libro->fields['descripcion'] ?? '') ?>
-                    </p>
-
-                </section>
-
-            </article>
-        </section>
+            <section class="descripcion-libro">
+                <h2>Descripción</h2>
+                <p>
+                    <?= htmlspecialchars($libro->fields['descripcion'] ?? '') ?>
+                </p>
+            </section>
+        </article>
 
         <section class="comentarios">
 

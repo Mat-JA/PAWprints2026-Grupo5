@@ -15,26 +15,29 @@
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main>
-        <section>
-            <header>
-                <h1>Iniciar Sesion</h1>
+    <main class="login-main">
+        <section class="login-card">
+            <header class="login-header">
+                <h1 class="login-titulo">Iniciar Sesión</h1>
             </header>
 
             <form class="form-login" action="" method="post">
-                <label for="email">Correo electronico:</label>
-                <input type="email" id="email" autofocus>
-                <br>
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" required>
-                <br>
+                <div class="form-group">
+                    <label for="email" class="form-label">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" class="form-input" autofocus required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" id="password" name="password" class="form-input" required>
+                </div>
+                
                 <button type="submit" class="btn-login">Acceder</button>
-                <br>
             </form>
 
-            <p>
-                ¿No tenes cuenta?
-                <a href="/registrate">Registrate aqui</a>
+            <p class="login-registrar-link">
+                ¿No tenés cuenta?
+                <a href="/registrate">Registrate aquí</a>
             </p>
         </section>
     </main>

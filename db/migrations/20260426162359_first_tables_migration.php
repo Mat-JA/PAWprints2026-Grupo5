@@ -24,8 +24,8 @@ final class FirstTablesMigration extends AbstractMigration
             ->addColumn('bio', 'string', ['limit' => 250])
             ->create();
 
-        $tableAutor = $this->table('libros');
-        $tableAutor->addColumn('titulo', 'string', ['limit' => 75])
+        $tableLibros = $this->table('libros');
+        $tableLibros->addColumn('titulo', 'string', ['limit' => 75])
             ->addColumn('isbn', 'string', ['limit' => 25])
             ->addColumn('desc_corta', 'string', ['limit' => 150])
             ->addColumn('descripcion', 'string', ['limit' => 300])

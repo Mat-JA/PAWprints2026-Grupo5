@@ -158,18 +158,14 @@
 
       </fieldset>
 
-      <label
-        for="inputSubmit"
-        class="formulario-submit-label"
-      >
+      <div class="formulario-submit-container">
         <input
-          required
           type="submit"
           name="inputSubmit"
           value="Realizar compra"
           class="bSubmit"
         >
-      </label>
+      </div>
 
     </form>
 

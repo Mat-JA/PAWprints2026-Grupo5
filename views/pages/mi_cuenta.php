@@ -18,45 +18,55 @@
   
   <?php require __DIR__ . '/../partials/header.php'; ?>
 
-  <main>
-    <h1>Mi Cuenta</h1>
-    <p>Nombre de usuario</p>
-    <p>Fecha de ingreso</p>
-    <img src="/assets/img/logoUsuario.png" alt="Imagen de perfil de usuario" id="userPic">
+  <main class="mi-cuenta-main">
+    <section class="mi-cuenta-perfil">
+      <img src="/assets/img/logoUsuario.png" alt="Imagen de perfil de usuario" id="userPic" class="user-pic">
+      <div class="user-detalles">
+        <h1 class="mi-cuenta-titulo">Mi Cuenta</h1>
+        <p class="user-name">Nombre de usuario</p>
+        <p class="user-date">Fecha de ingreso</p>
+      </div>
+    </section>
+
+    <section class="misPedidos">
+      <header class="mis-pedidos-header">
+        <h2 class="misPedidosTitulo">Mis Pedidos</h2>
+      </header>
+      
+      <div class="pedidos-grid">
+        <article class="pedido">
+          <header class="pedido-header">
+            <h3 class="pedido-titulo">Título, Autor</h3>
+          </header>
+          <img src="/assets/img/portadaGenerica.png" alt="Portada de un libro sin palabras ni imagenes relevantes" class="portada">
+          <div class="pedido-detalles">
+            <p>Fecha Inicio: 28-4-25</p>
+            <p>Monto: $43000</p>
+            <p>Fecha Entrega: 2-5-25</p>
+            <p>Estado: <span class="estado entregado">Entregado</span></p>
+          </div>
+        </article>
+        
+        <article class="pedido">
+          <header class="pedido-header">
+            <h3 class="pedido-titulo">Título, Autor</h3>
+          </header>
+          <img src="/assets/img/portadaGenerica.png" alt="Portada de un libro sin palabras ni imagenes relevantes" class="portada">
+          <div class="pedido-detalles">
+            <p>Fecha Inicio: 28-4-25</p>
+            <p>Monto: $43000</p>
+            <p>Fecha Entrega: 2-5-25</p>
+            <p>Estado: <span class="estado entregado">Entregado</span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="managementLinks">
+      <a href="./ajustes" class="bLink">Ajustes</a>
+      <a href="./cerrarSesion" class="bLink">Cerrar Sesión</a>
+    </section>
   </main>
-
-  <section class="misPedidos">
-    <header>
-      <h2 class="misPedidosTitulo">Mis Pedidos</h2>
-    </header>
-    <article class="pedido">
-      <header>
-        <h4 class="titulo">Título, Autor</h4>
-      </header>
-      <img src="/assets/img/portadaGenerica.png" alt="Portada de un libro sin palabras ni imagenes relevantes" class="portada">
-      <p>Fecha Inicio: 28-4-25</p>
-      <p>Monto: $43000</p>
-      <br />
-      <p>Fecha Entrega: 2-5-25</p>
-      <p>Estado: Entregado</p>
-    </article>
-    <article class="pedido">
-      <header>
-        <h4 class="titulo">Título, Autor</h4>
-      </header>
-      <img src="/assets/img/portadaGenerica.png" alt="Portada de un libro sin palabras ni imagenes relevantes" class="portada">
-      <p>Fecha Inicio: 28-4-25</p>
-      <p>Monto: $43000</p>
-      <br />
-      <p>Fecha Entrega: 2-5-25</p>
-      <p>Estado: Entregado</p>
-    </article>
-  </section>
-
-  <section class="managementLinks">
-    <a href="./ajustes" class="bLink">Ajustes</a>
-    <a href="./cerrarSesion" class="bLink">Cerrar Sesion</a>
-  </section>
   
   <?php require __DIR__ . '/../partials/footer.php'; ?>
 

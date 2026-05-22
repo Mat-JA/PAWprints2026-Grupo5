@@ -14,122 +14,54 @@ use App\Core\Database\ConnectionBuilder;
 use App\Core\Request;
 use App\Services\MailService;
 
+// --- Infraestructura ---
+
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 $config = new Config();
 
-$log_app = new Logger('log-app');
+$log = new Logger('log-app');
 $handler = new StreamHandler($config->get('LOG_PATH'));
 $handler->setLevel($config->get('LOG_LEVEL'));
-$log_app->pushHandler($handler);
+$log->pushHandler($handler);
 
-$connectionBuilder = new ConnectionBuilder;
-$connectionBuilder->setLogger($log_app);
+$connectionBuilder = new ConnectionBuilder();
+$connectionBuilder->setLogger($log);
 $connection = $connectionBuilder->make($config);
-
 $mailService = new MailService();
-
-$request = new Request;
-
+$request = new Request();
 $router = new Router();
-$router->setLogger($log_app);
+$router->setLogger($log);
 
-$router->get('/', function () use ($connection, $mailService) {
-    $repositorio   = new \App\Repository\LibroRepository($connection);
-    $servicio      = new \App\Services\LibroService($repositorio);
+// --- Factory ---
+
+$libroController = function () use ($connection, $mailService) {
+    $libroRepo     = new \App\Repository\LibroRepository($connection);
+    $libroService  = new \App\Services\LibroService($libroRepo);
     $compraRepo    = new \App\Repository\CompraRepository($connection);
-    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller    = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
-    $controller->home();
-});
-$router->get('/eventos', function () {
-    (new \App\Controllers\PageController())->eventos();
-});
-$router->get('/nosotros', function () {
-    (new \App\Controllers\PageController())->nosotros();
-});
-$router->get('/carrito', function () {
-    (new \App\Controllers\PageController())->carrito();
-});
-$router->get('/ajustes', function () {
-    (new \App\Controllers\PageController())->ajustes();
-});
-$router->get('/cerrarSesion', function () {
-    (new \App\Controllers\PageController())->cerrarSesion();
-});
-$router->get('/formularioCompra', function () use ($connection, $mailService) {
-    $repositorio = new \App\Repository\LibroRepository($connection);
-    $servicio    = new \App\Services\LibroService($repositorio);
-    $compraRepo  = new \App\Repository\CompraRepository($connection);
-    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
-    $controller->formularioCompra();
-});
-$router->get('/login', function () {
-    (new \App\Controllers\PageController())->login();
-});
-$router->get('/mi_cuenta', function () {
-    (new \App\Controllers\PageController())->mi_cuenta();
-});
-$router->get('/misreservas', function () {
-    (new \App\Controllers\PageController())->misreservas();
-});
-$router->get('/registrate', function () {
-    (new \App\Controllers\PageController())->registrate();
-});
+    $compraService = new \App\Services\CompraService($libroRepo, $compraRepo, $connection);
+    return new \App\Controllers\LibroController($libroService, $compraService, $mailService);
+};
 
-/* $router->get('/autores', function() { */
-/*     (new \App\Controllers\AuthorsController())->listAuthors(); */
-/* }); */
-/* $router->get('/autor', function() { */
-/*     (new \App\Controllers\AuthorController())->getAuthor(); */
-/* }); */
-/* $router->get('/autor/edit', function() { */
-/*     (new \App\Controllers\AuthorController())->getEdit(); */
-/* }); */
-/* $router->post('/autor/edit', function() { */
-/*     (new \App\Controllers\AuthorController())->setAuthor(); */
-/* }); */
+// --- Rutas ---
 
-$router->get('/catalogo', function () use ($connection, $mailService) {
-    $repositorio = new \App\Repository\LibroRepository($connection);
-    $servicio    = new \App\Services\LibroService($repositorio);
-    $compraRepo  = new \App\Repository\CompraRepository($connection);
-    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
-    $controller->catalogo();
-});
+$router->get('/',                  fn() => $libroController()->home());
+$router->get('/catalogo',          fn() => $libroController()->catalogo());
+$router->get('/catalogo/exportar', fn() => $libroController()->exportarCsv());
+$router->get('/libro',             fn() => $libroController()->detalle());
+$router->get('/formularioCompra',  fn() => $libroController()->formularioCompra());
+$router->post('/procesarCompra',   fn() => $libroController()->procesarCompra());
+$router->get('/api/libros', fn() => $libroController()->apiGetLibros());
 
-$router->get('/libro', function () use ($connection, $mailService) {
-    $repositorio = new \App\Repository\LibroRepository($connection);
-    $servicio    = new \App\Services\LibroService($repositorio);
-    $compraRepo  = new \App\Repository\CompraRepository($connection);
-    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
-    $controller->detalle();
-});
+$pageController = fn() => new \App\Controllers\PageController();
 
-$router->get('/catalogo/exportar', function () use ($connection, $mailService) {
-    $repositorio = new \App\Repository\LibroRepository($connection);
-    $servicio    = new \App\Services\LibroService($repositorio);
-    $compraRepo  = new \App\Repository\CompraRepository($connection);
-    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
-    $controller->exportarCsv();
-});
-
-$router->post('/procesarCompra', function () use ($connection, $mailService) {
-    $repositorio = new \App\Repository\LibroRepository($connection);
-    $servicio    = new \App\Services\LibroService($repositorio);
-    $compraRepo  = new \App\Repository\CompraRepository($connection);
-    $compraService = new \App\Services\CompraService($repositorio, $compraRepo, $connection);
-    $controller  = new \App\Controllers\LibroController($servicio, $compraService, $mailService);
-    $controller->procesarCompra();
-});
-
-/* Sacar el comentario si quieren probar carrusel generico
-$router->get('/carousel', function () {
-    (new \App\Controllers\PageController())->carousel();
-});
-*/
+$router->get('/eventos',       fn() => $pageController()->eventos());
+$router->get('/nosotros',      fn() => $pageController()->nosotros());
+$router->get('/carrito',       fn() => $pageController()->carrito());
+$router->get('/ajustes',       fn() => $pageController()->ajustes());
+$router->get('/cerrarSesion',  fn() => $pageController()->cerrarSesion());
+$router->get('/login',         fn() => $pageController()->login());
+$router->get('/mi_cuenta',     fn() => $pageController()->mi_cuenta());
+$router->get('/misreservas',   fn() => $pageController()->misreservas());
+$router->get('/registrate',    fn() => $pageController()->registrate());

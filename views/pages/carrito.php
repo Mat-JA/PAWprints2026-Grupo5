@@ -14,47 +14,46 @@
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
-    <main>
-        <section>
+    <main class="carrito-main">
+        <section class="carrito-seccion">
             <h2>Carrito de compras</h2>
-            <ul>
-                <li>
-                    <!-- NOTE:Esto deberia extraerse a item_carrito.html tal vez ?? -->
-                    <article>
-                        <a href="/libros/libro1">
-                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro: 1">
+            <ul class="carrito-lista">
+                <li class="carrito-item-li">
+                    <article class="carrito-item">
+                        <a href="/libros/libro1" class="carrito-portada-link">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro: 1" class="carrito-portada">
                         </a>
-                        <p>Titulo del libro 1</p>
-                        <p>$Precio</p>
-                        <button>Eliminar</button>
+                        <h3 class="carrito-titulo">Titulo del libro 1</h3>
+                        <p class="carrito-precio">$Precio</p>
+                        <button class="btn-eliminar">Eliminar</button>
                     </article>
                 </li>
-                <li>
-                    <article>
-                        <a href="/libros/libro2">
-                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro: 2">
+                <li class="carrito-item-li">
+                    <article class="carrito-item">
+                        <a href="/libros/libro2" class="carrito-portada-link">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro: 2" class="carrito-portada">
                         </a>
-                        <p>Titulo del libro 2</p>
-                        <p>$Precio</p>
-                        <button>Eliminar</button>
+                        <h3 class="carrito-titulo">Titulo del libro 2</h3>
+                        <p class="carrito-precio">$Precio</p>
+                        <button class="btn-eliminar">Eliminar</button>
                     </article>
                 </li>
-                <li>
-                    <article>
-                        <a href="/libros/libro3">
-                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro: 3">
+                <li class="carrito-item-li">
+                    <article class="carrito-item">
+                        <a href="/libros/libro3" class="carrito-portada-link">
+                            <img src="/assets/img/portadaGenerica.png" alt="Portada del libro: 3" class="carrito-portada">
                         </a>
-                        <p>Titulo del libro 3</p>
-                        <p>$Precio</p>
-                        <button>Eliminar</button>
+                        <h3 class="carrito-titulo">Titulo del libro 3</h3>
+                        <p class="carrito-precio">$Precio</p>
+                        <button class="btn-eliminar">Eliminar</button>
                     </article>
                 </li>
             </ul>
 
-            <section>
-                <p>Total: $Total</p>
-                <button>Realizar compra</button>
-            </section>
+            <div class="carrito-total-container">
+                <p class="carrito-total-texto">Total: $Total</p>
+                <button class="btn-comprar-realizar">Realizar compra</button>
+            </div>
 
         </section>
     </main>
