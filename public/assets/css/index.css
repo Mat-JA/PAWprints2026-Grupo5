@@ -1,4 +1,7 @@
-/* index.css - Mobile First */
+/* ---------- Layout general ---------- */
+body {
+    text-align: center;
+}
 
 main {
     display: flex;
@@ -10,9 +13,18 @@ section {
     display: flex;
     flex-direction: column;
     gap: var(--espaciado-medio);
+    margin: 0;
     margin-bottom: var(--espaciado-largo);
     padding: 0 var(--espaciado-medio);
 }
+
+/* ---------- Header ---------- */
+
+header {
+    border-bottom: solid 2px var(--color-secundario);
+}
+
+/* ---------- Principal ---------- */
 
 .principal {
     text-align: center;
@@ -40,6 +52,8 @@ section {
     object-fit: cover;
 }
 
+/* ---------- Titulos ---------- */
+
 .novedades h2,
 .destacados h2,
 .eventos h2 {
@@ -49,35 +63,94 @@ section {
     text-align: left;
 }
 
-/* Grilla de libros: horizontal swipe on mobile, grid on desktop */
-.grilla-libros {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: var(--espaciado-medio);
-    overflow-x: auto;
-    padding: var(--espaciado-chico) 4px var(--espaciado-medio) 4px;
-    scrollbar-width: none; /* Firefox */
-    -webkit-overflow-scrolling: touch;
-}
+/* ---------- Eventos ---------- */
 
-.grilla-libros::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-}
-
-.grilla-libros > li {
-    flex-shrink: 0;
-    width: 260px;
-}
-
-/* Eventos container */
 .eventos-carousel {
     margin-top: var(--espaciado-chico);
 }
 
-/* Tablet & Desktop Overrides */
+/* ---------- Tarjetas ---------- */
+
+.tarjeta-libro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-primario);
+    border-radius: var(--radio-chico);
+    padding: var(--espaciado-medio);
+    box-shadow: 0 2px 8px var(--color-border);
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    flex-shrink: 0;
+}
+
+.tarjeta-libro > div {
+    width: 100%;
+}
+
+.tarjeta-libro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px var(--color-border);
+}
+
+.tarjeta-libro h3 {
+    color: var(--color-secundario);
+    margin: 0;
+    margin-bottom: var(--espaciado-medio);
+    font-weight: 600;
+}
+
+.tarjeta-libro p {
+    font-size: 1rem;
+    color: var(--color-monocromatico);
+    margin: var(--espaciado-chico) 0;
+    font-weight: 400;
+}
+
+.tarjeta-libro img {
+    width: 100%;
+}
+
+.tarjeta-libro button {
+    margin: 0;
+    margin-top: auto;
+    width: 100%;
+    padding: var(--espaciado-chico);
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    border: none;
+    border-radius: var(--radio-chico);
+    cursor: pointer;
+    font-weight: bold;
+    height: 60px;
+    transition:
+        opacity 0.2s,
+        transform 0.2s;
+}
+
+.tarjeta-libro button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 750px) {
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    section {
+        padding: 0;
+    }
+}
+
+/* ---------- Tablet / Desktop ---------- */
+
 @media (min-width: 750px) {
+
     section {
         padding: 0 var(--espaciado-largo);
     }
@@ -94,17 +167,5 @@ section {
     .destacados h2,
     .eventos h2 {
         font-size: 2rem;
-    }
-
-    .grilla-libros {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: var(--espaciado-largo);
-        overflow-x: visible;
-        padding: var(--espaciado-medio) 0;
-    }
-
-    .grilla-libros > li {
-        width: auto;
     }
 }

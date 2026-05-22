@@ -1,0 +1,82 @@
+.libros-carousel {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 50px; 
+}
+
+.libros-viewport {
+    overflow: hidden;
+    width: 100%;
+    padding: 10px; 
+    box-sizing: border-box;
+}
+
+.libros-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.4s ease;
+}
+
+.libros-track .tarjeta-libro {
+    min-width: calc((100% - 60px) / 4);
+    max-width: calc((100% - 60px) / 4);
+    flex-shrink: 0;
+}
+
+.libros-carousel-prev,
+.libros-carousel-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    height: 45px;
+    z-index: 10;
+
+    width: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.6);
+    color: white;
+
+    font-size: 2rem;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.libros-carousel-prev:hover,
+.libros-carousel-next:hover {
+    background: rgba(0,0,0,0.85);
+}
+
+.libros-carousel-prev {
+    left: 0;
+}
+
+.libros-carousel-next {
+    right: 0;
+}
+
+@media (max-width: 1100px) {
+    .libros-track .tarjeta-libro {
+        min-width: calc((100% - 40px) / 3);
+        max-width: calc((100% - 40px) / 3);
+    }
+}
+
+@media (max-width: 800px) {
+    .libros-track .tarjeta-libro {
+        min-width: calc((100% - 20px) / 2);
+        max-width: calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 550px) {
+    .libros-track .tarjeta-libro {
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
