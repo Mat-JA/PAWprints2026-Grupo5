@@ -49,25 +49,26 @@ class Catalogo {
   // ── Card template – same structure as tarjeta_libro.php ──
   renderCard(book) {
     const titulo  = this.escape(book.titulo);
-    const autor   = this.escape(book.autor);
     const isbn    = book.isbn ? `ISBN: ${this.escape(book.isbn)}` : '';
     const precio  = book.precio
       ? `$${Number(book.precio).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
       : '$0,00';
-    const imgSrc  = this.escape(book.imagen);          // ⬅️ property is "imagen", not "imagen_url"
+    const imgSrc  = this.escape(book.imagen_url);          // ⬅️ changed to imagen_url
     const altText = this.escape(book.titulo);
     const libroId = book.id;
 
     return `
-      <article class="tarjeta-libro">
-        <h3>${titulo}</h3>
-        <a href="/libro?id=${libroId}">
-          <img src="${imgSrc}" alt="${altText}">
-        </a>
-        ${isbn ? `<p>${isbn}</p>` : ''}
-        <p>${precio}</p>
-        <a href="/formularioCompra?id=${libroId}" class="btn-comprar">Agregar al carrito</a>
-      </article>
+      <li>
+        <article class="tarjeta-libro">
+          <h3>${titulo}</h3>
+          <a href="/libro?id=${libroId}">
+            <img src="${imgSrc}" alt="${altText}">
+          </a>
+          ${isbn ? `<p>${isbn}</p>` : ''}
+          <p>${precio}</p>
+          <a href="/formularioCompra?id=${libroId}" class="btn-comprar">Agregar al carrito</a>
+        </article>
+      </li>
     `;
   }
 

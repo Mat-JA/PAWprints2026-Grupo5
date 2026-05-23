@@ -23,7 +23,7 @@
         </div>
 
         <div class="contenido">
-            <div id="books-grid" class="grilla-libros"></div>
+            <ul id="books-grid" class="grilla-libros"></ul>
 
             <div id="sentinel" style="display:none;"></div>
             <div id="loading-indicator" style="display:none;">Cargando más libros…</div>
