@@ -1,5 +1,6 @@
-import { fetchJSON }    from '../modules/api.js';
-import { applyFilters } from '../modules/filters.js';
+import { fetchJSON }          from '../modules/api.js';
+import { applyFilters }       from '../modules/filters.js';
+import { InfiniteScroll }     from '../modules/InfiniteScroll.js';
 
 class Catalogo {
   allBooks = [];
@@ -11,6 +12,7 @@ class Catalogo {
       sentinelId:  'sentinel',
       chunk:       20,
       renderFn:    this.renderCard,
+      loadingEl:   document.getElementById('loading-indicator'),
     });
 
     this.bindControls();
@@ -30,7 +32,7 @@ class Catalogo {
   getState() {
     return {
       minPrice:  parseFloat(document.getElementById('min-price').value) || 0,
-      maxPrice:  parseFloat(document.getElementById('max-price').value),
+      maxPrice:  parseFloat(document.getElementById('max-price').value) || Infinity,
       sortField: document.getElementById('sort-field').value,
       sortDir:   document.getElementById('sort-dir').value,
     };
@@ -38,24 +40,49 @@ class Catalogo {
 
   bindControls() {
     const update = () => this.update();
-    ['min-price', 'max-price'].forEach(id =>
-      document.getElementById(id).addEventListener('input', update)
-    );
-    ['sort-field', 'sort-dir'].forEach(id =>
-      document.getElementById(id).addEventListener('change', update)
-    );
+    document.getElementById('min-price').addEventListener('input', update);
+    document.getElementById('max-price').addEventListener('input', update);
+    document.getElementById('sort-field').addEventListener('change', update);
+    document.getElementById('sort-dir').addEventListener('change', update);
   }
 
+  // ── Card template – same structure as tarjeta_libro.php ──
   renderCard(book) {
+    const titulo  = this.escape(book.titulo);
+    const autor   = this.escape(book.autor);
+    const isbn    = book.isbn ? `ISBN: ${this.escape(book.isbn)}` : '';
+    const precio  = book.precio
+      ? `$${Number(book.precio).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+      : '$0,00';
+    const imgSrc  = this.escape(book.imagen);          // ⬅️ property is "imagen", not "imagen_url"
+    const altText = this.escape(book.titulo);
+    const libroId = book.id;
+
     return `
-      <div class="book-card">
-        <img src="${book.imagen}" alt="${book.titulo}">
-        <h3>${book.titulo}</h3>
-        <p>${book.autor}</p>
-        <span>$${book.precio}</span>
-      </div>
+      <article class="tarjeta-libro">
+        <h3>${titulo}</h3>
+        <a href="/libro?id=${libroId}">
+          <img src="${imgSrc}" alt="${altText}">
+        </a>
+        ${isbn ? `<p>${isbn}</p>` : ''}
+        <p>${precio}</p>
+        <a href="/formularioCompra?id=${libroId}" class="btn-comprar">Agregar al carrito</a>
+      </article>
     `;
+  }
+
+  escape(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 }
 
-new Catalogo();
+// ── Boot after DOM is ready ──────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  new Catalogo();
+});

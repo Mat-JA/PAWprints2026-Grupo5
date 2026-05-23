@@ -202,65 +202,10 @@ aside button:hover {
     }
 }
 
-/* ── Added for catalog-filter.js ────────────────────────── */
-.grilla-libros {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
-}
-
-/* Pagination controls */
-#pagination-controls {
-    margin-top: 2rem;
-    text-align: center;
-}
-.pagination-summary {
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    color: #444;
-}
-.pagination-list {
-    display: inline-flex;
-    gap: 0.3rem;
-    list-style: none;
-    padding: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.page-btn {
-    min-width: 48px;
-    min-height: 48px;
-    padding: 0.5em;
-    border: 1px solid #ccc;
-    background: #fff;
-    cursor: pointer;
-    font-size: 1rem;
-    touch-action: manipulation;           /* improve responsiveness */
-}
-.page-btn.active {
-    background: #007bff;
-    color: #fff;
-    border-color: #007bff;
-}
-.page-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-.ellipsis {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 48px;
-    min-height: 48px;
-    color: #888;
-}
-
-/* Mobile filter toggle */
+/* ── Mobile filter toggle (infinite‑scroll‑only version) ── */
 .btn-toggle-filters {
-    display: none;                         /* hidden on desktop */
-    background: var(--color-secundario);   /* adapt to your palette */
+    display: none;
+    background: var(--color-secundario);
     color: var(--color-primario);
     border: none;
     padding: 0.8em 1.2em;
@@ -284,11 +229,11 @@ aside button:hover {
         max-height: 0;
     }
     .filter-panel.visible {
-        max-height: 2000px;                /* large enough to show all controls */
+        max-height: 2000px;
     }
 }
 
-/* General touch‑target enforcement */
+/* Ensure touch targets */
 input, select, button {
     min-height: 44px;
 }

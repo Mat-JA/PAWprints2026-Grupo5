@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/catalogo.css">
     <link rel="stylesheet" href="/assets/css/tarjeta_libro.css">
+
+    <script type="module" src="/assets/js/pages/Catalogo.js"></script>
 </head>
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
@@ -21,14 +23,11 @@
         </div>
 
         <div class="contenido">
-            <!-- Book grid (dynamically filled) -->
             <div id="books-grid" class="grilla-libros"></div>
 
-            <!-- Infinite scroll sentinel and spinner -->
             <div id="sentinel" style="display:none;"></div>
             <div id="loading-indicator" style="display:none;">Cargando más libros…</div>
 
-            <!-- Filter & sort panel (collapsible on mobile) -->
             <aside>
                 <button class="btn-toggle-filters" type="button">Filtros</button>
                 <div class="filter-panel">
@@ -63,47 +62,12 @@
                                 </select>
                             </label>
                         </fieldset>
-
-                        <fieldset>
-                            <legend>Resultados por página</legend>
-                            <select id="items-per-page">
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20" selected>20</option>
-                                <option value="50">50</option>
-                            </select>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Modo de paginación</legend>
-                            <label>
-                                <input type="radio" name="pagination-mode" id="mode-pagination" value="pagination">
-                                Tradicional
-                            </label>
-                            <label>
-                                <input type="radio" name="pagination-mode" id="mode-infinite" value="infinite">
-                                Scroll infinito
-                            </label>
-                        </fieldset>
                     </form>
                 </div>
             </aside>
         </div>
-
-        <!-- Pagination controls (visible only in traditional mode) -->
-        <div id="pagination-controls"></div>
     </main>
 
     <?php require __DIR__ . '/../partials/footer.php'; ?>
-
-    <!-- Bootstrap the module -->
-    <script type="module">
-        import { init } from '/assets/js/modules/catalog-filter.js';
-        init({
-            fetchUrl: '/api/libros',
-            containerSelector: '#books-grid',
-            itemsPerPageDefault: 20   // default, can be left out
-        });
-    </script>
 </body>
 </html>
