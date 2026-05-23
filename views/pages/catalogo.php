@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>PawPrints - Catalogo</title>
+    <title>PawPrints - Catálogo</title>
 
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/header.css">
@@ -12,126 +11,99 @@
     <link rel="stylesheet" href="/assets/css/catalogo.css">
     <link rel="stylesheet" href="/assets/css/tarjeta_libro.css">
 </head>
-
 <body>
     <?php require __DIR__ . '/../partials/header.php'; ?>
 
     <main>
         <div class="cabecera-catalogo">
             <h2>Nuestros libros</h2>
-
-            <a href="/catalogo/exportar" class="btn-filtro btn-csv">
-                Descargar CSV
-            </a>
+            <a href="/catalogo/exportar" class="btn-filtro btn-csv">Descargar CSV</a>
         </div>
+
         <div class="contenido">
-            <ul class="grilla-libros">
+            <!-- Book grid (dynamically filled) -->
+            <div id="books-grid" class="grilla-libros"></div>
 
-            <?php foreach ($libros as $libro): ?>
-                <li>
-                    <?php require __DIR__ . '/../partials/tarjeta_libro.php'; ?>
-                </li>
-            <?php endforeach; ?>
+            <!-- Infinite scroll sentinel and spinner -->
+            <div id="sentinel" style="display:none;"></div>
+            <div id="loading-indicator" style="display:none;">Cargando más libros…</div>
 
-            </ul>
-
+            <!-- Filter & sort panel (collapsible on mobile) -->
             <aside>
-                <details>
-                    <summary>Filtros</summary>
-                    <form>
+                <button class="btn-toggle-filters" type="button">Filtros</button>
+                <div class="filter-panel">
+                    <form id="filter-form">
                         <fieldset>
                             <legend>Precio</legend>
-
                             <label>
-                                <input type="checkbox" name="precio" value="bajo">
-                                Menos de $5000
+                                Mín:
+                                <input type="number" id="min-price" inputmode="decimal" placeholder="0" />
                             </label>
-
                             <label>
-                                <input type="checkbox" name="precio" value="alto">
-                                Más de $5000
+                                Máx:
+                                <input type="number" id="max-price" inputmode="decimal" placeholder="∞" />
                             </label>
                         </fieldset>
 
                         <fieldset>
-                            <legend>Género</legend>
-
+                            <legend>Ordenar</legend>
                             <label>
-                                <input type="checkbox" name="genero" value="fantasia">
-                                Fantasía
+                                Campo:
+                                <select id="sort-field">
+                                    <option value="titulo">Título</option>
+                                    <option value="autor">Autor</option>
+                                    <option value="precio">Precio</option>
+                                </select>
                             </label>
-
                             <label>
-                                <input type="checkbox" name="genero" value="ciencia">
-                                Ciencia
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Época</legend>
-
-                            <label>
-                                <input type="checkbox" name="epoca" value="moderno">
-                                Moderno
-                            </label>
-
-                            <label>
-                                <input type="checkbox" name="epoca" value="clasico">
-                                Clásico
+                                Dirección:
+                                <select id="sort-dir">
+                                    <option value="asc">Ascendente</option>
+                                    <option value="desc">Descendente</option>
+                                </select>
                             </label>
                         </fieldset>
 
                         <fieldset>
-                            <legend>Fechas</legend>
-
-                            <label>
-                                Fecha de ingreso:
-                                <input type="date" name="fecha_ingreso">
-                            </label>
-
-                            <label>
-                                Fecha de edición:
-                                <input type="date" name="fecha_edicion">
-                            </label>
+                            <legend>Resultados por página</legend>
+                            <select id="items-per-page">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20" selected>20</option>
+                                <option value="50">50</option>
+                            </select>
                         </fieldset>
 
                         <fieldset>
-                            <legend>Descuentos</legend>
-
+                            <legend>Modo de paginación</legend>
                             <label>
-                                <input type="checkbox" name="descuento">
-                                Solo con descuento
+                                <input type="radio" name="pagination-mode" id="mode-pagination" value="pagination">
+                                Tradicional
+                            </label>
+                            <label>
+                                <input type="radio" name="pagination-mode" id="mode-infinite" value="infinite">
+                                Scroll infinito
                             </label>
                         </fieldset>
-
-                        <button type="submit">Aplicar filtros</button>
                     </form>
-                </details>
+                </div>
             </aside>
         </div>
 
-        <nav class="paginacion">
-            <ul>
-
-                <?php if ($pagina > 1): ?>
-                    <li><a href="/catalogo?pagina=<?= $pagina - 1 ?>">ant</a></li>
-                <?php endif; ?>
-
-                <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
-                    <li>
-                        <a href="/catalogo?pagina=<?= $i ?>">
-                            <?= $i ?>
-                        </a>
-                    </li>
-                <?php endfor; ?>
-
-                <?php if ($pagina < $totalPaginas): ?>
-                    <li><a href="/catalogo?pagina=<?= $pagina + 1 ?>">sig</a></li>
-                <?php endif; ?>
-
-            </ul>
-        </nav>
+        <!-- Pagination controls (visible only in traditional mode) -->
+        <div id="pagination-controls"></div>
     </main>
 
     <?php require __DIR__ . '/../partials/footer.php'; ?>
+
+    <!-- Bootstrap the module -->
+    <script type="module">
+        import { init } from '/assets/js/modules/catalog-filter.js';
+        init({
+            fetchUrl: '/api/libros',
+            containerSelector: '#books-grid',
+            itemsPerPageDefault: 20   // default, can be left out
+        });
+    </script>
 </body>
+</html>
