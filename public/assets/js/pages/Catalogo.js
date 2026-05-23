@@ -2,32 +2,32 @@ import { fetchJSON }    from '../modules/api.js';
 import { applyFilters } from '../modules/filters.js';
 
 class Catalogo {
-  #allBooks = [];
-  #scroll;
+  allBooks = [];
+  scroll;
 
   constructor() {
-    this.#scroll = new InfiniteScroll({
+    this.scroll = new InfiniteScroll({
       containerId: 'books-grid',
       sentinelId:  'sentinel',
       chunk:       20,
-      renderFn:    this.#renderCard,
+      renderFn:    this.renderCard,
     });
 
-    this.#bindControls();
-    this.#loadBooks();
+    this.bindControls();
+    this.loadBooks();
   }
 
-  async #loadBooks() {
-    this.#allBooks = await fetchJSON('/api/libros');
-    this.#update();
+  async loadBooks() {
+    this.allBooks = await fetchJSON('/api/libros');
+    this.update();
   }
 
-  #update() {
-    const filtered = applyFilters(this.#allBooks, this.#getState());
-    this.#scroll.reset(filtered);
+  update() {
+    const filtered = applyFilters(this.allBooks, this.getState());
+    this.scroll.reset(filtered);
   }
 
-  #getState() {
+  getState() {
     return {
       minPrice:  parseFloat(document.getElementById('min-price').value) || 0,
       maxPrice:  parseFloat(document.getElementById('max-price').value),
@@ -36,8 +36,8 @@ class Catalogo {
     };
   }
 
-  #bindControls() {
-    const update = () => this.#update();
+  bindControls() {
+    const update = () => this.update();
     ['min-price', 'max-price'].forEach(id =>
       document.getElementById(id).addEventListener('input', update)
     );
@@ -46,7 +46,7 @@ class Catalogo {
     );
   }
 
-  #renderCard(book) {
+  renderCard(book) {
     return `
       <div class="book-card">
         <img src="${book.imagen}" alt="${book.titulo}">
@@ -58,4 +58,4 @@ class Catalogo {
   }
 }
 
-new CatalogPage();
+new Catalogo();
