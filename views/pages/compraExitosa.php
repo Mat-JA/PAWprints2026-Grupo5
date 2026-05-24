@@ -27,7 +27,7 @@
             <?php endif; ?>
             
             <p class="success-mensaje">Gracias por tu compra, <?= htmlspecialchars($nombre ?? '') ?>. Te contactaremos pronto.</p>
-            <a href="/index" class="btn-inicio">Volver al Inicio</a>
+            <a href="/" class="btn-inicio">Volver al Inicio</a>
         </section>
     </main>
     <?php require __DIR__ . '/../partials/footer.php'; ?>
