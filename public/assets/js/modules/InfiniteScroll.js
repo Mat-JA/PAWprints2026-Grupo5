@@ -13,10 +13,14 @@ export class InfiniteScroll {
         this.renderFn  = renderFn;
         this.loadingEl = loadingEl;         // ← added
 
-        this.observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) this.loadNext();
-        });
-        this.observer.observe(document.getElementById(sentinelId));
+        const sentinel = document.getElementById(sentinelId);
+        if (sentinel) {
+            sentinel.style.display = 'block';
+            this.observer = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) this.loadNext();
+            });
+            this.observer.observe(sentinel);
+        }
     }
 
     reset(items) {
@@ -28,11 +32,18 @@ export class InfiniteScroll {
 
     loadNext() {
         if (this.loadingEl) this.loadingEl.style.display = 'block';    // ← added
-        const chunk = this.items.slice(this.renderedTo, this.renderedTo + this.chunk);
-        chunk.forEach(item => {
-            this.container.insertAdjacentHTML('beforeend', this.renderFn(item));
-        });
-        this.renderedTo += chunk.length;
+
+        while (this.renderedTo < this.items.length) {
+            const chunk = this.items.slice(this.renderedTo, this.renderedTo + this.chunk);
+            chunk.forEach(item => {
+                this.container.insertAdjacentHTML('beforeend', this.renderFn(item));
+            });
+            this.renderedTo += chunk.length;
+
+            // Stop if all items rendered or page is now scrollable
+            if (this.renderedTo >= this.items.length) break;
+            if (document.documentElement.scrollHeight > window.innerHeight) break;
+        }
 
         // Hide spinner when all items are rendered
         if (this.renderedTo >= this.items.length) {

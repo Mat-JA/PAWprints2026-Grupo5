@@ -11,7 +11,7 @@ class Catalogo {
       containerId: 'books-grid',
       sentinelId:  'sentinel',
       chunk:       20,
-      renderFn:    this.renderCard,
+      renderFn:    this.renderCard.bind(this),
       loadingEl:   document.getElementById('loading-indicator'),
     });
 
@@ -20,7 +20,7 @@ class Catalogo {
   }
 
   async loadBooks() {
-    this.allBooks = await fetchJSON('/api/libros');
+    this.allBooks = (await fetchJSON('/api/libros')).map(item => item.fields);
     this.update();
   }
 
@@ -44,6 +44,12 @@ class Catalogo {
     document.getElementById('max-price').addEventListener('input', update);
     document.getElementById('sort-field').addEventListener('change', update);
     document.getElementById('sort-dir').addEventListener('change', update);
+
+    const toggleBtn = document.querySelector('.btn-toggle-filters');
+    const filterPanel = document.querySelector('.filter-panel');
+    if (toggleBtn && filterPanel) {
+      toggleBtn.addEventListener('click', () => filterPanel.classList.toggle('visible'));
+    }
   }
 
   // ── Card template – same structure as tarjeta_libro.php ──

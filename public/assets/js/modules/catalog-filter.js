@@ -89,7 +89,7 @@ export function init(config) {
 
     // Fetch all books, then render
     fetchJSON(fetchUrl).then(data => {
-        booksData = data;
+        booksData = data.map(item => item.fields);
         render();
     });
 }
@@ -175,9 +175,8 @@ function renderPaginated(items) {
 function renderCard(book) {
     return `
         <div class="book-card">
-            <img src="${book.imagen}" alt="${book.titulo}">
+            <img src="${book.imagen_url || ''}" alt="${book.titulo}">
             <h3>${book.titulo}</h3>
-            <p>${book.autor}</p>
             <span>$${book.precio}</span>
         </div>
     `;
