@@ -73,6 +73,18 @@ final class FirstTablesSeeder extends AbstractSeed
                 'stock'      => 8,
                 'created_at' => date('Y-m-d H:i:s'),
             ],
+            [
+                'titulo'     => 'Extravios de vanguardia',
+                'isbn'       => '978-9-8762-8442-4',
+                'desc_corta' => 'Trayectoria del artista y pensador argentino Roberto Jacoby.',
+                'descripcion'=> 'A través de diálogos, recorre la escena cultural local desde los años del Instituto Di Tella hasta el siglo XXI, fusionando la biografía con el pensamiento estético.',
+                'imagen_url' => '/assets/img/tapas/libro_1779824111_6a15f5efd6d36.webp',
+                'fecha_pub'  => '2017-05-31',
+                'precio' => 100.00,
+                'stock'      => 4,
+                'created_at' => date('Y-m-d H:i:s'),
+            ],
+            
         ];
 
         $this->table('libros')->insert($libros)->saveData();
