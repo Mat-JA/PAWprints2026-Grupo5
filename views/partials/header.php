@@ -36,4 +36,7 @@
             <li><a href="/nosotros">Contacto</a></li>
         </ul>
     </nav>
+
+    <script type="module" src="/assets/js/modules/header-search.js"></script>
+
 </header>
