@@ -119,4 +119,72 @@ class LibroRepository
 
         return $libros;
     }
+
+    public function crear(array $datos): bool
+    {
+        $sql = "INSERT INTO " . self::TABLE . "
+                (titulo, isbn, desc_corta, descripcion, imagen_url, fecha_pub, precio, stock, created_at)
+                VALUES (:titulo, :isbn, :desc_corta, :descripcion, :imagen_url, :fecha_pub, :precio, :stock, NOW())";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':titulo',      $datos['titulo']);
+        $stmt->bindValue(':isbn',        $datos['isbn']);
+        $stmt->bindValue(':desc_corta',  $datos['desc_corta']);
+        $stmt->bindValue(':descripcion', $datos['descripcion']);
+        $stmt->bindValue(':imagen_url',  $datos['imagen_url']);
+        $stmt->bindValue(':fecha_pub',   $datos['fecha_pub']);
+        $stmt->bindValue(':precio',      $datos['precio']);
+        $stmt->bindValue(':stock',       $datos['stock'], PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+    }
+
+    public function actualizar(int $id, array $datos): bool
+    {
+        $sql = "UPDATE " . self::TABLE . " SET
+                titulo      = :titulo,
+                isbn        = :isbn,
+                desc_corta  = :desc_corta,
+                descripcion = :descripcion,
+                imagen_url  = :imagen_url,
+                fecha_pub   = :fecha_pub,
+                precio      = :precio,
+                stock       = :stock
+                WHERE id = :id";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':titulo',      $datos['titulo']);
+        $stmt->bindValue(':isbn',        $datos['isbn']);
+        $stmt->bindValue(':desc_corta',  $datos['desc_corta']);
+        $stmt->bindValue(':descripcion', $datos['descripcion']);
+        $stmt->bindValue(':imagen_url',  $datos['imagen_url']);
+        $stmt->bindValue(':fecha_pub',   $datos['fecha_pub']);
+        $stmt->bindValue(':precio',      $datos['precio']);
+        $stmt->bindValue(':stock',       $datos['stock'], PDO::PARAM_INT);
+        $stmt->bindValue(':id',          $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+    }
+
+    public function eliminar(int $id): bool
+    {
+        $sql = "DELETE FROM " . self::TABLE . " WHERE id = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
+
+    public function actualizarImagenUrl(int $id, string $imagenUrl): bool
+    {
+        $sql = "UPDATE " . self::TABLE . " SET imagen_url = :imagen_url WHERE id = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':imagen_url', $imagenUrl);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
+    
 }

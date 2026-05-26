@@ -53,6 +53,10 @@ $router->get('/libro',             fn() => $libroController()->detalle());
 $router->get('/formularioCompra',  fn() => $libroController()->formularioCompra());
 $router->post('/procesarCompra',   fn() => $libroController()->procesarCompra());
 $router->get('/api/libros', fn() => $libroController()->apiGetLibros());
+$router->get('/admin/abm',             fn() => $libroController()->abm());
+$router->post('/admin/abm/crear',      fn() => $libroController()->crearLibro());
+$router->post('/admin/abm/actualizar', fn() => $libroController()->actualizarLibro());
+$router->post('/admin/abm/eliminar',   fn() => $libroController()->eliminarLibro());
 
 $pageController = fn() => new \App\Controllers\PageController();
 

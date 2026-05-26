@@ -1,0 +1,47 @@
+<?php
+// Partial reutilizado por form-crear y form-editar
+// Las variables $prefix se rellenan por JS al abrir el panel
+?>
+<fieldset class="abm-fieldset">
+
+  <label class="formulario-label">
+    Título:
+    <input type="text" name="titulo" class="abm-input" required maxlength="75">
+  </label>
+
+  <label class="formulario-label">
+    ISBN:
+    <input type="text" name="isbn" class="abm-input" required maxlength="20">
+  </label>
+
+  <label class="formulario-label abm-full">
+    Descripción corta:
+    <input type="text" name="desc_corta" class="abm-input" required maxlength="150">
+  </label>
+
+  <label class="formulario-label abm-full">
+    Descripción:
+    <textarea name="descripcion" class="abm-textarea" required maxlength="300"></textarea>
+  </label>
+
+  <label class="formulario-label">
+    Fecha de publicación:
+    <input type="date" name="fecha_pub" class="abm-input" required>
+  </label>
+
+  <label class="formulario-label">
+    Precio:
+    <input type="number" name="precio" class="abm-input" required min="0" step="0.01">
+  </label>
+
+  <label class="formulario-label">
+    Stock:
+    <input type="number" name="stock" class="abm-input" required min="0" step="1">
+  </label>
+
+  <label class="formulario-label abm-full">
+    Imagen de tapa:
+    <div class="abm-dropzone"></div>
+  </label>
+
+</fieldset>

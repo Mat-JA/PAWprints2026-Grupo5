@@ -178,4 +178,72 @@ class LibroController
         exit;
     }
 
+    public function abm()
+    {
+        $libros = $this->libroService->obtenerTodos();
+        require $this->viewsDir . 'pages/abm.php';
+    }
+
+    public function crearLibro()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new PageNotFound('Método no permitido');
+        }
+
+        $datos = $this->_sanitizarDatos($_POST);
+        $archivo = $_FILES['imagen_tapa'] ?? null;
+
+        $this->libroService->crear($datos, $archivo);
+
+        header('Location: /admin/abm?exito=creado');
+        exit;
+    }
+
+    public function actualizarLibro()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new PageNotFound('Método no permitido');
+        }
+
+        $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
+        if (!$id) throw new PageNotFound('Libro no especificado');
+
+        $datos = $this->_sanitizarDatos($_POST);
+        $archivo = $_FILES['imagen_tapa'] ?? null;
+
+        $this->libroService->actualizar($id, $datos, $archivo);
+
+        header('Location: /admin/abm?exito=actualizado');
+        exit;
+    }
+
+    public function eliminarLibro()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new PageNotFound('Método no permitido');
+        }
+
+        $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
+        if (!$id) throw new PageNotFound('Libro no especificado');
+
+        $this->libroService->eliminar($id);
+
+        header('Location: /admin/abm?exito=eliminado');
+        exit;
+    }
+
+    private function _sanitizarDatos(array $post): array
+    {
+        $campos = ['titulo', 'isbn', 'desc_corta', 'descripcion', 'fecha_pub', 'precio', 'stock'];
+        $datos  = [];
+        foreach ($campos as $campo) {
+            $datos[$campo] = isset($post[$campo])
+                ? htmlspecialchars(trim($post[$campo]), ENT_QUOTES, 'UTF-8')
+                : '';
+        }
+        $datos['precio'] = (float) $datos['precio'];
+        $datos['stock']  = (int)   $datos['stock'];
+        return $datos;
+    }
+
 }
