@@ -1,12 +1,11 @@
 /**
  * ImageDropzone
  * Componente de carga de imágenes vía Drag & Drop.
- * 
+ *
  * Uso:
  *   new ImageDropzone('#mi-contenedor', { maxSizeMB: 5, accept: ['image/jpeg', 'image/png', 'image/webp'] });
- * 
- * El contenedor debe tener un <input type="file"> adentro, o se crea uno automáticamente.
- * El archivo seleccionado queda disponible en dropzone.file
+ *
+ * El archivo seleccionado queda disponible en dropzone.getFile()
  */
 class ImageDropzone {
 
@@ -28,6 +27,7 @@ class ImageDropzone {
         };
 
         this.file = null;
+        this._inputId = 'dropzone-input-' + Math.random().toString(36).slice(2);
 
         this._build();
         this._bindEvents();
@@ -36,28 +36,29 @@ class ImageDropzone {
     // ─── Construcción del DOM ────────────────────────────────────────────────
 
     _build() {
-
         this.container.classList.add('dropzone');
 
-        // Input oculto (se reutiliza si ya existe)
-        this.input = this.container.querySelector('input[type="file"]');
-        if (!this.input) {
-            this.input = document.createElement('input');
-            this.input.type = 'file';
-            this.input.name = 'imagen_tapa';
-            this.container.appendChild(this.input);
-        }
+        // Limpiar contenido previo si ya fue inicializado
+        this.container.innerHTML = '';
+
+        // Input file real — oculto visualmente
+        this.input = document.createElement('input');
+        this.input.type   = 'file';
+        this.input.name   = 'imagen_tapa';
+        this.input.id     = this._inputId;
         this.input.accept = this.options.accept.join(',');
         this.input.classList.add('dropzone-input');
+        this.container.appendChild(this.input);
 
-        // Área visual
-        this.area = document.createElement('div');
-        this.area.classList.add('dropzone-area');
-        this.area.setAttribute('role', 'button');
-        this.area.setAttribute('tabindex', '0');
-        this.area.setAttribute('aria-label', 'Área de carga de imagen. Hacé clic o arrastrá una imagen aquí.');
+        // Label que envuelve el área — al clickear abre el file picker nativamente
+        this.label = document.createElement('label');
+        this.label.htmlFor = this._inputId;
+        this.label.classList.add('dropzone-label');
+        this.label.setAttribute('tabindex', '0');
+        this.label.setAttribute('role', 'button');
+        this.label.setAttribute('aria-label', 'Área de carga de imagen. Hacé clic o arrastrá una imagen aquí.');
 
-        this.area.innerHTML = `
+        this.label.innerHTML = `
             <div class="dropzone-icon" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -70,10 +71,9 @@ class ImageDropzone {
             <p class="dropzone-subtitle">o <span class="dropzone-link">hacé clic para buscarla</span></p>
             <p class="dropzone-hint">JPG, PNG, WEBP — máx. ${this.options.maxSizeMB} MB</p>
         `;
+        this.container.appendChild(this.label);
 
-        this.container.appendChild(this.area);
-
-        // Preview (oculta hasta que se cargue algo)
+        // Preview
         this.preview = document.createElement('div');
         this.preview.classList.add('dropzone-preview');
         this.preview.hidden = true;
@@ -93,7 +93,7 @@ class ImageDropzone {
         `;
         this.container.appendChild(this.preview);
 
-        // Mensaje de error
+        // Error
         this.errorMsg = document.createElement('p');
         this.errorMsg.classList.add('dropzone-error');
         this.errorMsg.setAttribute('role', 'alert');
@@ -105,9 +105,8 @@ class ImageDropzone {
 
     _bindEvents() {
 
-        // Click en el área abre el file picker
-        this.area.addEventListener('click', () => this.input.click());
-        this.area.addEventListener('keydown', (e) => {
+        // Teclado sobre el label
+        this.label.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 this.input.click();
@@ -122,20 +121,20 @@ class ImageDropzone {
         });
 
         // Drag & Drop
-        this.area.addEventListener('dragover', (e) => {
+        this.label.addEventListener('dragover', (e) => {
             e.preventDefault();
-            this.area.classList.add('dragover');
+            this.label.classList.add('dragover');
         });
 
-        this.area.addEventListener('dragleave', (e) => {
-            if (!this.area.contains(e.relatedTarget)) {
-                this.area.classList.remove('dragover');
+        this.label.addEventListener('dragleave', (e) => {
+            if (!this.label.contains(e.relatedTarget)) {
+                this.label.classList.remove('dragover');
             }
         });
 
-        this.area.addEventListener('drop', (e) => {
+        this.label.addEventListener('drop', (e) => {
             e.preventDefault();
-            this.area.classList.remove('dragover');
+            this.label.classList.remove('dragover');
             const file = e.dataTransfer.files[0];
             if (file) this._handleFile(file);
         });
@@ -149,16 +148,13 @@ class ImageDropzone {
     // ─── Lógica principal ─────────────────────────────────────────────────────
 
     _handleFile(file) {
-
         this._clearError();
 
-        // Validar tipo
         if (!this.options.accept.includes(file.type)) {
             this._showError(`Tipo de archivo no permitido. Usá: ${this.options.accept.map(t => t.split('/')[1].toUpperCase()).join(', ')}.`);
             return;
         }
 
-        // Validar tamaño
         const maxBytes = this.options.maxSizeMB * 1024 * 1024;
         if (file.size > maxBytes) {
             this._showError(`El archivo es demasiado grande. El máximo es ${this.options.maxSizeMB} MB.`);
@@ -167,31 +163,29 @@ class ImageDropzone {
 
         this.file = file;
 
-        // Mostrar preview
         const reader = new FileReader();
         reader.onload = (e) => {
             this.preview.querySelector('.dropzone-preview-img').src = e.target.result;
             this.preview.querySelector('.dropzone-preview-name').textContent = file.name;
             this.preview.querySelector('.dropzone-preview-size').textContent = this._formatSize(file.size);
-            this.area.hidden = true;
+            this.label.hidden   = true;
             this.preview.hidden = false;
         };
         reader.readAsDataURL(file);
 
-        // Disparar evento personalizado
         this.container.dispatchEvent(new CustomEvent('dropzone:change', { detail: { file } }));
     }
 
     _showError(msg) {
         this.errorMsg.textContent = msg;
         this.errorMsg.hidden = false;
-        this.area.classList.add('has-error');
+        this.label.classList.add('has-error');
     }
 
     _clearError() {
         this.errorMsg.hidden = true;
         this.errorMsg.textContent = '';
-        this.area.classList.remove('has-error');
+        this.label.classList.remove('has-error');
     }
 
     _formatSize(bytes) {
@@ -202,18 +196,18 @@ class ImageDropzone {
 
     // ─── API pública ──────────────────────────────────────────────────────────
 
-    /** Limpia la selección y vuelve al estado inicial */
-    clear() {
-        this.file = null;
-        this.input.value = '';
-        this.preview.querySelector('.dropzone-preview-img').src = '';
-        this.preview.hidden = true;
-        this.area.hidden = false;
-        this._clearError();
-        this.container.dispatchEvent(new CustomEvent('dropzone:clear'));
-    }
+clear() {
+    this.file = null;
+    this.input.value = '';
+    this.preview.querySelector('.dropzone-preview-img').src = '';
+    this.preview.querySelector('.dropzone-preview-name').textContent = '';
+    this.preview.querySelector('.dropzone-preview-size').textContent = '';
+    this.preview.hidden = true;
+    this.label.hidden   = false;
+    this._clearError();
+    this.container.dispatchEvent(new CustomEvent('dropzone:clear'));
+}
 
-    /** Devuelve el archivo seleccionado, o null si no hay ninguno */
     getFile() {
         return this.file;
     }

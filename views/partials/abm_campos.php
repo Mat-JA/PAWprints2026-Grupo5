@@ -39,9 +39,9 @@
     <input type="number" name="stock" class="abm-input" required min="0" step="1">
   </label>
 
-  <label class="formulario-label abm-full">
+  <div class="formulario-label abm-full">
     Imagen de tapa:
     <div class="abm-dropzone"></div>
-  </label>
+  </div>
 
 </fieldset>

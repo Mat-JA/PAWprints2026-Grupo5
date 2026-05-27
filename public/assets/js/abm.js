@@ -87,3 +87,26 @@ function setVal(form, name, value) {
     const el = form.querySelector(`[name="${name}"]`);
     if (el) el.value = value ?? '';
 }
+
+// ─── Submit con drag & drop ───────────────────────────────────────────────────
+[
+    { form: formCrear,  getDropzone: () => dropzoneCrear },
+    { form: formEditar, getDropzone: () => dropzoneEditar }
+].forEach(({ form, getDropzone }) => {
+    form.addEventListener('submit', function(e) {
+        const dz = getDropzone();
+        if (dz && dz.getFile()) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            formData.set('imagen_tapa', dz.getFile());
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            }).then(res => {
+                if (res.redirected) {
+                    window.location.href = res.url;
+                }
+            });
+        }
+    });
+});
