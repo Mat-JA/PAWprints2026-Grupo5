@@ -5,25 +5,35 @@ namespace App\Models;
 use App\Core\AbstractModel;
 use App\Core\Exceptions\InvalidValueFormatException;
 
-class Author extends AbstractModel
+class Autor extends AbstractModel
 {
-    public string $table = 'author';
+    public string $table = 'autores';
 
     public array $fields = [
-        'name' => null,
+        'id' => null,
+        'nombre' => null,
         'bio' => null,
     ];
 
-    public function setName(string $name)
+    public function setId(int $id)
     {
-        if (strlen($name) > 60) {
+        if ($id <= 0) {
+            throw new InvalidValueFormatException('El ID debe ser mayor a cero');
+        }
+
+        $this->fields['id'] = $id;
+    }
+
+    public function setNombre(string $nombre)
+    {
+        if (strlen($nombre) > 60) {
             throw new InvalidValueFormatException('El nombre del autor no debe ser mayor a 60 caracteres');
         }
 
-        $this->fields['name'] = $name;
+        $this->fields['nombre'] = $nombre;
     }
 
-    public function setBiography(string $bio)
+    public function setBio(string $bio)
     {
         if (strlen($bio) > 250) {
             throw new InvalidValueFormatException('La biografía del autor no debe ser mayor a 250 caracteres');

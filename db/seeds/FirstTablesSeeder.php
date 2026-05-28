@@ -84,7 +84,6 @@ final class FirstTablesSeeder extends AbstractSeed
                 'stock'      => 4,
                 'created_at' => date('Y-m-d H:i:s'),
             ],
-            
         ];
 
         $this->table('libros')->insert($libros)->saveData();

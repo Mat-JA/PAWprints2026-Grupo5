@@ -62,7 +62,7 @@ class LibroController
             throw new PageNotFound('Libro no encontrado');
         }
 
-        $libro = $this->libroService->obtenerPorId((int)$id);
+        $libro = $this->libroService->obtenerPorIdConAutores((int)$id);
 
         if (!$libro) {
             throw new PageNotFound('Libro no encontrado');
@@ -171,7 +171,7 @@ class LibroController
 
     public function apiGetLibros(): void
     {
-        $libros = $this->libroService->obtenerTodos();
+        $libros = $this->libroService->obtenerTodosConAutor();
 
         header('Content-Type: application/json');
         echo json_encode($libros);

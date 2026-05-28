@@ -2,16 +2,21 @@
 
 namespace App\Services;
 
+use App\Repository\AutorRepository;
 use App\Repository\LibroRepository;
 use App\Models\Libro;
 
 class LibroService
 {
     private LibroRepository $libroRepository;
+    private AutorRepository $autorRepository;
 
-    public function __construct(LibroRepository $libroRepository)
-    {
+    public function __construct(
+        LibroRepository $libroRepository,
+        AutorRepository $autorRepository,
+    ) {
         $this->libroRepository = $libroRepository;
+        $this->autorRepository = $autorRepository;
     }
 
     public function obtenerPaginado(int $pagina, int $limite, ?string $busqueda): array
@@ -39,6 +44,76 @@ class LibroService
     public function obtenerTodos(): array
     {
         return $this->libroRepository->obtenerTodos();
+    }
+
+    /**
+     * Obtiene todos los libros con sus autores.
+     *
+     * Devuelve un array donde cada elemento tiene los campos del libro
+     * más un campo 'autores' con el id y nombre de cada autor.
+     *
+     * @return array
+     */
+    public function obtenerTodosConAutor(): array
+    {
+        $libros = $this->libroRepository->obtenerTodos();
+
+        $resultado = [];
+
+        foreach ($libros as $libro) {
+            $datosLibro = $libro->fields;
+
+            $autoresModel = $this->autorRepository->obtenerAutoresPorLibroId(
+                (int) $datosLibro['id']
+            );
+
+            $autores = [];
+            foreach ($autoresModel as $autor) {
+                $autores[] = [
+                    'id' => $autor->fields['id'],
+                    'nombre' => $autor->fields['nombre'],
+                ];
+            }
+
+            $datosLibro['autores'] = $autores;
+            $resultado[] = $datosLibro;
+        }
+
+        return $resultado;
+    }
+
+    /**
+     * Obtiene un libro por ID con sus autores.
+     *
+     * Devuelve los campos del libro más un campo 'autores' con el id y nombre
+     * de cada autor. Retorna null si el libro no existe.
+     *
+     * @param int $id
+     * @return array|null
+     */
+    public function obtenerPorIdConAutores(int $id): ?array
+    {
+        $libro = $this->libroRepository->obtenerPorId($id);
+
+        if (!$libro) {
+            return null;
+        }
+
+        $datosLibro = $libro->fields;
+
+        $autoresModel = $this->autorRepository->obtenerAutoresPorLibroId($id);
+
+        $autores = [];
+        foreach ($autoresModel as $autor) {
+            $autores[] = [
+                'id' => $autor->fields['id'],
+                'nombre' => $autor->fields['nombre'],
+            ];
+        }
+
+        $datosLibro['autores'] = $autores;
+
+        return $datosLibro;
     }
 
     public function crear(array $datos, ?array $archivo): bool

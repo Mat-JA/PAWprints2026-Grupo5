@@ -38,7 +38,8 @@ $router->setLogger($log);
 
 $libroController = function () use ($connection, $mailService) {
     $libroRepo     = new \App\Repository\LibroRepository($connection);
-    $libroService  = new \App\Services\LibroService($libroRepo);
+    $autorRepo     = new \App\Repository\AutorRepository($connection);
+    $libroService  = new \App\Services\LibroService($libroRepo, $autorRepo);
     $compraRepo    = new \App\Repository\CompraRepository($connection);
     $compraService = new \App\Services\CompraService($libroRepo, $compraRepo, $connection);
     return new \App\Controllers\LibroController($libroService, $compraService, $mailService);
