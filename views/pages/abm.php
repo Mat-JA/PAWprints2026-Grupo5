@@ -134,7 +134,7 @@
 
   <?php require __DIR__ . '/../partials/footer.php'; ?>
 
-  <script src="/assets/js/ImageDropzone.js"></script>
+  <script src="/assets/js/imageDropzone.js"></script>
   <script src="/assets/js/abm.js"></script>
 
 </body>

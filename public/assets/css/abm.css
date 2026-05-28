@@ -319,3 +319,23 @@
         padding: var(--espaciado-largo);
     }
 }
+
+/* ─── Validación en línea ─────────────────────────────────────────────────── */
+.abm-input--error {
+    border-color: #c0392b !important;
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15) !important;
+}
+
+.abm-textarea--error {
+    border-color: #c0392b !important;
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15) !important;
+}
+
+.abm-campo-error {
+    font-size: var(--fuente-tamano-sm, 0.78rem);
+    color: #c0392b;
+    font-weight: 400;
+    line-height: 1.3;
+    /* Compensa el gap ya definido en .formulario-label */
+    margin-top: calc(var(--espaciado-chico, 4px) * -0.5);
+}
