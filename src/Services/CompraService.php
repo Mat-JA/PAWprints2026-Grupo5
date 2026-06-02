@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use PDO;
+use App\Models\Compra;
 use App\Repository\LibroRepository;
 use App\Repository\CompraRepository;
 use App\Core\Exceptions\StockInsuficienteException;
@@ -15,25 +16,26 @@ class CompraService
 
     public function __construct(LibroRepository $libroRepository, CompraRepository $compraRepository, PDO $conexion)
     {
-        $this->libroRepository = $libroRepository;
-        $this->compraRepository = $compraRepository;
-        $this->conexion = $conexion;
+        $this->libroRepository   = $libroRepository;
+        $this->compraRepository  = $compraRepository;
+        $this->conexion          = $conexion;
     }
 
     public function procesarCompra(array $datos): bool
     {
-        $id_libro = (int) ($datos['id_libro'] ?? 0);
+        $compra = new Compra();
+        $compra->set($datos);
 
         $this->conexion->beginTransaction();
 
         try {
-            $stockDecrementado = $this->libroRepository->decrementarStock($id_libro);
+            $stockDecrementado = $this->libroRepository->decrementarStock($compra->fields['id_libro']);
 
             if (!$stockDecrementado) {
                 throw new StockInsuficienteException('No hay suficiente stock para el libro');
             }
 
-            $registrado = $this->compraRepository->registrar($datos);
+            $registrado = $this->compraRepository->registrar($compra);
 
             if (!$registrado) {
                 throw new \Exception('No se pudo registrar la compra');

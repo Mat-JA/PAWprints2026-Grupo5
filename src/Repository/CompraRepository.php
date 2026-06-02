@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use PDO;
+use App\Models\Compra;
 
 class CompraRepository
 {
@@ -15,7 +16,7 @@ class CompraRepository
         $this->conexion = $conexion;
     }
 
-    public function registrar(array $datos): bool
+    public function registrar(Compra $compra): bool
     {
         $sql = "INSERT INTO " . self::TABLE .
                " (id_libro, nombre, apellido, email, pais, provincia, ciudad, calle, nro_calle)
@@ -23,15 +24,15 @@ class CompraRepository
 
         $stmt = $this->conexion->prepare($sql);
 
-        $stmt->bindValue(':id_libro', $datos['id_libro'] ?? null, PDO::PARAM_INT);
-        $stmt->bindValue(':nombre', $datos['nombre'] ?? '');
-        $stmt->bindValue(':apellido', $datos['apellido'] ?? '');
-        $stmt->bindValue(':email', $datos['email'] ?? '');
-        $stmt->bindValue(':pais', $datos['pais'] ?? '');
-        $stmt->bindValue(':provincia', $datos['provincia'] ?? '');
-        $stmt->bindValue(':ciudad', $datos['ciudad'] ?? '');
-        $stmt->bindValue(':calle', $datos['calle'] ?? '');
-        $stmt->bindValue(':nro_calle', $datos['nro_calle'] ?? '', PDO::PARAM_INT);
+        $stmt->bindValue(':id_libro',  $compra->fields['id_libro'],  PDO::PARAM_INT);
+        $stmt->bindValue(':nombre',    $compra->fields['nombre']);
+        $stmt->bindValue(':apellido',  $compra->fields['apellido']);
+        $stmt->bindValue(':email',     $compra->fields['email']);
+        $stmt->bindValue(':pais',      $compra->fields['pais']);
+        $stmt->bindValue(':provincia', $compra->fields['provincia']);
+        $stmt->bindValue(':ciudad',    $compra->fields['ciudad']);
+        $stmt->bindValue(':calle',     $compra->fields['calle']);
+        $stmt->bindValue(':nro_calle', $compra->fields['nro_calle'], PDO::PARAM_INT);
 
         return $stmt->execute();
     }
@@ -46,6 +47,16 @@ class CompraRepository
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $compras = [];
+        foreach ($filas as $fila) {
+            $compra = new Compra();
+            $compra->set($fila);
+            $compra->fields['titulo_libro'] = $fila['titulo_libro'];
+            $compras[] = $compra;
+        }
+
+        return $compras;
     }
 }

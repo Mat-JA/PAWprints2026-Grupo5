@@ -37,12 +37,19 @@ $router->setLogger($log);
 // --- Factory ---
 
 $libroController = function () use ($connection, $mailService) {
+    $libroRepo    = new \App\Repository\LibroRepository($connection);
+    $autorRepo    = new \App\Repository\AutorRepository($connection);
+    $libroService = new \App\Services\LibroService($libroRepo, $autorRepo);
+    return new \App\Controllers\LibroController($libroService);
+};
+
+$compraController = function () use ($connection, $mailService) {
     $libroRepo     = new \App\Repository\LibroRepository($connection);
     $autorRepo     = new \App\Repository\AutorRepository($connection);
     $libroService  = new \App\Services\LibroService($libroRepo, $autorRepo);
     $compraRepo    = new \App\Repository\CompraRepository($connection);
     $compraService = new \App\Services\CompraService($libroRepo, $compraRepo, $connection);
-    return new \App\Controllers\LibroController($libroService, $compraService, $mailService);
+    return new \App\Controllers\CompraController($compraService, $libroService, $mailService);
 };
 
 // --- Rutas ---
@@ -51,14 +58,15 @@ $router->get('/',                  fn() => $libroController()->home());
 $router->get('/catalogo',          fn() => $libroController()->catalogo());
 $router->get('/catalogo/exportar', fn() => $libroController()->exportarCsv());
 $router->get('/libro',             fn() => $libroController()->detalle());
-$router->get('/formularioCompra',  fn() => $libroController()->formularioCompra());
-$router->post('/procesarCompra',   fn() => $libroController()->procesarCompra());
 $router->get('/api/libros', fn() => $libroController()->apiGetLibros());
 $router->get('/admin/abm',             fn() => $libroController()->abm());
 $router->post('/admin/abm/crear',      fn() => $libroController()->crearLibro());
 $router->post('/admin/abm/actualizar', fn() => $libroController()->actualizarLibro());
 $router->post('/admin/abm/eliminar',   fn() => $libroController()->eliminarLibro());
-$router->get('/admin/pedidos', fn() => $libroController()->pedidos());
+
+$router->get('/formularioCompra', fn() => $compraController()->formularioCompra());
+$router->post('/procesarCompra',  fn() => $compraController()->procesarCompra());
+$router->get('/admin/pedidos',    fn() => $compraController()->pedidos());
 
 $pageController = fn() => new \App\Controllers\PageController();
 

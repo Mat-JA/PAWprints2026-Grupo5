@@ -39,14 +39,12 @@
           <?php else: ?>
             <?php foreach ($compras as $compra): ?>
               <tr>
-                <td><?= htmlspecialchars($compra['id']) ?></td>
-                <td><?= htmlspecialchars($compra['titulo_libro'] ?? 'N/A') ?></td>
-                <td><?= htmlspecialchars($compra['nombre'] . ' ' . $compra['apellido']) ?></td>
-                <td><?= htmlspecialchars($compra['email']) ?></td>
-                <td>
-                  <?= htmlspecialchars($compra['calle'] . ' ' . $compra['nro_calle'] . ', ' . $compra['ciudad'] . ', ' . $compra['provincia']) ?>
-                </td>
-                <td><?= htmlspecialchars($compra['pais']) ?></td>
+                <td><?= htmlspecialchars($compra->fields['id']) ?></td>
+                <td><?= htmlspecialchars($compra->fields['titulo_libro'] ?? 'N/A') ?></td>
+                <td><?= htmlspecialchars($compra->fields['nombre'] . ' ' . $compra->fields['apellido']) ?></td>
+                <td><?= htmlspecialchars($compra->fields['email']) ?></td>
+                <td><?= htmlspecialchars($compra->fields['calle'] . ' ' . $compra->fields['nro_calle'] . ', ' . $compra->fields['ciudad'] . ', ' . $compra->fields['provincia']) ?></td>
+                <td><?= htmlspecialchars($compra->fields['pais']) ?></td>
               </tr>
             <?php endforeach; ?>
           <?php endif; ?>

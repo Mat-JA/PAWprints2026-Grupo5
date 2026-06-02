@@ -3,29 +3,18 @@
 namespace App\Controllers;
 
 use App\Services\LibroService;
-use App\Services\CompraService;
 use App\Core\Exceptions\PageNotFound;
-use App\Core\Exceptions\StockInsuficienteException;
-use App\Services\MailService;
 
 class LibroController
 {
     private LibroService $libroService;
-    private CompraService $compraService;
-    private MailService $mailService;
     public string $viewsDir;
-    private string $reservasMail;
 
     public function __construct(
         LibroService $libroService,
-        CompraService $compraService,
-        MailService $mailService,
     ) {
         $this->libroService = $libroService;
-        $this->compraService = $compraService;
-        $this->mailService = $mailService;
         $this->viewsDir = __DIR__ . '/../../views/';
-        $this->reservasMail = $_ENV['RESERVAS_MAIL'];
     }
 
     public function home()
@@ -84,7 +73,7 @@ class LibroController
         header('Pragma: no-cache');
         header('Expires: 0');
 
-        echo "\xEF\xBB\xBF"; // UTF-8 BOM
+        echo "\xEF\xBB\xBF"; 
 
         $output = fopen('php://output', 'w');
 
@@ -101,72 +90,6 @@ class LibroController
 
         fclose($output);
         exit;
-    }
-
-    public function formularioCompra()
-    {
-        $id = $_GET['id'] ?? null;
-
-        if (!$id) {
-            throw new PageNotFound('Libro no encontrado');
-        }
-
-        $libro = $this->libroService->obtenerPorId((int)$id);
-
-        if (!$libro) {
-            throw new PageNotFound('Libro no encontrado');
-        }
-
-        require $this->viewsDir . 'pages/formularioCompra.php';
-    }
-
-    public function procesarCompra()
-    {
-        $id_libro = $_POST['id_libro'] ?? null;
-
-        if (!$id_libro) {
-            throw new PageNotFound('Libro no especificado');
-        }
-
-        $datos = [];
-        foreach ($_POST as $key => $value) {
-            $datos[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-        }
-        $datos['id_libro'] = (int) $datos['id_libro'];
-
-        try {
-            $this->compraService->procesarCompra($datos);
-
-            $libro = $this->libroService->obtenerPorId($datos['id_libro']);
-            $nombre = $datos['nombre'] ?? '';
-            $cuerpo = $this->construirEmail($datos);
-            $asunto = 'Nueva Compra';
-
-            $this->mailService->send($this->reservasMail, $asunto, $cuerpo);
-            require $this->viewsDir . 'pages/compraExitosa.php';
-        } catch (StockInsuficienteException $e) {
-            require $this->viewsDir . 'pages/stockInsuficiente.php';
-        }
-    }
-
-    private function construirEmail(array $d): string
-    {
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $fecha = date('d/m/Y H:i');
-        return "
-            <h2>Nueva Reserva de Libro</h2>
-
-            <h3>Datos</h3>
-            <ul>
-                <li><strong>Nombre:</strong> {$d['nombre']} {$d['apellido']}</li>
-                <li><strong>Email:</strong> {$d['email']}</li>
-                <li><strong>País:</strong> {$d['pais']}</li>
-                <li><strong>Provincia:</strong> {$d['provincia']}</li>
-                <li><strong>Ciudad:</strong> {$d['ciudad']}</li>
-                <li><strong>Dirección:</strong> {$d['calle']} {$d['nro_calle']}</li>
-            </ul>
-            <p><em>Reserva creada el {$fecha}</em></p>
-        ";
     }
 
     public function apiGetLibros(): void
@@ -244,11 +167,5 @@ class LibroController
         $datos['precio'] = (float) $datos['precio'];
         $datos['stock']  = (int)   $datos['stock'];
         return $datos;
-    }
-
-    public function pedidos()
-    {
-        $compras = $this->compraService->obtenerTodos();
-        require $this->viewsDir . 'pages/pedidos.php';
     }
 }
