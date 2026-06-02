@@ -246,4 +246,9 @@ class LibroController
         return $datos;
     }
 
+    public function pedidos()
+    {
+        $compras = $this->compraService->obtenerTodos();
+        require $this->viewsDir . 'pages/pedidos.php';
+    }
 }

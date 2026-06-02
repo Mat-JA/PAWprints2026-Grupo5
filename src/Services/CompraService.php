@@ -46,4 +46,9 @@ class CompraService
             throw $e;
         }
     }
+
+    public function obtenerTodos(): array
+    {
+        return $this->compraRepository->obtenerTodos();
+    }
 }

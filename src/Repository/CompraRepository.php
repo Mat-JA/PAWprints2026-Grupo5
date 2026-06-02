@@ -35,4 +35,17 @@ class CompraRepository
 
         return $stmt->execute();
     }
+
+    public function obtenerTodos(): array
+    {
+        $sql = "SELECT c.*, l.titulo AS titulo_libro
+                FROM " . self::TABLE . " c
+                LEFT JOIN libros l ON c.id_libro = l.id
+                ORDER BY c.id DESC";
+
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

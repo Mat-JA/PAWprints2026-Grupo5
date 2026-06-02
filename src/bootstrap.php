@@ -58,6 +58,7 @@ $router->get('/admin/abm',             fn() => $libroController()->abm());
 $router->post('/admin/abm/crear',      fn() => $libroController()->crearLibro());
 $router->post('/admin/abm/actualizar', fn() => $libroController()->actualizarLibro());
 $router->post('/admin/abm/eliminar',   fn() => $libroController()->eliminarLibro());
+$router->get('/admin/pedidos', fn() => $libroController()->pedidos());
 
 $pageController = fn() => new \App\Controllers\PageController();
 
