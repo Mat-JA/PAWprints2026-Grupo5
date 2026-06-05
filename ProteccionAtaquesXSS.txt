@@ -1,0 +1,15 @@
+Protección contra XSS
+Las vistas del proyecto se encuentran protegidas contra ataques de Cross-Site Scripting gracias al uso del motor de plantillas Twig,
+que aplica escape automático de HTML sobre toda variable impresa mediante la sintaxis {{ }}.
+Esto significa que si un dato almacenado en la base de datos contuviera código malicioso como <script>alert('xss')</script>,
+Twig lo convertiría en sus entidades HTML equivalentes (&lt;script&gt;...), imprimiéndolo como texto plano en lugar de ejecutarlo
+como código en el navegador del usuario.
+Este mecanismo cubre la totalidad de las variables renderizadas en el proyecto y cualquier otro valor proveniente de la base de datos.
+El caso más sensible es el atributo data-libro en la vista de administración, donde se serializa un objeto completo para su uso en
+JavaScript; este caso está correctamente resuelto mediante la combinación de los filtros json_encode|e('html_attr'),
+que garantiza que ningún carácter especial pueda romper el atributo HTML ni inyectar código.
+Adicionalmente, se verificó que en ninguna vista se utiliza el filtro |raw de Twig, que es el único mecanismo que desactiva el
+escape automático y representaría un riesgo si se aplicara sobre datos de origen externo.
+Su ausencia confirma que el escape está activo de forma uniforme en toda la capa de presentación.
+En conclusión, al igual que con la inyección SQL, no fue necesario que realicemos correcciones,
+dado que en el punto 4, donde pasamos nuestras vistas a Twig garantizamos la protección contra XSS.

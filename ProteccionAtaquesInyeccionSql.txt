@@ -1,0 +1,12 @@
+Protección contra inyección SQL
+El proyecto se encuentra protegido contra ataques de inyección SQL en su totalidad gracias al uso de PDO (PHP Data Objects)
+con prepared statements y parámetros nombrados a lo largo de todos los repositorios de la aplicación.
+En lugar de construir las consultas SQL concatenando directamente los valores provistos por el usuario,
+se utiliza el método prepare() de PDO para enviar la estructura de la query al motor de base de datos de forma separada a los datos.
+Luego, cada valor externo se vincula mediante bindValue() con su parámetro nombrado correspondiente (:id, :nombre, :busqueda, etc.),
+garantizando que el motor de base de datos trate dichos valores siempre como datos literales y nunca como código SQL ejecutable.
+Esto significa que aunque un usuario malintencionado ingresara cadenas como ' OR '1'='1 o '; DROP TABLE libros; --,
+estos valores serían interpretados como texto plano sin ningún efecto sobre la consulta.
+Este patrón se aplica de forma uniforme en todos los repositorios del proyecto.
+En conclusión, no fue necesario realizar modificaciones correctivas en el código, dado que la aplicación fue desarrollada
+desde el inicio respetando las buenas prácticas de seguridad en el acceso a la base de datos.
