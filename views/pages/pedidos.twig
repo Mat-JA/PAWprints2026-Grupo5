@@ -1,0 +1,48 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}PawPrints - Pedidos{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/assets/css/abm.css">
+{% endblock %}
+
+{% block main_attrs %}class="abm-main"{% endblock %}
+
+{% block content %}
+  <div class="abm-header">
+    <h1 class="abm-titulo">Pedidos recibidos</h1>
+  </div>
+
+  <div class="abm-tabla-wrapper">
+    <table class="abm-tabla">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Libro</th>
+          <th>Cliente</th>
+          <th>Email</th>
+          <th>Dirección</th>
+          <th>País</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if compras is empty %}
+          <tr>
+            <td colspan="6" style="text-align:center">No hay pedidos registrados.</td>
+          </tr>
+        {% else %}
+          {% for compra in compras %}
+            <tr>
+              <td>{{ compra.id }}</td>
+              <td>{{ compra.titulo_libro ?? 'N/A' }}</td>
+              <td>{{ compra.nombre }} {{ compra.apellido }}</td>
+              <td>{{ compra.email }}</td>
+              <td>{{ compra.calle }} {{ compra.nro_calle }}, {{ compra.ciudad }}, {{ compra.provincia }}</td>
+              <td>{{ compra.pais }}</td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

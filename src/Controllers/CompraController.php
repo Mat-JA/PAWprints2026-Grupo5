@@ -7,12 +7,14 @@ use App\Services\LibroService;
 use App\Services\MailService;
 use App\Core\Exceptions\PageNotFound;
 use App\Core\Exceptions\StockInsuficienteException;
+use Twig\Environment;
 
 class CompraController
 {
     private CompraService $compraService;
     private LibroService $libroService;
     private MailService $mailService;
+    private Environment $twig;
     public string $viewsDir;
     private string $reservasMail;
 
@@ -20,10 +22,12 @@ class CompraController
         CompraService $compraService,
         LibroService $libroService,
         MailService $mailService,
+        Environment $twig,
     ) {
         $this->compraService  = $compraService;
         $this->libroService   = $libroService;
         $this->mailService    = $mailService;
+        $this->twig           = $twig;
         $this->viewsDir       = __DIR__ . '/../../views/';
         $this->reservasMail   = $_ENV['RESERVAS_MAIL'];
     }
@@ -42,9 +46,11 @@ class CompraController
             throw new PageNotFound('Libro no encontrado');
         }
 
-        require $this->viewsDir . 'pages/formularioCompra.php';
+        echo $this->twig->render('pages/formularioCompra.twig', [
+            'libro' => $libro->fields,
+        ]);
     }
-
+    
     public function procesarCompra(): void
     {
         $id_libro = $_POST['id_libro'] ?? null;
@@ -66,16 +72,26 @@ class CompraController
             $cuerpo = $this->construirEmail($datos);
             $this->mailService->send($this->reservasMail, 'Nueva Compra', $cuerpo);
 
-            require $this->viewsDir . 'pages/compraExitosa.php';
+            $libro = $this->libroService->obtenerPorId($datos['id_libro']);
+
+            echo $this->twig->render('pages/compraExitosa.twig', [
+                'libro'  => $libro?->fields,
+                'nombre' => $datos['nombre'] ?? '',
+            ]);
         } catch (StockInsuficienteException $e) {
-            require $this->viewsDir . 'pages/stockInsuficiente.php';
+            echo $this->twig->render('pages/stockInsuficiente.twig');
         }
     }
 
     public function pedidos(): void
     {
         $compras = $this->compraService->obtenerTodos();
-        require $this->viewsDir . 'pages/pedidos.php';
+
+        $comprasData = array_map(fn($c) => $c->fields, $compras);
+
+        echo $this->twig->render('pages/pedidos.twig', [
+            'compras' => $comprasData,
+        ]);
     }
 
     private function construirEmail(array $d): string

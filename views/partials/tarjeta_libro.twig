@@ -1,0 +1,16 @@
+<article class="tarjeta-libro">
+  <h3>{{ libro.titulo }}</h3>
+
+  <a href="/libro?id={{ libro.id }}">
+    <img
+      src="{{ libro.imagen_url }}"
+      alt="{{ libro.desc_corta }}"
+    >
+  </a>
+
+  <p>ISBN: {{ libro.isbn }}</p>
+
+  <p>${{ libro.precio|number_format(2, ',', '.') }}</p>
+
+  <a href="/formularioCompra?id={{ libro.id }}" class="btn-comprar">Agregar al carrito</a>
+</article>

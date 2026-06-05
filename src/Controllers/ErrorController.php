@@ -1,16 +1,22 @@
 <?php
 
 namespace App\Controllers;
+use Twig\Environment;
 
 class ErrorController
 {
 
-    public string $viewsDir = __DIR__ . '/../../views';
+    private Environment $twig;
+
+    public function __construct(Environment $twig)
+    {
+        $this->twig = $twig;
+    }
 
     public function notFound()
     {
         http_response_code(404);
-        require $this->viewsDir . '/pages/notFound.php'; 
+        echo $this->twig->render('pages/notFound.twig');
     }
 
     public function internalError()

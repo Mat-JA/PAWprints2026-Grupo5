@@ -23,16 +23,6 @@ class Router
     public string $notFound = 'not_found';
     public string $internalError = 'internal_error';
 
-    public function __construct()
-    {
-        $this->get($this->notFound, function() {
-            (new \App\Controllers\ErrorController())->notFound();
-        });
-        $this->get($this->internalError, function() {
-            (new \App\Controllers\ErrorController())->internalError();
-        });
-    }
-
     public function loadRoutes(string $path, callable $action, string $http_method = 'GET'): void
     {
         $this->routes[$http_method][$path] = $action;
@@ -57,16 +47,27 @@ class Router
                 throw new RouteNotFoundException('No existe ruta para este Path');
             }
 
-            $this->logger->info('Status Code: 200 OK', ['Path' => $path, 'Method' => $http_method]);
+            $this->logger->info('Status Code: 200 OK', [
+                'Path' => $path,
+                'Method' => $http_method
+            ]);
 
             ($this->routes[$http_method][$path])();
 
         } catch (RouteNotFoundException | PageNotFound $e) {
-            $this->logger->debug('Status Code: 404 - Page Not Found', ['ERROR' => $e]);
+
+            $this->logger->debug('Status Code: 404 - Page Not Found', [
+                'ERROR' => $e
+            ]);
+
             ($this->routes['GET'][$this->notFound])();
 
         } catch (Exception $e) {
-            $this->logger->debug('Status Code: 500 - Internal Server Error', ['ERROR' => $e]);
+
+            $this->logger->debug('Status Code: 500 - Internal Server Error', [
+                'ERROR' => $e
+            ]);
+
             ($this->routes['GET'][$this->internalError])();
         }
     }

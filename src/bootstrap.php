@@ -34,22 +34,29 @@ $request = new Request();
 $router = new Router();
 $router->setLogger($log);
 
+$twig = \App\Core\TwigFactory::create();
+$twig->addGlobal('app', [
+    'request' => [
+        'get' => $_GET,
+    ],
+]);
+
 // --- Factory ---
 
-$libroController = function () use ($connection, $mailService) {
+$libroController = function () use ($connection, $twig) {
     $libroRepo    = new \App\Repository\LibroRepository($connection);
     $autorRepo    = new \App\Repository\AutorRepository($connection);
     $libroService = new \App\Services\LibroService($libroRepo, $autorRepo);
-    return new \App\Controllers\LibroController($libroService);
+    return new \App\Controllers\LibroController($libroService, $twig);
 };
 
-$compraController = function () use ($connection, $mailService) {
+$compraController = function () use ($connection, $mailService, $twig) {
     $libroRepo     = new \App\Repository\LibroRepository($connection);
     $autorRepo     = new \App\Repository\AutorRepository($connection);
     $libroService  = new \App\Services\LibroService($libroRepo, $autorRepo);
     $compraRepo    = new \App\Repository\CompraRepository($connection);
     $compraService = new \App\Services\CompraService($libroRepo, $compraRepo, $connection);
-    return new \App\Controllers\CompraController($compraService, $libroService, $mailService);
+    return new \App\Controllers\CompraController($compraService, $libroService, $mailService, $twig);
 };
 
 // --- Rutas ---
@@ -68,7 +75,10 @@ $router->get('/formularioCompra', fn() => $compraController()->formularioCompra(
 $router->post('/procesarCompra',  fn() => $compraController()->procesarCompra());
 $router->get('/admin/pedidos',    fn() => $compraController()->pedidos());
 
-$pageController = fn() => new \App\Controllers\PageController();
+$pageController = fn() => new \App\Controllers\PageController($twig);
+$errorController = fn() => new \App\Controllers\ErrorController($twig);
+$router->get($router->notFound, fn() => $errorController()->notFound());
+$router->get($router->internalError, fn() => $errorController()->internalError());
 
 $router->get('/eventos',       fn() => $pageController()->eventos());
 $router->get('/nosotros',      fn() => $pageController()->nosotros());

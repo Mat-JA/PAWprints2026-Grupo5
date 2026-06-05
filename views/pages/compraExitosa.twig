@@ -1,0 +1,32 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}PawPrints - Compra exitosa{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/assets/css/compraExitosa.css">
+{% endblock %}
+
+{% block main_attrs %}class="compra-exitosa-main"{% endblock %}
+
+{% block content %}
+  <section class="compra-exitosa-card">
+    <div class="success-icon">✓</div>
+    <h1 class="success-titulo">¡Compra realizada con éxito!</h1>
+
+    {% if libro is defined and libro is not null %}
+      <div class="resumen-libro">
+        <img
+          src="{{ libro.imagen_url }}"
+          alt="{{ libro.desc_corta }}"
+          width="100"
+          class="resumen-imagen"
+        >
+        <h2 class="resumen-titulo">{{ libro.titulo }}</h2>
+        <p class="resumen-precio">Precio: ${{ libro.precio|number_format(2, ',', '.') }}</p>
+      </div>
+    {% endif %}
+
+    <p class="success-mensaje">Gracias por tu compra, {{ nombre }}. Te contactaremos pronto.</p>
+    <a href="/" class="btn-inicio">Volver al Inicio</a>
+  </section>
+{% endblock %}

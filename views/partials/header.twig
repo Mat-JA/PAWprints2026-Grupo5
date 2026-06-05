@@ -6,12 +6,12 @@
 
         <form role="search" method="GET" action="/catalogo">
             <label for="busqueda" class="sr-only">Buscar libros</label>
-            <input 
+            <input
                 id="busqueda"
                 type="search"
                 name="buscar"
                 placeholder="Buscar libros..."
-                value="<?= htmlspecialchars($_GET['buscar'] ?? '') ?>"
+                value="{{ app.request.get.buscar ?? '' }}"
             >
             <button type="submit">Buscar</button>
         </form>
@@ -20,7 +20,6 @@
             <a href="/carrito">
                 <img src="/assets/img/carrito_logo_darkmode.svg" alt="carrito de compras">
             </a>
-
             <a href="/mi_cuenta">
                 <img src="/assets/img/mi_cuenta_logo_darkmode.svg" alt="acceso a mi cuenta">
             </a>
@@ -38,5 +37,4 @@
     </nav>
 
     <script type="module" src="/assets/js/modules/header-search.js"></script>
-
 </header>

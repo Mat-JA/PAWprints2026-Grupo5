@@ -4,43 +4,56 @@ namespace App\Controllers;
 
 use App\Services\LibroService;
 use App\Core\Exceptions\PageNotFound;
+use Twig\Environment;
 
 class LibroController
 {
     private LibroService $libroService;
+    private Environment $twig;
     public string $viewsDir;
 
     public function __construct(
         LibroService $libroService,
+        Environment $twig,
     ) {
         $this->libroService = $libroService;
+        $this->twig         = $twig;
         $this->viewsDir = __DIR__ . '/../../views/';
     }
 
     public function home()
     {
         $libros = $this->libroService->obtenerTodos();
-        $novedades = $libros;
-        $destacados = $libros;
-        require $this->viewsDir . 'pages/home.php';
+
+        $librosData = array_map(fn($l) => $l->fields, $libros);
+
+        echo $this->twig->render('pages/home.twig', [
+            'novedades'  => $librosData,
+            'destacados' => $librosData,
+        ]);
     }
 
     public function catalogo()
     {
-        $pagina = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
-        $limite = isset($_GET['limite']) ? (int) $_GET['limite'] : 4;
+        $pagina   = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
+        $limite   = isset($_GET['limite']) ? (int) $_GET['limite'] : 4;
         $busqueda = $_GET['buscar'] ?? null;
 
-        $resultado = $this->libroService->obtenerPaginado($pagina, $limite, $busqueda);
-        $libros = $resultado['libros'];
+        $resultado    = $this->libroService->obtenerPaginado($pagina, $limite, $busqueda);
+        $libros       = $resultado['libros'];
         $totalPaginas = $resultado['totalPaginas'];
-        $totalLibros = $resultado['totalLibros'];
+        $totalLibros  = $resultado['totalLibros'];
 
         if ($pagina < 1 || ($pagina > $totalPaginas && $totalLibros > 0)) {
             throw new PageNotFound('La página solicitada no existe');
         }
 
-        require $this->viewsDir . 'pages/catalogo.php';
+        echo $this->twig->render('pages/catalogo.twig', [
+            'libros'       => $libros,
+            'totalPaginas' => $totalPaginas,
+            'totalLibros'  => $totalLibros,
+            'pagina'       => $pagina,
+        ]);
     }
 
     public function detalle()
@@ -51,13 +64,15 @@ class LibroController
             throw new PageNotFound('Libro no encontrado');
         }
 
-        $libro = $this->libroService->obtenerPorIdConAutores((int)$id);
+        $libroData = $this->libroService->obtenerPorIdConAutores((int)$id);
 
-        if (!$libro) {
+        if (!$libroData) {
             throw new PageNotFound('Libro no encontrado');
         }
 
-        require $this->viewsDir . 'pages/detalle_libro.php';
+        echo $this->twig->render('pages/detalle_libro.twig', [
+            'libro' => $libroData,           
+        ]);
     }
 
     public function exportarCsv()
@@ -104,7 +119,12 @@ class LibroController
     public function abm()
     {
         $libros = $this->libroService->obtenerTodos();
-        require $this->viewsDir . 'pages/abm.php';
+
+        $librosData = array_map(fn($l) => $l->fields, $libros);
+
+        echo $this->twig->render('pages/abm.twig', [
+            'libros' => $librosData,
+        ]);
     }
 
     public function crearLibro()

@@ -1,0 +1,100 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}PawPrints - ABM Libros{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/assets/css/imagedropzone.css">
+  <link rel="stylesheet" href="/assets/css/abm.css">
+{% endblock %}
+
+{% block main_attrs %}class="abm-main"{% endblock %}
+
+{% block content %}
+  <div class="abm-header">
+    <h1 class="abm-titulo">Administración de libros</h1>
+    <button class="abm-btn-nuevo" id="btn-nuevo">+ Nuevo libro</button>
+  </div>
+
+  {% if app.request.get.exito is defined %}
+    <div class="abm-alerta abm-alerta--exito">
+      {% set msgs = {
+        'creado':      '✅ Libro creado correctamente.',
+        'actualizado': '✅ Libro actualizado correctamente.',
+        'eliminado':   '✅ Libro eliminado correctamente.'
+      } %}
+      {{ msgs[app.request.get.exito] ?? '✅ Operación realizada.' }}
+    </div>
+  {% endif %}
+
+  <div class="abm-tabla-wrapper">
+    <table class="abm-tabla">
+      <thead>
+        <tr>
+          <th>Tapa</th>
+          <th>Título</th>
+          <th>ISBN</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for libro in libros %}
+          <tr>
+            <td>
+              {% if libro.imagen_url %}
+                <img src="{{ libro.imagen_url }}" alt="Tapa" class="abm-tabla-tapa">
+              {% else %}
+                <span class="abm-sin-imagen">Sin imagen</span>
+              {% endif %}
+            </td>
+            <td>{{ libro.titulo }}</td>
+            <td>{{ libro.isbn }}</td>
+            <td>${{ libro.precio|number_format(2, ',', '.') }}</td>
+            <td>{{ libro.stock }}</td>
+            <td>
+              <button
+                class="abm-btn-editar"
+                data-libro="{{ libro|json_encode|e('html_attr') }}"
+              >
+                Editar
+              </button>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="abm-panel" id="abm-panel" hidden>
+    <div class="abm-panel-header">
+      <h2 class="abm-panel-titulo" id="panel-titulo">Nuevo libro</h2>
+      <button class="abm-panel-cerrar" id="btn-cerrar-panel" aria-label="Cerrar panel">✕</button>
+    </div>
+
+    <form method="post" action="/admin/abm/crear" enctype="multipart/form-data" class="abm-form" id="form-crear">
+      {% include 'partials/abm_campos.twig' %}
+      <div class="abm-form-actions">
+        <input type="submit" value="Crear libro" class="bSubmit">
+      </div>
+    </form>
+
+    <form method="post" action="/admin/abm/actualizar" enctype="multipart/form-data" class="abm-form" id="form-editar" hidden>
+      <input type="hidden" name="id" id="edit-id">
+      {% include 'partials/abm_campos.twig' %}
+      <div class="abm-form-actions">
+        <input type="submit" value="Guardar cambios" class="bSubmit">
+        <button type="button" class="abm-btn-eliminar" id="btn-eliminar">Eliminar libro</button>
+      </div>
+    </form>
+
+    <form method="post" action="/admin/abm/eliminar" id="form-eliminar" hidden>
+      <input type="hidden" name="id" id="eliminar-id">
+    </form>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/assets/js/imageDropzone.js"></script>
+  <script src="/assets/js/abm.js"></script>
+{% endblock %}

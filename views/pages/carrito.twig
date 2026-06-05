@@ -1,0 +1,34 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}PawPrint - Carrito{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/assets/css/carrito.css">
+{% endblock %}
+
+{% block main_attrs %}class="carrito-main"{% endblock %}
+
+{% block content %}
+  <section class="carrito-seccion">
+    <h2>Carrito de compras</h2>
+    <ul class="carrito-lista">
+      {% for i in 1..3 %}
+        <li class="carrito-item-li">
+          <article class="carrito-item">
+            <a href="/libros/libro{{ i }}" class="carrito-portada-link">
+              <img src="/assets/img/portadaGenerica.png" alt="Portada del libro: {{ i }}" class="carrito-portada">
+            </a>
+            <h3 class="carrito-titulo">Titulo del libro {{ i }}</h3>
+            <p class="carrito-precio">$Precio</p>
+            <button class="btn-eliminar">Eliminar</button>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="carrito-total-container">
+      <p class="carrito-total-texto">Total: $Total</p>
+      <button class="btn-comprar-realizar">Realizar compra</button>
+    </div>
+  </section>
+{% endblock %}

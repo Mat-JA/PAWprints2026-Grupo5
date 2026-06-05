@@ -2,79 +2,59 @@
 
 namespace App\Controllers;
 
+use Twig\Environment;
+
 class PageController
 {
-    public string $viewsDir;
+    private Environment $twig;
 
-    public function __construct()
+    public function __construct(Environment $twig)
     {
-        $this->viewsDir = __DIR__ . '/../../views/';
+        $this->twig = $twig;
     }
 
-    public function home()
+    public function eventos(): void
     {
-        require $this->viewsDir . 'pages/home.php';
+        echo $this->twig->render('pages/locales.twig');
     }
 
-    public function catalogo()
+    public function nosotros(): void
     {
-        require $this->viewsDir . 'pages/catalogo.php';
+        echo $this->twig->render('pages/nosotros.twig');
     }
 
-    public function eventos()
+    public function carrito(): void
     {
-        require $this->viewsDir . 'pages/locales.php';
+        echo $this->twig->render('pages/carrito.twig');
     }
 
-    public function nosotros()
+    public function ajustes(): void
     {
-        require $this->viewsDir . 'pages/nosotros.php';
+        echo $this->twig->render('pages/ajustes.twig');
     }
 
-    public function carrito()
+    public function cerrarSesion(): void
     {
-        require $this->viewsDir . 'pages/carrito.php';
+        echo $this->twig->render('pages/cerrarSesion.twig');
     }
 
-    public function ajustes()
+    public function login(): void
     {
-        require $this->viewsDir . 'pages/ajustes.php';
+        echo $this->twig->render('pages/login.twig');
     }
 
-    public function cerrarSesion()
+    public function mi_cuenta(): void
     {
-        require $this->viewsDir . 'pages/cerrarSesion.php';
+        echo $this->twig->render('pages/mi_cuenta.twig');
     }
 
-    public function formularioCompra()
+    public function misreservas(): void
     {
-        require $this->viewsDir . 'pages/formularioCompra.php';
+        echo $this->twig->render('pages/misreservas.twig');
     }
 
-    public function login()
+    public function registrate(): void
     {
-        require $this->viewsDir . 'pages/login.php';
+        echo $this->twig->render('pages/registrate.twig');
     }
-
-    public function mi_cuenta()
-    {
-        require $this->viewsDir . 'pages/mi_cuenta.php';
-    }
-
-    public function misreservas()
-    {
-        require $this->viewsDir . 'pages/misreservas.php';
-    }
-
-    public function registrate()
-    {
-        require $this->viewsDir . 'pages/registrate.php';
-    }
-
-    /* Sacar el comentario si quieren probar carrusel generico
-    public function carousel()
-    {
-        require $this->viewsDir . 'pages/carousel.php';
-    }
-    */
 }

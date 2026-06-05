@@ -1,0 +1,33 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}PawPrints - Mis Reservas{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/assets/css/misReservas.css">
+{% endblock %}
+
+{% block main_attrs %}class="reservas-main"{% endblock %}
+
+{% block content %}
+  <h1 class="reservas-titulo">Mis Reservas</h1>
+  <ul class="reservas-lista">
+    {% for i in 1..3 %}
+      <li class="reserva-item">
+        <img src="/assets/img/portadaGenerica.png" alt="detalle imagen libro {{ i }}" class="reserva-imagen">
+        <div class="reserva-info">
+          <h3 class="reserva-titulo-libro"><a href="/libros/libro{{ i }}">Titulo del libro {{ i }}</a></h3>
+          <p class="reserva-autor">Autor</p>
+          <p class="reserva-isbn">isbn</p>
+          <p class="reserva-descripcion">Descripción</p>
+        </div>
+        <div class="reserva-meta">
+          <p class="reserva-precio">$Precio</p>
+          <p class="reserva-estado">Estado</p>
+          <button class="btn-eliminar-reserva" aria-label="Eliminar reserva">
+            <img src="/assets/img/iconoEliminar.svg" alt="Eliminar">
+          </button>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
