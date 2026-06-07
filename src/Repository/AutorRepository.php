@@ -19,6 +19,124 @@ class AutorRepository
     }
 
     /**
+     * Obtiene un autor por su ID.
+     *
+     * @param int $id
+     * @return Autor|null
+     */
+    public function obtenerPorId(int $id): ?Autor
+    {
+        $sql = "SELECT * FROM " . self::TABLE . " WHERE id = :id LIMIT 1";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$fila) return null;
+
+        $autor = new Autor();
+        $autor->set($fila);
+        return $autor;
+    }
+
+    /**
+     * Obtiene todos los autores registrados en la base de datos.
+     *
+     * @return Autor[]
+     */
+    public function obtenerTodos(): array
+    {
+        $sql = "SELECT * FROM " . self::TABLE . " ORDER BY nombre";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->execute();
+
+        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $autores = [];
+        foreach ($filas as $fila) {
+            $autor = new Autor();
+            $autor->set($fila);
+            $autores[] = $autor;
+        }
+
+        return $autores;
+    }
+
+    /**
+     * Vincula un autor a un libro en la tabla intermedia.
+     */
+    public function vincularAutor(int $libroId, int $autorId): bool
+    {
+        $sql = "INSERT INTO " . self::JOIN_TABLE . " (autor_id, libro_id) VALUES (:autor_id, :libro_id)";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':autor_id', $autorId, PDO::PARAM_INT);
+        $stmt->bindValue(':libro_id', $libroId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Crea un nuevo autor.
+     */
+    public function crear(array $datos): bool
+    {
+        $sql = "INSERT INTO " . self::TABLE . " (nombre, bio) VALUES (:nombre, :bio)";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':nombre', $datos['nombre']);
+        $stmt->bindValue(':bio',    $datos['bio'] ?? '');
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Actualiza un autor existente.
+     */
+    public function actualizar(int $id, array $datos): bool
+    {
+        $sql = "UPDATE " . self::TABLE . " SET nombre = :nombre, bio = :bio WHERE id = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':nombre', $datos['nombre']);
+        $stmt->bindValue(':bio',    $datos['bio'] ?? '');
+        $stmt->bindValue(':id',     $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Elimina un autor.
+     */
+    public function eliminar(int $id): bool
+    {
+        $sql = "DELETE FROM " . self::TABLE . " WHERE id = :id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
+    }
+
+    /**
+     * Obtiene el último ID insertado.
+     */
+    public function obtenerUltimoId(): int
+    {
+        return (int) $this->conexion->lastInsertId();
+    }
+
+    /**
+     * Desvincula todos los autores de un libro.
+     */
+    public function desvincularAutores(int $libroId): bool
+    {
+        $sql = "DELETE FROM " . self::JOIN_TABLE . " WHERE libro_id = :libro_id";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindValue(':libro_id', $libroId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->rowCount() >= 0;
+    }
+
+    /**
      * Obtiene todos los autores de un libro dado su ID.
      *
      * Si el libro no existe en la base de datos, devuelve un array vacío.

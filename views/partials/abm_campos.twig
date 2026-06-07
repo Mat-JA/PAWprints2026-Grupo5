@@ -2,12 +2,18 @@
 
   <label class="formulario-label">
     Título:
-    <input type="text" name="titulo" class="abm-input" required maxlength="75">
+    <span class="abm-isbn-row">
+      <input type="text" name="titulo" class="abm-input" required maxlength="75">
+      <button type="button" class="abm-btn-buscar abm-btn-buscar--titulo" title="Buscar por título en Open Library">🔍</button>
+    </span>
   </label>
 
   <label class="formulario-label">
     ISBN:
-    <input type="text" name="isbn" class="abm-input" required maxlength="20">
+    <span class="abm-isbn-row">
+      <input type="text" name="isbn" class="abm-input" required maxlength="20">
+      <button type="button" class="abm-btn-buscar" title="Buscar en Open Library">🔍</button>
+    </span>
   </label>
 
   <label class="formulario-label abm-full">
@@ -23,6 +29,19 @@
   <label class="formulario-label">
     Fecha de publicación:
     <input type="date" name="fecha_pub" class="abm-input" required>
+  </label>
+
+  <label class="formulario-label abm-full">
+    <span class="abm-autor-row">
+      Autor:
+      <button type="button" class="abm-btn-inline-autor" title="Crear nuevo autor">+</button>
+    </span>
+    <select name="autor_id" class="abm-input">
+      <option value="">-- Seleccionar autor --</option>
+      {% for autor in autores %}
+        <option value="{{ autor.id }}">{{ autor.nombre }}</option>
+      {% endfor %}
+    </select>
   </label>
 
   <label class="formulario-label">

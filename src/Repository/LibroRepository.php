@@ -140,6 +140,11 @@ class LibroRepository
         return $stmt->rowCount() > 0;
     }
 
+    public function obtenerUltimoId(): int
+    {
+        return (int) $this->conexion->lastInsertId();
+    }
+
     public function actualizar(int $id, array $datos): bool
     {
         $sql = "UPDATE " . self::TABLE . " SET

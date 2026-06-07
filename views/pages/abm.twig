@@ -3,7 +3,7 @@
 {% block title %}PawPrints - ABM Libros{% endblock %}
 
 {% block styles %}
-  <link rel="stylesheet" href="/assets/css/imagedropzone.css">
+  <link rel="stylesheet" href="/assets/css/imageDropzone.css">
   <link rel="stylesheet" href="/assets/css/abm.css">
 {% endblock %}
 
@@ -26,12 +26,19 @@
     </div>
   {% endif %}
 
+  {% if app.request.get.error is defined %}
+    <div class="abm-alerta abm-alerta--error">
+      ❌ {{ app.request.get.error | e }}
+    </div>
+  {% endif %}
+
   <div class="abm-tabla-wrapper">
     <table class="abm-tabla">
       <thead>
         <tr>
           <th>Tapa</th>
           <th>Título</th>
+          <th>Autor</th>
           <th>ISBN</th>
           <th>Precio</th>
           <th>Stock</th>
@@ -49,6 +56,15 @@
               {% endif %}
             </td>
             <td>{{ libro.titulo }}</td>
+            <td>
+              {%- if libro.autores is defined and libro.autores is not empty -%}
+                {%- for autor in libro.autores -%}
+                  {{- autor.nombre -}}{% if not loop.last %}, {% endif %}
+                {%- endfor -%}
+              {%- else -%}
+                <em>Sin autor</em>
+              {%- endif -%}
+            </td>
             <td>{{ libro.isbn }}</td>
             <td>${{ libro.precio|number_format(2, ',', '.') }}</td>
             <td>{{ libro.stock }}</td>
@@ -72,14 +88,14 @@
       <button class="abm-panel-cerrar" id="btn-cerrar-panel" aria-label="Cerrar panel">✕</button>
     </div>
 
-    <form method="post" action="/admin/abm/crear" enctype="multipart/form-data" class="abm-form" id="form-crear">
+    <form method="post" action="/libros/abm/crear" enctype="multipart/form-data" class="abm-form" id="form-crear">
       {% include 'partials/abm_campos.twig' %}
       <div class="abm-form-actions">
         <input type="submit" value="Crear libro" class="bSubmit">
       </div>
     </form>
 
-    <form method="post" action="/admin/abm/actualizar" enctype="multipart/form-data" class="abm-form" id="form-editar" hidden>
+    <form method="post" action="/libros/abm/actualizar" enctype="multipart/form-data" class="abm-form" id="form-editar" hidden>
       <input type="hidden" name="id" id="edit-id">
       {% include 'partials/abm_campos.twig' %}
       <div class="abm-form-actions">
@@ -88,9 +104,34 @@
       </div>
     </form>
 
-    <form method="post" action="/admin/abm/eliminar" id="form-eliminar" hidden>
+    <form method="post" action="/libros/abm/eliminar" id="form-eliminar" hidden>
       <input type="hidden" name="id" id="eliminar-id">
     </form>
+  </div>
+
+  <div class="abm-modal-overlay" id="modal-overlay" hidden>
+    <div class="abm-modal" role="dialog" aria-labelledby="modal-titulo">
+      <div class="abm-panel-header">
+        <h2 class="abm-panel-titulo" id="modal-titulo">Nuevo autor</h2>
+        <button class="abm-panel-cerrar" id="btn-cerrar-modal" aria-label="Cerrar">✕</button>
+      </div>
+      <form id="form-inline-autor" class="abm-form">
+        <fieldset class="abm-fieldset">
+          <label class="formulario-label abm-full">
+            Nombre:
+            <input type="text" name="nombre" class="abm-input" required maxlength="60">
+          </label>
+          <label class="formulario-label abm-full">
+            Biografía (opcional):
+            <textarea name="bio" class="abm-textarea" maxlength="250"></textarea>
+          </label>
+        </fieldset>
+        <div class="abm-form-actions">
+          <input type="submit" value="Crear autor y seleccionar" class="bSubmit" id="btn-inline-crear">
+        </div>
+      </form>
+      <p id="inline-error" class="abm-campo-error" hidden></p>
+    </div>
   </div>
 {% endblock %}
 

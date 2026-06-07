@@ -47,7 +47,7 @@ $libroController = function () use ($connection, $twig) {
     $libroRepo    = new \App\Repository\LibroRepository($connection);
     $autorRepo    = new \App\Repository\AutorRepository($connection);
     $libroService = new \App\Services\LibroService($libroRepo, $autorRepo);
-    return new \App\Controllers\LibroController($libroService, $twig);
+    return new \App\Controllers\LibroController($libroService, $twig, $autorRepo);
 };
 
 $compraController = function () use ($connection, $mailService, $twig) {
@@ -59,6 +59,12 @@ $compraController = function () use ($connection, $mailService, $twig) {
     return new \App\Controllers\CompraController($compraService, $libroService, $mailService, $twig);
 };
 
+$autorController = function () use ($connection, $twig) {
+    $autorRepo    = new \App\Repository\AutorRepository($connection);
+    $autorService = new \App\Services\AutorService($autorRepo);
+    return new \App\Controllers\AutorController($autorService, $twig);
+};
+
 // --- Rutas ---
 
 $router->get('/',                  fn() => $libroController()->home());
@@ -66,10 +72,17 @@ $router->get('/catalogo',          fn() => $libroController()->catalogo());
 $router->get('/catalogo/exportar', fn() => $libroController()->exportarCsv());
 $router->get('/libro',             fn() => $libroController()->detalle());
 $router->get('/api/libros', fn() => $libroController()->apiGetLibros());
-$router->get('/admin/abm',             fn() => $libroController()->abm());
-$router->post('/admin/abm/crear',      fn() => $libroController()->crearLibro());
-$router->post('/admin/abm/actualizar', fn() => $libroController()->actualizarLibro());
-$router->post('/admin/abm/eliminar',   fn() => $libroController()->eliminarLibro());
+$router->get('/api/libros/buscar',   fn() => $libroController()->apiBuscarLibro());
+$router->get('/libros/abm',             fn() => $libroController()->abm());
+$router->post('/libros/abm/crear',      fn() => $libroController()->crearLibro());
+$router->post('/libros/abm/actualizar', fn() => $libroController()->actualizarLibro());
+$router->post('/libros/abm/eliminar',   fn() => $libroController()->eliminarLibro());
+
+$router->get('/autores/abm',             fn() => $autorController()->abm());
+$router->post('/autores/abm/crear',      fn() => $autorController()->crearAutor());
+$router->post('/autores/abm/actualizar', fn() => $autorController()->actualizarAutor());
+$router->post('/autores/abm/eliminar',   fn() => $autorController()->eliminarAutor());
+$router->post('/api/autores/crear',      fn() => $autorController()->apiCrearAutor());
 
 $router->get('/formularioCompra', fn() => $compraController()->formularioCompra());
 $router->post('/procesarCompra',  fn() => $compraController()->procesarCompra());

@@ -50,6 +50,14 @@ document.querySelectorAll('.abm-btn-editar').forEach(btn => {
         setVal(formEditar, 'precio', libro.precio);
         setVal(formEditar, 'stock', libro.stock);
 
+        // Precargar autor
+        const autorSelect = formEditar.querySelector('[name="autor_id"]');
+        if (autorSelect && libro.autores && libro.autores.length > 0) {
+            autorSelect.value = libro.autores[0].id;
+        } else if (autorSelect) {
+            autorSelect.value = '';
+        }
+
         dropzoneEditar.clear();
         abrirPanel();
     });
@@ -78,7 +86,7 @@ function cerrarPanel() {
 }
 
 function limpiarForm(form) {
-    form.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="email"], textarea').forEach(el => {
+    form.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="email"], textarea, select').forEach(el => {
         el.value = '';
     });
     limpiarErrores(form);
@@ -231,10 +239,191 @@ agregarListenersEnLinea(formEditar);
             }).then(res => {
                 if (res.redirected) {
                     window.location.href = res.url;
+                } else if (!res.ok) {
+                    // Server error: try to extract error param from redirected URL or show generic
+                    window.location.href = '/libros/abm?error=' + encodeURIComponent('Error del servidor al procesar la solicitud.');
                 }
+            }).catch(err => {
+                window.location.href = '/libros/abm?error=' + encodeURIComponent('Error de red: no se pudo conectar con el servidor.');
             });
         } else {
             form.submit();
         }
     });
 });
+
+// ─── Modal inline: crear autor ────────────────────────────────────────────────
+(function () {
+    const modalOverlay   = document.getElementById('modal-overlay');
+    const modalForm      = document.getElementById('form-inline-autor');
+    const modalCerrar    = document.getElementById('btn-cerrar-modal');
+    const inlineError    = document.getElementById('inline-error');
+
+    if (!modalOverlay) return;
+
+    function abrirModal() {
+        modalForm.reset();
+        inlineError.hidden = true;
+        inlineError.textContent = '';
+        modalOverlay.hidden = false;
+        modalForm.querySelector('[name="nombre"]').focus();
+    }
+
+    function cerrarModal() {
+        modalOverlay.hidden = true;
+    }
+
+    // "+" buttons en ambos formularios
+    document.querySelectorAll('.abm-btn-inline-autor').forEach(btn => {
+        btn.addEventListener('click', abrirModal);
+    });
+
+    // Cerrar con el botón ✕
+    modalCerrar.addEventListener('click', cerrarModal);
+
+    // Cerrar al clickear fuera del modal
+    modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) cerrarModal();
+    });
+
+    // Submit del modal
+    modalForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        inlineError.hidden = true;
+        inlineError.textContent = '';
+
+        const formData = new FormData(modalForm);
+
+        fetch('/api/autores/crear', {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json()).then(data => {
+            if (data.error) {
+                inlineError.textContent = data.error;
+                inlineError.hidden = false;
+                return;
+            }
+
+            // Agregar la opción a todos los <select name="autor_id"> y seleccionarla
+            document.querySelectorAll('select[name="autor_id"]').forEach(select => {
+                const opt = document.createElement('option');
+                opt.value = data.id;
+                opt.textContent = data.nombre;
+                select.appendChild(opt);
+                select.value = data.id;
+            });
+
+            cerrarModal();
+        }).catch(() => {
+            inlineError.textContent = 'Error de red al crear el autor.';
+            inlineError.hidden = false;
+        });
+    });
+})();
+
+// ─── Open Library: buscar por ISBN o Título ───────────────────────────────────
+(function () {
+    /**
+     * Autocompleta los campos del formulario con los datos de OL.
+     */
+    function autocompletarForm(form, data) {
+        if (data.title) {
+            setVal(form, 'titulo', data.title.substring(0, 75));
+        }
+        if (data.description) {
+            setVal(form, 'descripcion', data.description.substring(0, 300));
+            setVal(form, 'desc_corta', data.description.substring(0, 150));
+        }
+        if (data.publish_date) {
+            setVal(form, 'fecha_pub', data.publish_date);
+        }
+        // Si la búsqueda devolvió ISBN y el campo está vacío, precargarlo
+        if (data.isbn) {
+            const isbnField = form.querySelector('[name="isbn"]');
+            if (isbnField && !isbnField.value.trim()) {
+                setVal(form, 'isbn', data.isbn.substring(0, 20));
+            }
+        }
+        // Intentar seleccionar autor
+        if (data.author_name && form.querySelector('[name="autor_id"]')) {
+            const autorSelect = form.querySelector('[name="autor_id"]');
+            const autorNombre = data.author_name.split(',')[0].trim();
+            for (const opt of autorSelect.options) {
+                if (opt.textContent.toLowerCase() === autorNombre.toLowerCase()) {
+                    autorSelect.value = opt.value;
+                    return;
+                }
+            }
+        }
+    }
+
+    /**
+     * Busca en OL y autocompleta usando la URL construida.
+     */
+    function buscarYAutocompletar(btn, url) {
+        const form = btn.closest('form');
+        if (!form) return;
+
+        const originalText = btn.textContent;
+        btn.textContent = '⏳';
+        btn.classList.add('abm-btn-buscar--loading');
+        btn.disabled = true;
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert('No se encontró información: ' + data.error);
+                    return;
+                }
+                autocompletarForm(form, data);
+            })
+            .catch(() => {
+                alert('Error de red al consultar Open Library.');
+            })
+            .finally(() => {
+                btn.textContent = originalText;
+                btn.classList.remove('abm-btn-buscar--loading');
+                btn.disabled = false;
+            });
+    }
+
+    // Buscar por ISBN (botón junto al campo isbn)
+    document.querySelectorAll('.abm-btn-buscar:not(.abm-btn-buscar--titulo)').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const form = btn.closest('form');
+            if (!form) return;
+
+            const isbnInput = form.querySelector('[name="isbn"]');
+            if (!isbnInput) return;
+
+            const isbn = isbnInput.value.replace(/[\-\s]/g, '').trim();
+            if (!isbn) {
+                alert('Por favor ingresá un ISBN primero.');
+                return;
+            }
+
+            buscarYAutocompletar(btn, '/api/libros/buscar?isbn=' + encodeURIComponent(isbn));
+        });
+    });
+
+    // Buscar por Título (botón junto al campo titulo)
+    document.querySelectorAll('.abm-btn-buscar--titulo').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const form = btn.closest('form');
+            if (!form) return;
+
+            const tituloInput = form.querySelector('[name="titulo"]');
+            if (!tituloInput) return;
+
+            const titulo = tituloInput.value.trim();
+            if (!titulo || titulo.length < 2) {
+                alert('Por favor ingresá un título de al menos 2 caracteres.');
+                return;
+            }
+
+            buscarYAutocompletar(btn, '/api/libros/buscar?titulo=' + encodeURIComponent(titulo));
+        });
+    });
+})();

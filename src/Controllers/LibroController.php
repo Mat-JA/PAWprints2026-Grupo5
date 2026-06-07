@@ -12,12 +12,16 @@ class LibroController
     private Environment $twig;
     public string $viewsDir;
 
+    private ?\App\Repository\AutorRepository $autorRepository;
+
     public function __construct(
         LibroService $libroService,
         Environment $twig,
+        ?\App\Repository\AutorRepository $autorRepository = null,
     ) {
         $this->libroService = $libroService;
         $this->twig         = $twig;
+        $this->autorRepository = $autorRepository;
         $this->viewsDir = __DIR__ . '/../../views/';
     }
 
@@ -116,14 +120,51 @@ class LibroController
         exit;
     }
 
+    /**
+     * API: busca un libro en Open Library por ISBN o título.
+     * Params: ?isbn=... o ?titulo=...
+     */
+    public function apiBuscarLibro(): void
+    {
+        $isbn   = $_GET['isbn'] ?? '';
+        $titulo = $_GET['titulo'] ?? '';
+
+        if (empty($isbn) && empty($titulo)) {
+            header('Content-Type: application/json');
+            http_response_code(400);
+            echo json_encode(['error' => 'Se requiere ?isbn= o ?titulo=.']);
+            exit;
+        }
+
+        if (!empty($isbn)) {
+            $resultado = $this->libroService->buscarEnOpenLibrary($isbn);
+        } else {
+            $resultado = $this->libroService->buscarPorTituloEnOpenLibrary($titulo);
+        }
+
+        header('Content-Type: application/json');
+        if (isset($resultado['error'])) {
+            http_response_code(404);
+        }
+        echo json_encode($resultado);
+        exit;
+    }
+
     public function abm()
     {
-        $libros = $this->libroService->obtenerTodos();
+        $librosData = $this->libroService->obtenerTodosConAutor();
 
-        $librosData = array_map(fn($l) => $l->fields, $libros);
+        $autores = [];
+        if ($this->autorRepository) {
+            $autoresModels = $this->autorRepository->obtenerTodos();
+            foreach ($autoresModels as $a) {
+                $autores[] = $a->fields;
+            }
+        }
 
         echo $this->twig->render('pages/abm.twig', [
-            'libros' => $librosData,
+            'libros'  => $librosData,
+            'autores' => $autores,
         ]);
     }
 
@@ -136,9 +177,14 @@ class LibroController
         $datos = $this->_sanitizarDatos($_POST);
         $archivo = $_FILES['imagen_tapa'] ?? null;
 
-        $this->libroService->crear($datos, $archivo);
-
-        header('Location: /admin/abm?exito=creado');
+        try {
+            $this->libroService->crear($datos, $archivo);
+            header('Location: /libros/abm?exito=creado');
+        } catch (\InvalidArgumentException $e) {
+            header('Location: /libros/abm?error=' . urlencode($e->getMessage()));
+        } catch (\RuntimeException $e) {
+            header('Location: /libros/abm?error=' . urlencode($e->getMessage()));
+        }
         exit;
     }
 
@@ -154,9 +200,14 @@ class LibroController
         $datos = $this->_sanitizarDatos($_POST);
         $archivo = $_FILES['imagen_tapa'] ?? null;
 
-        $this->libroService->actualizar($id, $datos, $archivo);
-
-        header('Location: /admin/abm?exito=actualizado');
+        try {
+            $this->libroService->actualizar($id, $datos, $archivo);
+            header('Location: /libros/abm?exito=actualizado');
+        } catch (\InvalidArgumentException $e) {
+            header('Location: /libros/abm?error=' . urlencode($e->getMessage()));
+        } catch (\RuntimeException $e) {
+            header('Location: /libros/abm?error=' . urlencode($e->getMessage()));
+        }
         exit;
     }
 
@@ -171,7 +222,7 @@ class LibroController
 
         $this->libroService->eliminar($id);
 
-        header('Location: /admin/abm?exito=eliminado');
+        header('Location: /libros/abm?exito=eliminado');
         exit;
     }
 
@@ -186,6 +237,9 @@ class LibroController
         }
         $datos['precio'] = (float) $datos['precio'];
         $datos['stock']  = (int)   $datos['stock'];
+        $datos['autor_id'] = isset($post['autor_id']) && $post['autor_id'] !== ''
+            ? (int) $post['autor_id']
+            : null;
         return $datos;
     }
 }

@@ -1,0 +1,111 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}PawPrints - ABM Autores{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/assets/css/abm.css">
+{% endblock %}
+
+{% block main_attrs %}class="abm-main"{% endblock %}
+
+{% block content %}
+  <div class="abm-header">
+    <h1 class="abm-titulo">Administración de autores</h1>
+    <button class="abm-btn-nuevo" id="btn-nuevo">+ Nuevo autor</button>
+  </div>
+
+  {% if app.request.get.exito is defined %}
+    <div class="abm-alerta abm-alerta--exito">
+      {% set msgs = {
+        'creado':      '✅ Autor creado correctamente.',
+        'actualizado': '✅ Autor actualizado correctamente.',
+        'eliminado':   '✅ Autor eliminado correctamente.'
+      } %}
+      {{ msgs[app.request.get.exito] ?? '✅ Operación realizada.' }}
+    </div>
+  {% endif %}
+
+  {% if app.request.get.error is defined %}
+    <div class="abm-alerta abm-alerta--error">
+      ❌ {{ app.request.get.error | e }}
+    </div>
+  {% endif %}
+
+  <div class="abm-tabla-wrapper">
+    <table class="abm-tabla">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Biografía</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for autor in autores %}
+          <tr>
+            <td>{{ autor.nombre }}</td>
+            <td>{{ autor.bio[:80] ~ (autor.bio|length > 80 ? '…' : '') }}</td>
+            <td>
+              <button
+                class="abm-btn-editar"
+                data-autor="{{ autor|json_encode|e('html_attr') }}"
+              >
+                Editar
+              </button>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="abm-panel" id="abm-panel" hidden>
+    <div class="abm-panel-header">
+      <h2 class="abm-panel-titulo" id="panel-titulo">Nuevo autor</h2>
+      <button class="abm-panel-cerrar" id="btn-cerrar-panel" aria-label="Cerrar panel">✕</button>
+    </div>
+
+    <form method="post" action="/autores/abm/crear" class="abm-form" id="form-crear">
+      <fieldset class="abm-fieldset">
+        <label class="formulario-label abm-full">
+          Nombre:
+          <input type="text" name="nombre" class="abm-input" required maxlength="60">
+        </label>
+        <label class="formulario-label abm-full">
+          Biografía:
+          <textarea name="bio" class="abm-textarea" maxlength="250"></textarea>
+        </label>
+      </fieldset>
+      <div class="abm-form-actions">
+        <input type="submit" value="Crear autor" class="bSubmit">
+      </div>
+    </form>
+
+    <form method="post" action="/autores/abm/actualizar" class="abm-form" id="form-editar" hidden>
+      <input type="hidden" name="id" id="edit-id">
+      <fieldset class="abm-fieldset">
+        <label class="formulario-label abm-full">
+          Nombre:
+          <input type="text" name="nombre" class="abm-input" required maxlength="60">
+        </label>
+        <label class="formulario-label abm-full">
+          Biografía:
+          <textarea name="bio" class="abm-textarea" maxlength="250"></textarea>
+        </label>
+      </fieldset>
+      <div class="abm-form-actions">
+        <input type="submit" value="Guardar cambios" class="bSubmit">
+        <button type="button" class="abm-btn-eliminar" id="btn-eliminar">Eliminar autor</button>
+      </div>
+    </form>
+
+    <form method="post" action="/autores/abm/eliminar" id="form-eliminar" hidden>
+      <input type="hidden" name="id" id="eliminar-id">
+    </form>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="/assets/js/autores_abm.js"></script>
+{% endblock %}

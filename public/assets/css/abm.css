@@ -43,6 +43,12 @@
     color: #276749;
 }
 
+.abm-alerta--error {
+    background-color: #fff5f5;
+    border: 1px solid #fc8181;
+    color: #c53030;
+}
+
 /* ─── Tabla ───────────────────────────────────────────────────────────────── */
 .abm-tabla-wrapper {
     width: 100%;
@@ -318,6 +324,106 @@
     .abm-main {
         padding: var(--espaciado-largo);
     }
+}
+
+/* ─── ISBN row con botón buscar ───────────────────────────────────────────── */
+.abm-isbn-row {
+    display: flex;
+    gap: var(--espaciado-chico);
+    align-items: center;
+}
+
+.abm-isbn-row .abm-input {
+    flex: 1;
+}
+
+.abm-btn-buscar {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: var(--radio-chico);
+    border: 1px solid var(--color-sombreado-primario);
+    background-color: var(--color-primario);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.abm-btn-buscar:hover {
+    border-color: var(--color-secundario);
+    background-color: var(--color-fondo-suave);
+}
+
+.abm-btn-buscar--loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* ─── Botón inline autor ──────────────────────────────────────────────────── */
+.abm-autor-row {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-chico);
+}
+
+.abm-btn-inline-autor {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--color-sombreado-primario);
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.abm-btn-inline-autor:hover {
+    border-color: var(--color-secundario);
+    background-color: var(--color-fondo-suave);
+}
+
+/* ─── Modal overlay ───────────────────────────────────────────────────────── */
+.abm-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.abm-modal-overlay[hidden] {
+    display: none !important;
+}
+
+.abm-modal {
+    background-color: var(--color-primario);
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-media);
+    padding: var(--espaciado-largo);
+    width: 90%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-medio);
+}
+
+/* ─── Dropzone en ABM ─────────────────────────────────────────────────────── */
+.abm-dropzone {
+    width: 100%;
+    max-width: 100%;
 }
 
 /* ─── Validación en línea ─────────────────────────────────────────────────── */
