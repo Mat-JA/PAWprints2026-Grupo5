@@ -2,6 +2,26 @@
 
 {% block title %}PawPrints - Formulario de compra{% endblock %}
 
+{% block schema %}
+  {{ parent() }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BuyAction",
+    "name": "Reserva de libro",
+    "object": {
+      "@type": "Book",
+      "name": {{ libro.titulo | json_encode | raw }},
+      "isbn": {{ libro.isbn | json_encode | raw }}
+    },
+    "seller": {
+      "@type": "BookStore",
+      "name": "PAWPrints"
+    }
+  }
+  </script>
+{% endblock %}
+
 {% block styles %}
   <link rel="stylesheet" href="/assets/css/formularioCompra.css">
 {% endblock %}

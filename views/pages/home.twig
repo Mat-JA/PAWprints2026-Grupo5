@@ -2,6 +2,26 @@
 
 {% block title %}PawPrints{% endblock %}
 
+{% block schema %}
+  {{ parent() }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BookStore",
+    "name": "PAWPrints",
+    "description": "Librería y espacio de lectura ubicada en Luján, Buenos Aires.",
+    "image": "/assets/img/frente_libreria_lightmode.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Luján",
+      "addressRegion": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "url": "http://localhost:8080"
+  }
+  </script>
+{% endblock %}
+
 {% block styles %}
   <link rel="stylesheet" href="/assets/css/index.css">
   <link rel="stylesheet" href="/assets/css/carousel.css">
@@ -11,17 +31,17 @@
 {% endblock %}
 
 {% block content %}
-  <section class="principal">
+  <section class="principal" itemscope itemtype="https://schema.org/BookStore">
     <figure>
-      <img src="/assets/img/frente_libreria_lightmode.png" alt="Frente de la libreria física.">
+      <img itemprop="image"
+           src="/assets/img/frente_libreria_lightmode.png"
+           alt="Frente de la librería física.">
     </figure>
-
-    <h1>PAWPrints</h1>
-
-    <p>
-      Libreria y espacio de lectura ubicada en Lujan, Buenos Aires.
+    <h1 itemprop="name">PAWPrints</h1>
+    <p itemprop="description">
+      Librería y espacio de lectura ubicada en Luján, Buenos Aires.
       Destinada a toda persona que disfrute de un buen libro acompañado
-      de un buen cafe. Veni a visitarnos!
+      de un buen café. Vení a visitarnos!
     </p>
   </section>
 

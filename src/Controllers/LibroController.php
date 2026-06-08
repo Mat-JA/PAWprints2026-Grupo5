@@ -38,27 +38,32 @@ class LibroController
     }
 
     public function catalogo()
-    {
-        $pagina   = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
-        $limite   = isset($_GET['limite']) ? (int) $_GET['limite'] : 4;
-        $busqueda = $_GET['buscar'] ?? null;
+{
+    $pagina   = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
+    $limite   = isset($_GET['limite']) ? (int) $_GET['limite'] : 4;
+    $busqueda = $_GET['buscar'] ?? null;
 
-        $resultado    = $this->libroService->obtenerPaginado($pagina, $limite, $busqueda);
-        $libros       = $resultado['libros'];
-        $totalPaginas = $resultado['totalPaginas'];
-        $totalLibros  = $resultado['totalLibros'];
+    $resultado    = $this->libroService->obtenerPaginado($pagina, $limite, $busqueda);
+    $libros       = $resultado['libros'];
+    $totalPaginas = $resultado['totalPaginas'];
+    $totalLibros  = $resultado['totalLibros'];
 
-        if ($pagina < 1 || ($pagina > $totalPaginas && $totalLibros > 0)) {
-            throw new PageNotFound('La página solicitada no existe');
-        }
-
-        echo $this->twig->render('pages/catalogo.twig', [
-            'libros'       => $libros,
-            'totalPaginas' => $totalPaginas,
-            'totalLibros'  => $totalLibros,
-            'pagina'       => $pagina,
-        ]);
+    if ($pagina < 1 || ($pagina > $totalPaginas && $totalLibros > 0)) {
+        throw new PageNotFound('La página solicitada no existe');
     }
+
+    // Solo para el JSON-LD del schema — no afecta la paginación ni el JS
+    $todosLosLibros = $this->libroService->obtenerTodos();
+    $librosSchema   = array_map(fn($l) => $l->fields, $todosLosLibros);
+
+    echo $this->twig->render('pages/catalogo.twig', [
+        'libros'       => $libros,
+        'librosSchema' => $librosSchema, // ← nuevo
+        'totalPaginas' => $totalPaginas,
+        'totalLibros'  => $totalLibros,
+        'pagina'       => $pagina,
+    ]);
+}
 
     public function detalle()
     {

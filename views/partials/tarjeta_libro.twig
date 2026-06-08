@@ -1,16 +1,21 @@
-<article class="tarjeta-libro">
-  <h3>{{ libro.titulo }}</h3>
+<article class="tarjeta-libro" itemscope itemtype="https://schema.org/Book">
+  <h3 itemprop="name">{{ libro.titulo }}</h3>
 
   <a href="/libro?id={{ libro.id }}">
     <img
+      itemprop="image"
       src="{{ libro.imagen_url }}"
       alt="{{ libro.desc_corta }}"
     >
   </a>
 
-  <p>ISBN: {{ libro.isbn }}</p>
+  <p>ISBN: <span itemprop="isbn">{{ libro.isbn }}</span></p>
 
-  <p>${{ libro.precio|number_format(2, ',', '.') }}</p>
+  <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+    <meta itemprop="priceCurrency" content="ARS">
+    <p>$<span itemprop="price"
+              content="{{ libro.precio }}">{{ libro.precio|number_format(2, ',', '.') }}</span></p>
+  </div>
 
   <a href="/formularioCompra?id={{ libro.id }}" class="btn-comprar">Agregar al carrito</a>
 </article>

@@ -2,6 +2,51 @@
 
 {% block title %}PawPrints - Eventos Locales{% endblock %}
 
+{% block schema %}
+  {{ parent() }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BookStore",
+    "name": "PAWPrints",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ejemplo 1234",
+      "addressLocality": "Luján",
+      "addressRegion": "Buenos Aires",
+      "postalCode": "6700",
+      "addressCountry": "AR"
+    },
+    "telephone": "+54-000-0000000",
+    "email": "contacto@pawprints.com",
+    "openingHours": "Mo-Sa 09:00-20:00",
+    "hasMap": "https://maps.google.com/?q=Luján,Buenos+Aires",
+    "event": [
+      {
+        "@type": "Event",
+        "name": "Nombre Evento 1",
+        "startDate": "2025-01-01",
+        "location": {
+          "@type": "Place",
+          "name": "PAWPrints",
+          "address": "Ejemplo 1234, Luján, Buenos Aires"
+        }
+      },
+      {
+        "@type": "Event",
+        "name": "Nombre Evento 2",
+        "startDate": "2025-02-01",
+        "location": {
+          "@type": "Place",
+          "name": "PAWPrints",
+          "address": "Ejemplo 1234, Luján, Buenos Aires"
+        }
+      }
+    ]
+  }
+  </script>
+{% endblock %}
+
 {% block styles %}
   <link rel="stylesheet" href="/assets/css/locales.css">
 {% endblock %}
@@ -12,20 +57,32 @@
   <h1 class="locales-titulo">Eventos locales</h1>
 
   <div class="eventos-lista">
-    <section class="evento-card">
-      <h2 class="evento-titulo">Nombre Evento 1</h2>
-      <time class="evento-fecha">fecha evento1</time>
+    <section class="evento-card" itemscope itemtype="https://schema.org/Event">
+      <h2 class="evento-titulo" itemprop="name">Nombre Evento 1</h2>
+      <time class="evento-fecha" itemprop="startDate" datetime="2025-01-01">fecha evento1</time>
       <a href="/eventos/1" class="evento-imagen-link">
-        <img src="/assets/img/evento_portada_generica.svg" alt="portada evento 1">
+        <img itemprop="image"
+             src="/assets/img/evento_portada_generica.svg"
+             alt="portada evento 1">
       </a>
+      <div itemprop="location" itemscope itemtype="https://schema.org/Place">
+        <meta itemprop="name" content="PAWPrints">
+        <meta itemprop="address" content="Ejemplo 1234, Luján, Buenos Aires">
+      </div>
     </section>
 
-    <section class="evento-card">
-      <h2 class="evento-titulo">Nombre Evento 2</h2>
-      <time class="evento-fecha">fecha evento2</time>
+    <section class="evento-card" itemscope itemtype="https://schema.org/Event">
+      <h2 class="evento-titulo" itemprop="name">Nombre Evento 2</h2>
+      <time class="evento-fecha" itemprop="startDate" datetime="2025-02-01">fecha evento2</time>
       <a href="/eventos/2" class="evento-imagen-link">
-        <img src="/assets/img/evento_portada_generica.svg" alt="portada evento 2">
+        <img itemprop="image"
+             src="/assets/img/evento_portada_generica.svg"
+             alt="portada evento 2">
       </a>
+      <div itemprop="location" itemscope itemtype="https://schema.org/Place">
+        <meta itemprop="name" content="PAWPrints">
+        <meta itemprop="address" content="Ejemplo 1234, Luján, Buenos Aires">
+      </div>
     </section>
   </div>
 {% endblock %}

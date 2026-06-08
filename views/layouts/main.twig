@@ -8,6 +8,20 @@
   <link rel="stylesheet" href="/assets/css/footer.css">
   {% block styles %}{% endblock %}
   <title>{% block title %}PawPrints{% endblock %}</title>
+
+  {# ── Microdata / JSON-LD ── #}
+  {% block schema %}
+    {# Schema global del sitio web, presente en todas las páginas #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "PAWPrints",
+      "url": "http://localhost:8080"
+    }
+    </script>
+  {% endblock %}
+
 </head>
 <body>
 

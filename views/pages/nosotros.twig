@@ -2,6 +2,26 @@
 
 {% block title %}PawPrints - Sobre Nosotros{% endblock %}
 
+{% block schema %}
+  {{ parent() }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BookStore",
+    "name": "PAWPrints",
+    "description": "En PawPrints creemos que cada libro deja una huella. Algunas son sutiles, otras permanecen para siempre, pero todas tienen algo en común: nos conectan con nuevas ideas, historias y formas de ver el mundo."
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Luján",
+      "addressRegion": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "foundingDate": "2024",
+    "url": {{ store.url | json_encode | raw }}
+  }
+  </script>
+{% endblock %}
+
 {% block styles %}
   <link rel="stylesheet" href="/assets/css/nosotros.css">
 {% endblock %}

@@ -2,6 +2,39 @@
 
 {% block title %}PawPrints - Catálogo{% endblock %}
 
+{% block schema %}
+  {{ parent() }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Catálogo de libros – PAWPrints",
+    "itemListElement": [
+      {% for libro in librosSchema %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "Book",
+          "name": {{ libro.titulo | json_encode | raw }},
+          "isbn": {{ libro.isbn | json_encode | raw }},
+          "description": {{ libro.desc_corta | json_encode | raw }},
+          "image": {{ libro.imagen_url | json_encode | raw }},
+          "url": "/libro?id={{ libro.id }}",
+          "offers": {
+            "@type": "Offer",
+            "price": "{{ libro.precio }}",
+            "priceCurrency": "ARS",
+            "availability": "https://schema.org/{{ libro.stock > 0 ? 'InStock' : 'OutOfStock' }}"
+          }
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
+{% endblock %}
+
 {% block styles %}
   <link rel="stylesheet" href="/assets/css/catalogo.css">
   <link rel="stylesheet" href="/assets/css/tarjeta_libro.css">
