@@ -16,7 +16,7 @@
     },
     "seller": {
       "@type": "BookStore",
-      "name": "PAWPrints"
+      "name": {{ store.name | json_encode | raw }}
     }
   }
   </script>

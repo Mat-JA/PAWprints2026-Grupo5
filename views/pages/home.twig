@@ -8,16 +8,21 @@
   {
     "@context": "https://schema.org",
     "@type": "BookStore",
-    "name": "PAWPrints",
-    "description": "Librería y espacio de lectura ubicada en Luján, Buenos Aires.",
+    "name": {{ store.name | json_encode | raw }},
+    "description": {{ store.description | json_encode | raw }},
     "image": "/assets/img/frente_libreria_lightmode.png",
+    "url": {{ store.url | json_encode | raw }},
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Luján",
-      "addressRegion": "Buenos Aires",
-      "addressCountry": "AR"
+      "streetAddress":   {{ store.address.street   | json_encode | raw }},
+      "addressLocality": {{ store.address.locality | json_encode | raw }},
+      "addressRegion":   {{ store.address.region   | json_encode | raw }},
+      "postalCode":      {{ store.address.postal   | json_encode | raw }},
+      "addressCountry":  {{ store.address.country  | json_encode | raw }}
     },
-    "url": "http://localhost:8080"
+    "telephone": {{ store.telephone | json_encode | raw }},
+    "email":     {{ store.email     | json_encode | raw }},
+    "openingHours": {{ store.hours  | json_encode | raw }}
   }
   </script>
 {% endblock %}

@@ -8,18 +8,18 @@
   {
     "@context": "https://schema.org",
     "@type": "BookStore",
-    "name": "PAWPrints",
+    "name": {{ store.name | json_encode | raw }},
+    "telephone": {{ store.telephone | json_encode | raw }},
+    "email": {{ store.email | json_encode | raw }},
+    "openingHours": {{ store.hours | json_encode | raw }},
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Ejemplo 1234",
-      "addressLocality": "Luján",
-      "addressRegion": "Buenos Aires",
-      "postalCode": "6700",
-      "addressCountry": "AR"
-    },
-    "telephone": "+54-000-0000000",
-    "email": "contacto@pawprints.com",
-    "openingHours": "Mo-Sa 09:00-20:00",
+      "streetAddress":   {{ store.address.street   | json_encode | raw }},
+      "addressLocality": {{ store.address.locality | json_encode | raw }},
+      "addressRegion":   {{ store.address.region   | json_encode | raw }},
+      "postalCode":      {{ store.address.postal   | json_encode | raw }},
+      "addressCountry":  {{ store.address.country  | json_encode | raw }}
+    }
     "hasMap": "https://maps.google.com/?q=Luján,Buenos+Aires",
     "event": [
       {
