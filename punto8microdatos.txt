@@ -1,0 +1,22 @@
+DEO GLORIA
+
+Respuestas a las preguntas del punto 8 del TP5 sobre PAWprints.
+
+a. ¿Toda la microdata es estática?
+
+No, no toda la microdata es estática. Por ejemplo, en catalogo.twig la microdata de los libros es dinámica ya que se obtiene de la base de datos.
+Aplicar microdata dinámica nos da la ventaja de no tener que modificar información manualmente, en especial información que cambia constantemente.
+
+b. ¿Cómo decidimos en qué página es importante la microdata de ciertos objetos? Por ejemplo, ¿En todos los sitios pondremos la microdata de la/s sucursal/es? 
+   En los listados de libros, ¿Que tipo de objetos son? ¿Son libros, son publicidades, que son?
+
+Básicamente, la microdata la usamos para mejorar la promoción de la página en los motores de búsqueda, haciéndoles más sencillo a estos mismos el entender de qué trata la página.
+Establecido eso, decidimos la importancia de la microdata de ciertos objetos en cada página, pública, según cual era el foco de la página.
+Por ejemplo, en la página de inicio, el foco es la librería misma, por lo que es lo único que tiene microdata.
+En cambio, en el catálogo, los libros tienen su propia microdata debido a que esllos son el foco.
+
+No, no pondremos en todos los sitios las microdatas de la/s sucursal/es, debido a que no es necesario, por lo descripto anteriormente.
+
+Los objetos descritos en la microdata de los libros son los libros en sí, por eso definimos el type como @Book.
+Además, estos libros incluyen el objeto @Offer en su microdata para indicar el precio, de manera separada a la información del libro,
+debido a que la oferta (precio, si hay stock) cambia con más frecuencia que el libro en sí.
